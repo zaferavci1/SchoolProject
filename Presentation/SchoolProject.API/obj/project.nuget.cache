@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "o8Wy+t7e4ZbIkCGXI+dp+XUSJQhTqsCUopGxTSYdsHHUJbH4LOUgHg32QKFUC6gBsQEPkD6GWzFKjxk2lPXF+g==",
+  "success": true,
+  "projectFilePath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/SchoolProject.API.csproj",
+  "expectedPackageFiles": [
+    "/Users/zaferavci/.nuget/packages/microsoft.aspnetcore.openapi/7.0.16/microsoft.aspnetcore.openapi.7.0.16.nupkg.sha512",
+    "/Users/zaferavci/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/zaferavci/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/zaferavci/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/Users/zaferavci/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/Users/zaferavci/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/Users/zaferavci/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

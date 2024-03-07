@@ -10,6 +10,7 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/refint/SchoolProject.Domain.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/SchoolProject.Domain.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/ref/SchoolProject.Domain.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/SchoolProject.Domain.sourcelink.json
 /Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/bin/Debug/net7.0/SchoolProject.Domain.deps.json
 /Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/bin/Debug/net7.0/SchoolProject.Domain.dll
 /Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/bin/Debug/net7.0/SchoolProject.Domain.pdb

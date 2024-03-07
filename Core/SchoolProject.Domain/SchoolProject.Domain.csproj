@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Entities\" />
+    <None Remove="Entities\Common\" />
+    <None Remove="Application\" />
+    <None Remove="Application\Abstraction\" />
+    <None Remove="Application\Abstraction\Repository\" />
+    <None Remove="Application\Abstraction\Repository\Users\" />
+    <None Remove="Application\Abstraction\Repository\Baskets\" />
+    <None Remove="Application\Abstraction\Repository\Cryptos\" />
+    <None Remove="Application\Abstraction\Repository\Posts\" />
+    <None Remove="Application\Abstraction\Repository\PublicProfiles\" />
+    <None Remove="Application\Abstraction\Repository\Comments\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Entities\Common\" />
+    <Folder Include="Application\" />
+    <Folder Include="Application\Abstraction\" />
+    <Folder Include="Application\Abstraction\Repository\" />
+    <Folder Include="Application\Abstraction\Repository\Users\" />
+    <Folder Include="Application\Abstraction\Repository\Baskets\" />
+    <Folder Include="Application\Abstraction\Repository\Cryptos\" />
+    <Folder Include="Application\Abstraction\Repository\Posts\" />
+    <Folder Include="Application\Abstraction\Repository\PublicProfiles\" />
+    <Folder Include="Application\Abstraction\Repository\Comments\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+  </ItemGroup>
+</Project>

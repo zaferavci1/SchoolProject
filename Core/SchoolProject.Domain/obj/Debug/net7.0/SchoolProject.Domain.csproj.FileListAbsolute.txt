@@ -1,0 +1,12 @@
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/bin/Debug/net7.0/SchoolProject.Domain.deps.json
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/bin/Debug/net7.0/SchoolProject.Domain.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/bin/Debug/net7.0/SchoolProject.Domain.pdb
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/SchoolProject.Domain.csproj.AssemblyReference.cache
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/SchoolProject.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/SchoolProject.Domain.AssemblyInfoInputs.cache
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/SchoolProject.Domain.AssemblyInfo.cs
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/SchoolProject.Domain.csproj.CoreCompileInputs.cache
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/SchoolProject.Domain.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/refint/SchoolProject.Domain.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/SchoolProject.Domain.pdb
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/ref/SchoolProject.Domain.dll

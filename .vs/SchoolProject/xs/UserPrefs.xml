@@ -1,15 +1,28 @@
-﻿<Properties>
+﻿<Properties StartupConfiguration="{BC7DF8D7-5A64-428D-96AD-49B7F7CF2376}|https">
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SchoolProject" expanded="True" selected="True" />
+          <Node name="SchoolProject" expanded="True" selected="True">
+            <Node name="Core" expanded="True">
+              <Node name="SchoolProject.Domain" expanded="True">
+                <Node name="Application" expanded="True">
+                  <Node name="Abstraction" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Infrastructure.SchoolProject.Infrastructure FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.Infrastructure.SchoolProject.Persistence FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API FirstBuild="True" PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

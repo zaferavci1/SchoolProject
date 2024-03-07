@@ -1,0 +1,12 @@
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/bin/Debug/net7.0/SchoolProject.Persistence.deps.json
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/bin/Debug/net7.0/SchoolProject.Persistence.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/bin/Debug/net7.0/SchoolProject.Persistence.pdb
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.csproj.AssemblyReference.cache
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.AssemblyInfoInputs.cache
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.AssemblyInfo.cs
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.csproj.CoreCompileInputs.cache
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/refint/SchoolProject.Persistence.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.pdb
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/ref/SchoolProject.Persistence.dll

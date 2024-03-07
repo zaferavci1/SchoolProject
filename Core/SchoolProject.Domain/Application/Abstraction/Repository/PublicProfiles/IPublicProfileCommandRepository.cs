@@ -3,7 +3,7 @@ using SchoolProject.Domain.Entities;
 
 namespace SchoolProject.Domain.Application.Abstraction.Repository.PublicProfiles
 {
-	public interface IQueryPublicProfileRepository : IQueryRepository<PublicProfile>
+	public interface IPublicProfileCommandRepository : ICommandRepository<PublicProfile>
 	{
 	}
 }

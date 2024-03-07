@@ -12,6 +12,12 @@
     <None Remove="Repositories\" />
     <None Remove="Services\" />
     <None Remove="Configurations\" />
+    <None Remove="Repositories\Baskets\" />
+    <None Remove="Repositories\Comments\" />
+    <None Remove="Repositories\Cryptos\" />
+    <None Remove="Repositories\Posts\" />
+    <None Remove="Repositories\PublicProfiles\" />
+    <None Remove="Repositories\Users\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Context\" />
@@ -19,6 +25,12 @@
     <Folder Include="Repositories\" />
     <Folder Include="Services\" />
     <Folder Include="Configurations\" />
+    <Folder Include="Repositories\Baskets\" />
+    <Folder Include="Repositories\Comments\" />
+    <Folder Include="Repositories\Cryptos\" />
+    <Folder Include="Repositories\Posts\" />
+    <Folder Include="Repositories\PublicProfiles\" />
+    <Folder Include="Repositories\Users\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\SchoolProject.Domain\SchoolProject.Domain.csproj" />

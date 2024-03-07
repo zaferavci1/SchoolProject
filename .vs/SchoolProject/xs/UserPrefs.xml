@@ -1,37 +1,26 @@
 ﻿<Properties StartupConfiguration="{C3121B99-5EE8-4404-BD10-69F4DB95ED23}|https">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/SchoolProject.Persistence/Configuration/Configuration.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SchoolProject.Infrastructure/SchoolProject.Persistence/Class1.cs">
     <Files>
-      <File FileName="Infrastructure/SchoolProject.Persistence/Configuration/Configuration.cs" Line="24" Column="1" />
+      <File FileName="Core/SchoolProject.Domain/Application/Abstraction/Repository/IRepository.cs" Line="14" Column="1" />
+      <File FileName="SchoolProject.Infrastructure/SchoolProject.Persistence/Class1.cs" Line="8" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SchoolProject">
-            <Node name="Core">
-              <Node name="SchoolProject.Domain">
-                <Node name="Application" expanded="True">
-                  <Node name="Abstraction" expanded="True">
-                    <Node name="Repository" expanded="True">
-                      <Node name="Baskets" expanded="True" />
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
             <Node name="Infrastructure" expanded="True">
-              <Node name="SchoolProject.Infrastructure" expanded="True" />
-              <Node name="SchoolProject.Persistence" selected="True">
-                <Node name="Configuration" expanded="True" />
-              </Node>
+              <Node name="SchoolProject.Persistence" expanded="True" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

@@ -7,7 +7,7 @@ namespace SchoolProject.Domain.Application.Abstraction.Repository
 	public interface IQueryRepository<T> : IRepository<T> where T : BaseEntity
     {
         IQueryable<T> GetAll();
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(string id);
     }
 }
 

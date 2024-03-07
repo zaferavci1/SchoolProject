@@ -518,25 +518,24 @@
     ]
   },
   "packageFolders": {
-    "/Users/serkanyilmaz/.nuget/packages/": {}
+    "/Users/zaferavci/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/SchoolProject.Domain.csproj",
+      "projectUniqueName": "/Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/SchoolProject.Domain.csproj",
       "projectName": "SchoolProject.Domain",
-      "projectPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/SchoolProject.Domain.csproj",
-      "packagesPath": "/Users/serkanyilmaz/.nuget/packages/",
-      "outputPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/",
+      "projectPath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/SchoolProject.Domain.csproj",
+      "packagesPath": "/Users/zaferavci/.nuget/packages/",
+      "outputPath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/serkanyilmaz/.nuget/NuGet/NuGet.Config"
+        "/Users/zaferavci/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -549,6 +548,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -576,7 +580,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -5,7 +5,7 @@ using SchoolProject.Persistence.Context;
 
 namespace SchoolProject.Persistence.Repositories.PublicProfiles
 {
-	public class PublicProfileQueryRepository : QueryRepository<PublicProfile> , IPublicProfileQueryRepository
+	public class PublicProfileQueryRepository : QueryRepository<GetAllPostDTO> , IPublicProfileQueryRepository
 	{
 		public PublicProfileQueryRepository(SchoolProjectDbContext schoolProjectDbContext) : base(schoolProjectDbContext)
 		{

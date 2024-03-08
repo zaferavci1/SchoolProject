@@ -9,7 +9,7 @@ namespace SchoolProject.Domain.Entities
         public string Mail { get; set; }
         public List<PublicProfile> Followers { get; set; }
         public List<PublicProfile> Follows { get; set; }
-        public List<PublicProfile> Posts { get; set; }
+        public List<Post> Posts { get; set; }
     }
 }
 

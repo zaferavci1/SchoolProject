@@ -9,6 +9,7 @@
   <ItemGroup>
     <None Remove="Entities\" />
     <None Remove="Entities\Common\" />
+<<<<<<< Updated upstream
     <None Remove="Application\" />
     <None Remove="Application\Abstraction\" />
     <None Remove="Application\Abstraction\Repository\" />
@@ -18,10 +19,13 @@
     <None Remove="Application\Abstraction\Repository\Posts\" />
     <None Remove="Application\Abstraction\Repository\PublicProfiles\" />
     <None Remove="Application\Abstraction\Repository\Comments\" />
+=======
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Entities\Common\" />
+<<<<<<< Updated upstream
     <Folder Include="Application\" />
     <Folder Include="Application\Abstraction\" />
     <Folder Include="Application\Abstraction\Repository\" />
@@ -31,6 +35,16 @@
     <Folder Include="Application\Abstraction\Repository\Posts\" />
     <Folder Include="Application\Abstraction\Repository\PublicProfiles\" />
     <Folder Include="Application\Abstraction\Repository\Comments\" />
+=======
+    <Folder Include="Application\Features\Comments\Commands\" />
+    <Folder Include="Application\Features\Comments\DTOs\" />
+    <Folder Include="Application\Features\Cryptos\Commands\" />
+    <Folder Include="Application\Features\Cryptos\DTOs\" />
+    <Folder Include="Application\Features\Cryptos\Queries\" />
+    <Folder Include="Application\Features\Posts\Commands\" />
+    <Folder Include="Application\Features\PublicProfiles\Commands\" />
+    <Folder Include="Application\Features\Users\Commands\" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />

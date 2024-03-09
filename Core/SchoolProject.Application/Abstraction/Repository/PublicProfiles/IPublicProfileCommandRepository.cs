@@ -4,7 +4,7 @@ using SchoolProject.Domain.Entities;
 
 namespace SchoolProject.Application.Abstraction.Repository.PublicProfiles
 {
-	public interface IPublicProfileCommandRepository : ICommandRepository<GetAllPostDTO>
+	public interface IPublicProfileCommandRepository : ICommandRepository<PublicProfile>
 	{
 	}
 }

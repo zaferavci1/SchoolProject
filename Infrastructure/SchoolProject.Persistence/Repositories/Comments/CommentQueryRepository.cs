@@ -1,6 +1,5 @@
 ﻿using System;
-using SchoolProject.Domain.Application.Abstraction.Repository;
-using SchoolProject.Domain.Application.Abstraction.Repository.Comments;
+using SchoolProject.Application.Abstraction.Repository.Comments;
 using SchoolProject.Domain.Entities;
 using SchoolProject.Persistence.Context;
 

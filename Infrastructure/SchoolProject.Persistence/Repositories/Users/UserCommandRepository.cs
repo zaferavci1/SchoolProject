@@ -1,5 +1,5 @@
 ﻿using System;
-using SchoolProject.Domain.Application.Abstraction.Repository.Users;
+using SchoolProject.Application.Abstraction.Repository.Users;
 using SchoolProject.Domain.Entities;
 using SchoolProject.Persistence.Context;
 

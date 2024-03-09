@@ -1,5 +1,5 @@
 ﻿using System;
-using SchoolProject.Domain.Application.Abstraction.Repository.Posts;
+using SchoolProject.Application.Abstraction.Repository.Posts;
 using SchoolProject.Domain.Entities;
 using SchoolProject.Persistence.Context;
 

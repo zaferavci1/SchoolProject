@@ -1,7 +1,7 @@
-﻿using System;
-using SchoolProject.Domain.Application.Abstraction.Repository.Cryptos;
+﻿using System; 
 using SchoolProject.Domain.Entities;
 using SchoolProject.Persistence.Context;
+using SchoolProject.Application.Abstraction.Repository.Cryptos;
 
 namespace SchoolProject.Persistence.Repositories.Cryptos
 {

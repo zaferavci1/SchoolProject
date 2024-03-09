@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using SchoolProject.Domain.Application.Abstraction.Repository;
+using SchoolProject.Application.Abstraction.Repository;
 using SchoolProject.Domain.Entities;
 using SchoolProject.Persistence.Context;
 

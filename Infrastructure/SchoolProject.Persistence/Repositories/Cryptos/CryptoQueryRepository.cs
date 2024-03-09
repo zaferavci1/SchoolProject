@@ -1,5 +1,5 @@
 ﻿using System;
-using SchoolProject.Domain.Application.Abstraction.Repository.Cryptos;
+using SchoolProject.Application.Abstraction.Repository.Cryptos;
 using SchoolProject.Domain.Entities;
 using SchoolProject.Persistence.Context;
 

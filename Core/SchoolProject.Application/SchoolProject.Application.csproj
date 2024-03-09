@@ -14,9 +14,9 @@
     <None Remove="Features\Comments\" />
     <None Remove="Features\Comments\DTOs\" />
     <None Remove="Features\Comments\Commands\" />
-    <None Remove="Features\Comments\Queries\" />
+    <None Remove="Features\Comments\Queries\" /> 
     <None Remove="Utilities\" />
-    <None Remove="Utilities\Common\" />
+    <None Remove="Utilities\Common\" /> 
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -26,9 +26,9 @@
     <Folder Include="Features\Comments\" />
     <Folder Include="Features\Comments\DTOs\" />
     <Folder Include="Features\Comments\Commands\" />
-    <Folder Include="Features\Comments\Queries\" />
+    <Folder Include="Features\Comments\Queries\" /> 
     <Folder Include="Utilities\" />
-    <Folder Include="Utilities\Common\" />
+    <Folder Include="Utilities\Common\" />  
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolProject.Domain\SchoolProject.Domain.csproj" />

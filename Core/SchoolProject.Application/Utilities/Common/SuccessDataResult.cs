@@ -1,5 +1,6 @@
+﻿using SchoolProject.Application.Abstraction.DTO;
 ﻿using System;
-using SchoolProject.Application.Abstraction.DTO;
+ 
 
 namespace SchoolProject.Application.Utilities.Common
 {

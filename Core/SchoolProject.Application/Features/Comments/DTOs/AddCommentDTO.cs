@@ -6,6 +6,7 @@ namespace SchoolProject.Application.Features.Comments.DTOs
 {
 	public class AddCommentDTO : IDTO
 	{
+        public string PostId { get; set; }
         public string Content { get; set; }
     }
 }

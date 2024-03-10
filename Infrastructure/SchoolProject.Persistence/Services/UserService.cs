@@ -42,7 +42,7 @@ namespace SchoolProject.Persistence.Services
         public async Task<(List<GetAllUsersDTO>, int totalCount)> GetAllAsync(int page, int size)
             => (await _userQueryRepository.GetAll().Where(u => u.IsActive == true).Skip(size * page).Take(size).Select(u => new GetAllUsersDTO
             {
-                Id = Convert.ToInt32(u.Id),
+                Id = Convert.ToString(u.Id),
                 Mail = u.Mail,
                 Name = u.Name,
                 Surname = u.Surname,
@@ -55,7 +55,7 @@ namespace SchoolProject.Persistence.Services
             User user = await _userQueryRepository.GetByIdAsync(id);
             return new()
             {
-                Id = Convert.ToInt32(user.Id),
+                Id = Convert.ToString(user.Id),
                 Mail = user.Mail,
                 Name = user.Name,
                 Surname = user.Surname,

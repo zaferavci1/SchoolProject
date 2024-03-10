@@ -21,16 +21,15 @@ namespace SchoolProject.Persistence.Services
         {
             Comment comment = await _commentCommandRepository.AddAsync(new() { Content = addCommentDTO.Content });
             await _commentCommandRepository.SaveAsync();
-            return new() { Id = Convert.ToString(comment.Id), Content = comment.Content };
+            return new() {PostId=Convert.ToString(comment.PostID), Id = Convert.ToString(comment.Id), Content = comment.Content };
 
         }
 
         public async Task<CommentDTO> DeleteAsync(string id)
         {
-
             Comment comment = await _commentCommandRepository.RemoveAsync(id);
             await _commentCommandRepository.SaveAsync();
-            return new() { Id = id, Content = comment.Content };
+            return new() { PostId = Convert.ToString(comment.PostID), Id = id, Content = comment.Content };
         }
 
         public async Task<(List<GetAllCommentsDTO>, int totalCount)> GetAllAsync(int page, int size)
@@ -39,7 +38,7 @@ namespace SchoolProject.Persistence.Services
                 Id = Convert.ToString(c.Id),
                 Content = c.Content,
                 LikeCount = c.LikeCount,
-                ReplyComments = c.ReplyComments.Select(x => new CommentDTO() { Id = Convert.ToString(x.Id), Content = x.Content, LikeCount = x.LikeCount }).ToList()
+                ReplyComments = c.ReplyComments.Select(x => new CommentDTO() { PostId = Convert.ToString(c.PostID), Id = Convert.ToString(x.Id), Content = x.Content, LikeCount = x.LikeCount }).ToList()
             }).ToListAsync(), _commentQueryRepository.GetAll().Count() );
 
         
@@ -55,6 +54,7 @@ namespace SchoolProject.Persistence.Services
                 LikeCount = comment.LikeCount,
                 ReplyComments = comment.ReplyComments.Select(x => new CommentDTO()
                 {
+                    PostId = Convert.ToString(x.PostID),
                     Id = Convert.ToString(x.Id),
                     Content = x.Content,
                     LikeCount = x.LikeCount
@@ -69,7 +69,7 @@ namespace SchoolProject.Persistence.Services
             comment.Content = updateCommentDTO.Content;
             _commentCommandRepository.Update(comment);
             _commentCommandRepository.SaveAsync();
-            return new CommentDTO() { Id = Convert.ToString(comment.Id), Content = comment.Content };
+            return new CommentDTO() { PostId = Convert.ToString(comment.PostID), Id = Convert.ToString(comment.Id), Content = comment.Content };
         }
     }
 }

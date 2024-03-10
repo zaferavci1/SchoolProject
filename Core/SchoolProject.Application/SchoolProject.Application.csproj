@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Features\" />
+    <None Remove="Abstraction\" />
+    <None Remove="Abstraction\Services\" />
+    <None Remove="Features\Baskets\DTOs\" />
+    <None Remove="Features\Comments\" />
+    <None Remove="Features\Comments\DTOs\" />
+    <None Remove="Features\Comments\Commands\" />
+    <None Remove="Features\Comments\Queries\" /> 
+    <None Remove="Utilities\" />
+    <None Remove="Utilities\Common\" /> 
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\" />
+    <Folder Include="Abstraction\" />
+    <Folder Include="Abstraction\Services\" />
+    <Folder Include="Features\Baskets\DTOs\" />
+    <Folder Include="Features\Comments\" />
+    <Folder Include="Features\Comments\DTOs\" />
+    <Folder Include="Features\Comments\Commands\" />
+    <Folder Include="Features\Comments\Queries\" /> 
+    <Folder Include="Utilities\" />
+    <Folder Include="Utilities\Common\" />  
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SchoolProject.Domain\SchoolProject.Domain.csproj" />
+  </ItemGroup>
+</Project>

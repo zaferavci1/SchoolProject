@@ -48,7 +48,7 @@ namespace SchoolProject.Persistence.Services
         public async Task<GetByIdPostDTO> GetByIdAsync(string id)
         {
             Post post = await _postQueryRepository.Table.Include(p => p.Comments).FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
-            return new() { Id = Convert.ToInt32(post.Id), Comments = post.Comments, Content = post.Content, Title = post.Title };
+            return new() { Id = Convert.ToString(post.Id), Comments = post.Comments, Content = post.Content, Title = post.Title };
         }
 
         public async Task<PostDTO> UpdateAsync(UpdatePostDTO updatePostDTO)

@@ -10,7 +10,7 @@ namespace SchoolProject.Persistence
 	{
         private readonly SchoolProjectDbContext _context;
 
-        public CommandRepository(SchoolProjectDbContext context) => context = _context;
+        public CommandRepository(SchoolProjectDbContext context) => _context = context;
 
         public DbSet<T> Table => _context.Set<T>();
 

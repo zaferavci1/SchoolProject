@@ -5,7 +5,7 @@ using SchoolProject.Application.Utilities.Common;
 
 namespace SchoolProject.Application.Features.Posts.Queries.GetById
 {
-    public class GetByIdQueryPostRequest : IRequest<IDataResult<GetByIdPostDTO>>
+    public class GetByIdPostQueryRequest : IRequest<IDataResult<GetByIdPostDTO>>
 	{
 		public string Id { get; set; }
 	}

@@ -44,21 +44,21 @@ namespace SchoolProject.Persistence.Services
                 Name = user.Name,
                 Surname = user.Surname,
                 NickName = user.NickName,
-                Followers = user.Followers.Select(f => new PublicProfilesDTO()
+                Followers = user.Followers?.Select(f => new PublicProfilesDTO()
                 {
                     Id = Convert.ToString(f.Id),
                     Name = f.Name,
                     Surname = f.Surname,
                     NickName = f.NickName
-                }).ToList(),
-                Follows = user.Follows.Select(f => new PublicProfilesDTO()
+                }).ToList() ?? new List<PublicProfilesDTO>(),
+                Follows = user.Follows?.Select(f => new PublicProfilesDTO()
                 {
                     Id = Convert.ToString(f.Id),
                     Name = f.Name,
                     Surname = f.Surname,
                     NickName = f.NickName
-                }).ToList(),
-                Posts = user.Posts.Select(p=> new GetAllPostsDTO() {
+                }).ToList() ?? new List<PublicProfilesDTO>(), 
+                Posts = user.Posts?.Select(p=> new GetAllPostsDTO() {
                     Id = Convert.ToString(p.Id) ,
                     Content = p.Content,
                     Title= p.Title,
@@ -66,8 +66,8 @@ namespace SchoolProject.Persistence.Services
                     {
                         Id  = Convert.ToString(c.Id),
                         Content = c.Content,
-                    }).ToList()
-                }).ToList()
+                    }).ToList() ?? new List<CommentDTO>()
+                }).ToList() ?? new List<GetAllPostsDTO>()
             };
         }
 

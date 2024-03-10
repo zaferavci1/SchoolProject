@@ -1,5 +1,6 @@
 ﻿using System;
 using MediatR;
+using SchoolProject.Application.Features.Baskets.Queries.GetAll;
 using SchoolProject.Application.Utilities.Common;
 
 namespace SchoolProject.Application.Features.Users.Queries.GetAll

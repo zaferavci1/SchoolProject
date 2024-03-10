@@ -12,6 +12,7 @@ namespace SchoolProject.Application.Features.Users.DTOs
         public string Mail { get; set; }
         public string PhoneNumber { get; set; }
         public bool IsProfilePrivate { get; set; }
+        public bool IsActive { get; set; }
     }
 }
 

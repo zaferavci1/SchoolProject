@@ -11,7 +11,8 @@ namespace SchoolProject.Application.Abstraction.Services
 
 		Task<PostDTO> AddAsync(AddPostDTO addPostDTO);
 		Task<PostDTO> UpdateAsync(UpdatePostDTO updatePostDTO);
-		Task<PostDTO> DeleteAsync(int id);
+		Task<PostDTO> DeleteAsync(string id);
+
 	}
 }
 

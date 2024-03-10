@@ -1,11 +1,12 @@
 ﻿using System;
-using SchoolProject.Application.Abstraction.DTO;
+using MediatR;
+using SchoolProject.Application.Features.Users.DTOs;
+using SchoolProject.Application.Utilities.Common;
 
-namespace SchoolProject.Application.Features.Users.DTOs
+namespace SchoolProject.Application.Features.Users.Commands.Add
 {
-	public class UserDTO : IDTO
-	{ 
-        public string Id { get; set; } 
+	public class AddUserCommandRequest : IRequest<IDataResult<UserDTO>>
+	{
         public string NickName { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }

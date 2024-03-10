@@ -73,6 +73,7 @@ namespace SchoolProject.Persistence.Services
             user.Mail = updateUserDTO.Mail;
             user.IsActive = updateUserDTO.IsActive;
             user.IsProfilePrivate = updateUserDTO.IsProfilePrivate;
+            user.Password = updateUserDTO.Password;
             await _userCommandRepository.SaveAsync();
             return new()
             {

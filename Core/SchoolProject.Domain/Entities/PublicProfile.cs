@@ -6,6 +6,7 @@ namespace SchoolProject.Domain.Entities
         public string NickName { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string Mail { get; set; }
         public List<PublicProfile> Followers { get; set; }
         public List<PublicProfile> Follows { get; set; }
         public List<PublicProfile> Posts { get; set; }

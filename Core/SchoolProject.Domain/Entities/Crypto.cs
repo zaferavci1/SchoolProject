@@ -6,11 +6,11 @@ namespace SchoolProject.Domain.Entities
         public string CurrencyId { get; set; } 
         public string Symbol { get; set; } 
         public string Name { get; set; } 
-        public decimal CurrentPrice { get; set; } 
-        public decimal MarketCap { get; set; } 
-        public decimal CirculatingSupply { get; set; } 
-        public decimal Volume24h { get; set; } 
-        public decimal PercentChange24h { get; set; }
+        public float CurrentPrice { get; set; } 
+        public float MarketCap { get; set; } 
+        public float CirculatingSupply { get; set; } 
+        public float Volume24h { get; set; } 
+        public float PercentChange24h { get; set; }
     }
 }
 

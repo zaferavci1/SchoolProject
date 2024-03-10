@@ -2,6 +2,7 @@
 using MediatR;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Features.Comments.DTOs;
+using SchoolProject.Application.Features.Comments.Queries.GetById;
 using SchoolProject.Application.Utilities.Common;
 
 namespace SchoolProject.Application.Features.Baskets.Queries.GetById
@@ -17,7 +18,7 @@ namespace SchoolProject.Application.Features.Baskets.Queries.GetById
         public async Task<IDataResult<GetByIdCommentDTO>> Handle(GetByIdCommentQueryRequest request, CancellationToken cancellationToken)
         {
             GetByIdCommentDTO getByIdCommentDTO = await _commentService.GetByIdAsync(request.ıd);
-            return new SuccessDataResult<GetByIdCommentDTO>("Kategori Getirildi", getByIdCommentDTO);
+            return new SuccessDataResult<GetByIdCommentDTO>("Yorum Getirildi", getByIdCommentDTO);
         }
     }
 }

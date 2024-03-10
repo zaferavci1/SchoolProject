@@ -29,14 +29,14 @@ namespace SchoolProject.Persistence.Services
                 Password = addUserDTO.password
             });
             await _userCommandRepository.SaveAsync();
-            return new() { Id = Convert.ToString(user.Id), Mail = user.Mail, Name = user.Name, NickName = user.NickName, PhoneNumber = user.PhoneNumber, Surname = user.Surname };
+            return new() { Id = Convert.ToString(user.Id), Mail = user.Mail, Name = user.Name, NickName = user.NickName, PhoneNumber = user.PhoneNumber, Surname = user.Surname  , Password = user.Password};
         }
 
         public async Task<UserDTO> DeleteAsync(string id)
         {
             User user = await _userCommandRepository.RemoveAsync(id);
             await _userCommandRepository.SaveAsync();
-            return new() { Id = Convert.ToString(user.Id), Mail = user.Mail, Name = user.Name, Surname = user.Surname, NickName = user.NickName, PhoneNumber = user.PhoneNumber };
+            return new() { Id = Convert.ToString(user.Id), Mail = user.Mail, Name = user.Name, Surname = user.Surname, NickName = user.NickName, PhoneNumber = user.PhoneNumber, Password = user.Password };
         }
 
         public async Task<(List<GetAllUsersDTO>, int totalCount)> GetAllAsync(int page, int size)
@@ -67,13 +67,13 @@ namespace SchoolProject.Persistence.Services
         public async Task<UserDTO> UpdateAsync(UpdateUserDTO updateUserDTO)
         {
             User user = await _userQueryRepository.GetByIdAsync(updateUserDTO.Id);
-            user.Name = updateUserDTO.Name;
-            user.Surname = updateUserDTO.Surname;
-            user.NickName = updateUserDTO.NickName;
-            user.Mail = updateUserDTO.Mail;
-            user.IsActive = updateUserDTO.IsActive;
-            user.IsProfilePrivate = updateUserDTO.IsProfilePrivate;
-            user.Password = updateUserDTO.Password;
+            user.Name = updateUserDTO.Name == "string" ? user.Name : updateUserDTO.Name;
+            user.Surname = updateUserDTO.Surname == "string" ? user.Surname : updateUserDTO.Surname;
+            user.NickName = updateUserDTO.NickName == "string" ? user.NickName : updateUserDTO.NickName;
+            user.Mail = updateUserDTO.Mail == "string" ? user.Mail : updateUserDTO.Mail;
+            user.IsActive = updateUserDTO.IsActive == default ? user.IsActive : updateUserDTO.IsActive;
+            user.IsProfilePrivate = updateUserDTO.IsProfilePrivate == default ? user.IsProfilePrivate : updateUserDTO.IsProfilePrivate;
+            user.Password = updateUserDTO.Password == "string" ? user.Password : updateUserDTO.Password;
             await _userCommandRepository.SaveAsync();
             return new()
             {
@@ -82,7 +82,8 @@ namespace SchoolProject.Persistence.Services
                 Surname = user.Surname,
                 NickName = user.NickName,
                 Mail = user.Mail,
-                PhoneNumber = user.PhoneNumber
+                PhoneNumber = user.PhoneNumber,
+                Password = user.Password
             };
         }
     }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolProject.Persistence.Context;
 
@@ -11,9 +12,11 @@ using SchoolProject.Persistence.Context;
 namespace SchoolProject.Persistence.Migrations
 {
     [DbContext(typeof(SchoolProjectDbContext))]
-    partial class SchoolProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240310130452_mgr_2")]
+    partial class mgr2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,8 +127,8 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<Guid?>("BasketId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float>("CirculatingSupply")
-                        .HasColumnType("real");
+                    b.Property<decimal>("CirculatingSupply")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -134,21 +137,21 @@ namespace SchoolProject.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("CurrentPrice")
-                        .HasColumnType("real");
+                    b.Property<decimal>("CurrentPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<float>("MarketCap")
-                        .HasColumnType("real");
+                    b.Property<decimal>("MarketCap")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("PercentChange24h")
-                        .HasColumnType("real");
+                    b.Property<decimal>("PercentChange24h")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Symbol")
                         .IsRequired()
@@ -157,8 +160,8 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("Volume24h")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Volume24h")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 

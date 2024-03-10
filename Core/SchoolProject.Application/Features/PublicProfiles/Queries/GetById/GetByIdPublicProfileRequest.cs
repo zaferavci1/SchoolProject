@@ -7,7 +7,7 @@ namespace SchoolProject.Application.Features.PublicProfiles.Queries.GetById
 {
 	public class GetByIdPublicProfileRequest : IRequest<IDataResult<GetByIdPublicProfileDTO>>
 	{
-		public string Id { get; set; }
+		public string? Id { get; set; }
 	}
 }
 

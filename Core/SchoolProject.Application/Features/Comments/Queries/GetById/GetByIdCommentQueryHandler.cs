@@ -17,7 +17,7 @@ namespace SchoolProject.Application.Features.Baskets.Queries.GetById
         }
         public async Task<IDataResult<GetByIdCommentDTO>> Handle(GetByIdCommentQueryRequest request, CancellationToken cancellationToken)
         {
-            GetByIdCommentDTO getByIdCommentDTO = await _commentService.GetByIdAsync(request.ıd);
+            GetByIdCommentDTO getByIdCommentDTO = await _commentService.GetByIdAsync(request.Id);
             return new SuccessDataResult<GetByIdCommentDTO>("Yorum Getirildi", getByIdCommentDTO);
         }
     }

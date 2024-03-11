@@ -7,7 +7,8 @@ namespace SchoolProject.Application.Features.Comments.Queries.GetById
 {
 	public class GetByIdCommentQueryRequest :IRequest<IDataResult<GetByIdCommentDTO>>
 	{
-		public string ıd { get; set; }
+		public string Id { get; set; }
+
 	}
 }
 

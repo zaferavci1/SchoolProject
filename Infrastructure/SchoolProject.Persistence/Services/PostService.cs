@@ -22,7 +22,7 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<PostDTO> AddAsync(AddPostDTO addPostDTO)
         {
-            Post post = await _postCommandRepository.AddAsync(new() { Title = addPostDTO.Title, Content = addPostDTO.Content });
+            Post post = await _postCommandRepository.AddAsync(new() { UserId = Guid.Parse(addPostDTO.UserId) ,Title = addPostDTO.Title, Content = addPostDTO.Content });
             await _postCommandRepository.SaveAsync();
             return new() { Id = Convert.ToString(post.Id), Content = post.Content, Title = post.Content };
         }
@@ -57,6 +57,7 @@ namespace SchoolProject.Persistence.Services
             post.Title = updatePostDTO.Title;
             post.Content = updatePostDTO.Content;
             post.IsActive = updatePostDTO.IsActive;
+            await _postCommandRepository.SaveAsync();
             return new() { UserId = Convert.ToString(post.UserId), Id = Convert.ToString(post.Id), Content = post.Content, Title = post.Title };
 
         }

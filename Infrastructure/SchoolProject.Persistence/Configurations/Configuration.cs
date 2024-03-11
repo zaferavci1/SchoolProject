@@ -7,6 +7,12 @@ namespace SchoolProject.Persistence.Configurations
 {
     static class Configuration
     {
+        private static IConfiguration _configuration;
+
+        public static void Configure(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         static public string ConnectionString
         {
             get
@@ -17,7 +23,9 @@ namespace SchoolProject.Persistence.Configurations
 
                 return configurationManager.GetConnectionString("MsSql");
             }
+
         }
+
     }
 }
 

@@ -16,7 +16,6 @@ namespace SchoolProject.Application.Features.Users.DTOs
         public List<PublicProfilesDTO> Followers { get; set; }
         public List<PublicProfilesDTO> Follows { get; set; }
         public List<GetAllPostsDTO> Posts { get; set; }
-
     }
 }
 

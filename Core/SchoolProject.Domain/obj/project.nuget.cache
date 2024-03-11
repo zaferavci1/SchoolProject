@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "qNpVPG6qSaMdnyBKHW/FlCO7TG2E0Q8JIqtSKMgMxkv0h+VwEaOWDh+gcOJk9DQLm23mR77Spyqpo4ydVd1s3w==",
+  "dgSpecHash": "4tai4PpWp9+5OBUxg85hIDdmjX4flsAJZ3sh8H8M6bu073twnQ8Gb1F09J7AZmzMb51WuqGqPFBf8G/Oz1yvaw==",
   "success": true,
   "projectFilePath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/SchoolProject.Domain.csproj",
   "expectedPackageFiles": [
+    "/Users/zaferavci/.nuget/packages/mediatr/12.0.1/mediatr.12.0.1.nupkg.sha512",
+    "/Users/zaferavci/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
     "/Users/zaferavci/.nuget/packages/microsoft.entityframeworkcore/7.0.0/microsoft.entityframeworkcore.7.0.0.nupkg.sha512",
     "/Users/zaferavci/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.0/microsoft.entityframeworkcore.abstractions.7.0.0.nupkg.sha512",
     "/Users/zaferavci/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.0/microsoft.entityframeworkcore.analyzers.7.0.0.nupkg.sha512",

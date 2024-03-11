@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using SchoolProject.Domain.Application.Abstraction.Repository;
+using SchoolProject.Application.Abstraction.Repository;
 using SchoolProject.Domain.Entities;
 using SchoolProject.Persistence.Context;
 
@@ -10,7 +10,7 @@ namespace SchoolProject.Persistence
 	{
         private readonly SchoolProjectDbContext _context;
 
-        public CommandRepository(SchoolProjectDbContext context) => context = _context;
+        public CommandRepository(SchoolProjectDbContext context) => _context = context;
 
         public DbSet<T> Table => _context.Set<T>();
 

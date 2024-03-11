@@ -15,15 +15,11 @@ namespace SchoolProject.Persistence.Services
     {
         private readonly IUserCommandRepository _userCommandRepository;
         private readonly IUserQueryRepository _userQueryRepository;
-        private readonly IUserService _userService;
-        private readonly IPostQueryRepository _postQueryRepository;
 
-        public PublicProfileService(IPublicProfileQueryRepository publicProfileQueryRepository, IPublicProfileCommandRepository publicProfileCommandRepository, IUserCommandRepository userCommandRepository, IUserQueryRepository userQueryRepository, IUserService userService, IPostQueryRepository postQueryRepository)
+        public PublicProfileService(IPublicProfileQueryRepository publicProfileQueryRepository, IPublicProfileCommandRepository publicProfileCommandRepository, IUserCommandRepository userCommandRepository, IUserQueryRepository userQueryRepository)
         {
             _userCommandRepository = userCommandRepository;
             _userQueryRepository = userQueryRepository;
-            _userService = userService;
-            _postQueryRepository = postQueryRepository;
         }
 
         public async Task<PublicProfilesDTO> AddAsync(AddPublicProfilesDTO addPublicProfilesDTO)
@@ -44,6 +40,7 @@ namespace SchoolProject.Persistence.Services
         public async Task<GetByIdPublicProfileDTO> GetByIdAsync(string id)
         {
             User? user = await _userQueryRepository.Table.Include(u => u.Posts).ThenInclude(p => p.Comments).Include(u => u.Followers).Include(u => u.Follows).FirstOrDefaultAsync(u => u.Id == Guid.Parse(id));
+            User user = await _userQueryRepository.GetByIdAsync(id);
             return new()
             {
                 Id = Convert.ToString(user.Id),

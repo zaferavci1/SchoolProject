@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "l29qmnrhd68sxKm2ZyE7A2sLUOnogxj+q0IEub23w+cx9GfRY0Cvwf4uz+IHhN1qm/urqc1HoqAmgAZ/aONykg==",
+  "dgSpecHash": "v4dJ8ieb482p6z7Zksn7CAR+SBVkZjp0MWkoRxNGRDOBbrz5PsBvAigAOmKHh4G50ScX5/UH8BzAr3aLqfKTJA==",
   "success": true,
   "projectFilePath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/SchoolProject.Persistence.csproj",
   "expectedPackageFiles": [
     "/Users/zaferavci/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/zaferavci/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
     "/Users/zaferavci/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
+    "/Users/zaferavci/.nuget/packages/mediatr/12.0.1/mediatr.12.0.1.nupkg.sha512",
+    "/Users/zaferavci/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
     "/Users/zaferavci/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/zaferavci/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
     "/Users/zaferavci/.nuget/packages/microsoft.data.sqlclient/5.0.1/microsoft.data.sqlclient.5.0.1.nupkg.sha512",

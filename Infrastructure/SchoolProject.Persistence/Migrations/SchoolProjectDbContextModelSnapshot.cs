@@ -22,11 +22,33 @@ namespace SchoolProject.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("PublicProfilePublicProfile", b =>
+                {
+                    b.Property<Guid>("FollowersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FollowsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("FollowersId", "FollowsId");
+
+                    b.HasIndex("FollowsId");
+
+                    b.ToTable("PublicProfilePublicProfile");
+                });
+
             modelBuilder.Entity("SchoolProject.Domain.Entities.Basket", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BasketName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Cost")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -84,9 +106,6 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CommentId");
@@ -105,8 +124,8 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<Guid?>("BasketId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("CirculatingSupply")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("CirculatingSupply")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -115,21 +134,21 @@ namespace SchoolProject.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("CurrentPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("CurrentPrice")
+                        .HasColumnType("real");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<decimal>("MarketCap")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("MarketCap")
+                        .HasColumnType("real");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("PercentChange24h")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("PercentChange24h")
+                        .HasColumnType("real");
 
                     b.Property<string>("Symbol")
                         .IsRequired()
@@ -138,8 +157,8 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Volume24h")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("Volume24h")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -167,6 +186,9 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<int>("LikeCount")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("PublicProfileId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -174,7 +196,14 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PublicProfileId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -190,10 +219,6 @@ namespace SchoolProject.Persistence.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Mail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -216,16 +241,11 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<Guid?>("UserId1")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("UserId2")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
                     b.HasIndex("UserId1");
-
-                    b.HasIndex("UserId2");
 
                     b.ToTable("PublicProfiles");
                 });
@@ -257,6 +277,10 @@ namespace SchoolProject.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -268,13 +292,24 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("PublicProfilePublicProfile", b =>
+                {
+                    b.HasOne("SchoolProject.Domain.Entities.PublicProfile", null)
+                        .WithMany()
+                        .HasForeignKey("FollowersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolProject.Domain.Entities.PublicProfile", null)
+                        .WithMany()
+                        .HasForeignKey("FollowsId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Basket", b =>
@@ -304,6 +339,19 @@ namespace SchoolProject.Persistence.Migrations
                         .HasForeignKey("BasketId");
                 });
 
+            modelBuilder.Entity("SchoolProject.Domain.Entities.Post", b =>
+                {
+                    b.HasOne("SchoolProject.Domain.Entities.PublicProfile", null)
+                        .WithMany("Posts")
+                        .HasForeignKey("PublicProfileId");
+
+                    b.HasOne("SchoolProject.Domain.Entities.User", null)
+                        .WithMany("Posts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("SchoolProject.Domain.Entities.PublicProfile", b =>
                 {
                     b.HasOne("SchoolProject.Domain.Entities.User", null)
@@ -313,10 +361,6 @@ namespace SchoolProject.Persistence.Migrations
                     b.HasOne("SchoolProject.Domain.Entities.User", null)
                         .WithMany("Follows")
                         .HasForeignKey("UserId1");
-
-                    b.HasOne("SchoolProject.Domain.Entities.User", null)
-                        .WithMany("Posts")
-                        .HasForeignKey("UserId2");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Basket", b =>
@@ -332,6 +376,11 @@ namespace SchoolProject.Persistence.Migrations
             modelBuilder.Entity("SchoolProject.Domain.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("SchoolProject.Domain.Entities.PublicProfile", b =>
+                {
+                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.User", b =>

@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Application.Abstraction.Repository.Users;
 using SchoolProject.Application.Abstraction.Services;
+using SchoolProject.Application.Features.Comments.DTOs;
+using SchoolProject.Application.Features.Posts.DTOs;
+using SchoolProject.Application.Features.PublicProfiles.DTOs;
 using SchoolProject.Application.Features.Users.DTOs;
 using SchoolProject.Domain.Entities;
 
@@ -52,7 +55,7 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<GetByIdUserDTO> GetByIdAsync(string id)
         {
-            User user = await _userQueryRepository.GetByIdAsync(id);
+            User? user = await _userQueryRepository.Table.Include(u=>u.Posts).ThenInclude(c => c.Comments).Include(u => u.Followers).Include(u => u.Follows).FirstOrDefaultAsync(u=>u.Id == Guid.Parse(id));
             return new()
             {
                 Id = Convert.ToString(user.Id),
@@ -60,6 +63,32 @@ namespace SchoolProject.Persistence.Services
                 Name = user.Name,
                 Surname = user.Surname,
                 NickName = user.NickName,
+                PhoneNumber = user.PhoneNumber,
+                Followers = user.Followers?.Select(f => new PublicProfilesDTO()
+                {
+                    Id = Convert.ToString(f.Id),
+                    Name = f.Name,
+                    Surname = f.Surname,
+                    NickName = f.NickName
+                }).ToList() ?? new List<PublicProfilesDTO>(),
+                Follows = user.Follows?.Select(f => new PublicProfilesDTO()
+                {
+                    Id = Convert.ToString(f.Id),
+                    Name = f.Name,
+                    Surname = f.Surname,
+                    NickName = f.NickName
+                }).ToList() ?? new List<PublicProfilesDTO>(),
+                Posts = user.Posts?.Select(p => new GetAllPostsDTO()
+                {
+                    Id = Convert.ToString(p.Id),
+                    Content = p.Content,
+                    Title = p.Title,
+                    Comments = p.Comments.Select(c => new CommentDTO()
+                    {
+                        Id = Convert.ToString(c.Id),
+                        Content = c.Content,
+                    }).ToList() ?? new List<CommentDTO>()
+                }).ToList() ?? new List<GetAllPostsDTO>()
                 PhoneNumber = user.PhoneNumber
             };
         }

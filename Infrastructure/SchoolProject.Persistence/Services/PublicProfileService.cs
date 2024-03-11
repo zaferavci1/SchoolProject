@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
+using SchoolProject.Application.Abstraction.Repository.Posts;
 using SchoolProject.Application.Abstraction.Repository.PublicProfiles;
 using SchoolProject.Application.Abstraction.Repository.Users;
 using SchoolProject.Application.Abstraction.Services;
@@ -37,6 +39,7 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<GetByIdPublicProfileDTO> GetByIdAsync(string id)
         {
+            User? user = await _userQueryRepository.Table.Include(u => u.Posts).ThenInclude(p => p.Comments).Include(u => u.Followers).Include(u => u.Follows).FirstOrDefaultAsync(u => u.Id == Guid.Parse(id));
             User user = await _userQueryRepository.GetByIdAsync(id);
             return new()
             {
@@ -62,7 +65,7 @@ namespace SchoolProject.Persistence.Services
                     Id = Convert.ToString(p.Id) ,
                     Content = p.Content,
                     Title= p.Title,
-                    Comments = p.Comments.Select(c => new CommentDTO()
+                    Comments = p.Comments?.Select(c => new CommentDTO()
                     {
                         Id  = Convert.ToString(c.Id),
                         Content = c.Content,

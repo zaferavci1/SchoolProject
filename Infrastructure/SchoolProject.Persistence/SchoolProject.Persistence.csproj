@@ -24,6 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\SchoolProject.Domain\SchoolProject.Domain.csproj" />
+    <ProjectReference Include="..\..\Core\SchoolProject.Application\SchoolProject.Application.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">

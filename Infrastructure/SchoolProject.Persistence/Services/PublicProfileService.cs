@@ -40,7 +40,7 @@ namespace SchoolProject.Persistence.Services
         public async Task<GetByIdPublicProfileDTO> GetByIdAsync(string id)
         {
             User? user = await _userQueryRepository.Table.Include(u => u.Posts).ThenInclude(p => p.Comments).Include(u => u.Followers).Include(u => u.Follows).FirstOrDefaultAsync(u => u.Id == Guid.Parse(id));
-            User user = await _userQueryRepository.GetByIdAsync(id);
+
             return new()
             {
                 Id = Convert.ToString(user.Id),

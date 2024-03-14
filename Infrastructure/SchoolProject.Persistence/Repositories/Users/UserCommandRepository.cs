@@ -10,6 +10,7 @@ namespace SchoolProject.Persistence.Repositories.Users
 		public UserCommandRepository(SchoolProjectDbContext schoolProjectDbContext) : base(schoolProjectDbContext)
 		{
 		}
+		
 	}
 }
 

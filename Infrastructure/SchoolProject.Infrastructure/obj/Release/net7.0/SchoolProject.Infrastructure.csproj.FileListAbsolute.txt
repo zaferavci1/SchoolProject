@@ -1,0 +1,12 @@
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Release/net7.0/SchoolProject.Infrastructure.deps.json
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Release/net7.0/SchoolProject.Infrastructure.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Release/net7.0/SchoolProject.Infrastructure.pdb
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Release/net7.0/SchoolProject.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Release/net7.0/SchoolProject.Infrastructure.AssemblyInfoInputs.cache
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Release/net7.0/SchoolProject.Infrastructure.AssemblyInfo.cs
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Release/net7.0/SchoolProject.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Release/net7.0/SchoolProject.Infrastructure.sourcelink.json
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Release/net7.0/SchoolProject.Infrastructure.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Release/net7.0/refint/SchoolProject.Infrastructure.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Release/net7.0/SchoolProject.Infrastructure.pdb
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Release/net7.0/ref/SchoolProject.Infrastructure.dll

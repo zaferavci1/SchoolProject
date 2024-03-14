@@ -17,6 +17,8 @@
     <None Remove="Features\Comments\Queries\" /> 
     <None Remove="Utilities\" />
     <None Remove="Utilities\Common\" /> 
+    <None Remove="Features\Users\Commands\Follow\" />
+    <None Remove="Abstraction\Repository\PublicProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -29,6 +31,8 @@
     <Folder Include="Features\Comments\Queries\" /> 
     <Folder Include="Utilities\" />
     <Folder Include="Utilities\Common\" />  
+    <Folder Include="Features\Users\Commands\Follow\" />
+    <Folder Include="Abstraction\Repository\PublicProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolProject.Domain\SchoolProject.Domain.csproj" />

@@ -22,21 +22,6 @@ namespace SchoolProject.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PublicProfilePublicProfile", b =>
-                {
-                    b.Property<Guid>("FollowersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("FollowsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("FollowersId", "FollowsId");
-
-                    b.HasIndex("FollowsId");
-
-                    b.ToTable("PublicProfilePublicProfile");
-                });
-
             modelBuilder.Entity("SchoolProject.Domain.Entities.Basket", b =>
                 {
                     b.Property<Guid>("Id")
@@ -186,9 +171,6 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<int>("LikeCount")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("PublicProfileId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -201,53 +183,9 @@ namespace SchoolProject.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PublicProfileId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("SchoolProject.Domain.Entities.PublicProfile", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NickName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UserId1")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("PublicProfiles");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.User", b =>
@@ -294,22 +232,22 @@ namespace SchoolProject.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
-            modelBuilder.Entity("PublicProfilePublicProfile", b =>
+            modelBuilder.Entity("UserUser", b =>
                 {
-                    b.HasOne("SchoolProject.Domain.Entities.PublicProfile", null)
-                        .WithMany()
-                        .HasForeignKey("FollowersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<Guid>("FollowersId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasOne("SchoolProject.Domain.Entities.PublicProfile", null)
-                        .WithMany()
-                        .HasForeignKey("FollowsId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
+                    b.Property<Guid>("FollowsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("FollowersId", "FollowsId");
+
+                    b.HasIndex("FollowsId");
+
+                    b.ToTable("UserUser");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Basket", b =>
@@ -341,10 +279,6 @@ namespace SchoolProject.Persistence.Migrations
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Post", b =>
                 {
-                    b.HasOne("SchoolProject.Domain.Entities.PublicProfile", null)
-                        .WithMany("Posts")
-                        .HasForeignKey("PublicProfileId");
-
                     b.HasOne("SchoolProject.Domain.Entities.User", null)
                         .WithMany("Posts")
                         .HasForeignKey("UserId")
@@ -352,15 +286,19 @@ namespace SchoolProject.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SchoolProject.Domain.Entities.PublicProfile", b =>
+            modelBuilder.Entity("UserUser", b =>
                 {
                     b.HasOne("SchoolProject.Domain.Entities.User", null)
-                        .WithMany("Followers")
-                        .HasForeignKey("UserId");
+                        .WithMany()
+                        .HasForeignKey("FollowersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SchoolProject.Domain.Entities.User", null)
-                        .WithMany("Follows")
-                        .HasForeignKey("UserId1");
+                        .WithMany()
+                        .HasForeignKey("FollowsId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Basket", b =>
@@ -378,18 +316,9 @@ namespace SchoolProject.Persistence.Migrations
                     b.Navigation("Comments");
                 });
 
-            modelBuilder.Entity("SchoolProject.Domain.Entities.PublicProfile", b =>
-                {
-                    b.Navigation("Posts");
-                });
-
             modelBuilder.Entity("SchoolProject.Domain.Entities.User", b =>
                 {
                     b.Navigation("Basket");
-
-                    b.Navigation("Followers");
-
-                    b.Navigation("Follows");
 
                     b.Navigation("Posts");
                 });

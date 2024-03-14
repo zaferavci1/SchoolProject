@@ -10,6 +10,8 @@ namespace SchoolProject.Application.Abstraction.Services
         Task<UserDTO> AddAsync(AddUserDTO addUserDTO);
         Task<UserDTO> UpdateAsync(UpdateUserDTO updateUserDTO);
         Task<UserDTO> DeleteAsync(string id);
+        Task<UserDTO> FollowSomeoneAsync(string id1, string id2);
+
     }
 }
 

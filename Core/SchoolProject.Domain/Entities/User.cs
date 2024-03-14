@@ -9,8 +9,8 @@ namespace SchoolProject.Domain.Entities
 		public string Mail { get; set; }
 		public string PhoneNumber { get; set; }
 		public string Password { get; set; }
-		public List<PublicProfile> Followers { get; set; }
-		public List<PublicProfile> Follows { get; set; }
+		public List<User> Followers { get; set; }
+		public List<User> Follows { get; set; }
 		public List<Post> Posts { get; set; }
 		public List<Basket> Basket { get; set; }
 		public bool IsProfilePrivate { get; set; } = false;

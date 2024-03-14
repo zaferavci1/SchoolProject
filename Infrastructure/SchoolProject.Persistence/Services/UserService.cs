@@ -88,8 +88,7 @@ namespace SchoolProject.Persistence.Services
                         Id = Convert.ToString(c.Id),
                         Content = c.Content,
                     }).ToList() ?? new List<CommentDTO>()
-                }).ToList() ?? new List<GetAllPostsDTO>()
-                PhoneNumber = user.PhoneNumber
+                }).ToList() ?? new List<GetAllPostsDTO>(),
             };
         }
 

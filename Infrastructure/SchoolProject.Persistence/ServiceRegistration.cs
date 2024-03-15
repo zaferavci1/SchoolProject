@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using SchoolProject.Application.Abstraction.Repository.Baskets;
 using SchoolProject.Application.Abstraction.Repository.Comments;
 using SchoolProject.Application.Abstraction.Repository.Posts;
-using SchoolProject.Application.Abstraction.Repository.PublicProfiles;
 using SchoolProject.Application.Abstraction.Repository.Users;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Persistence.Configurations;
@@ -13,7 +12,6 @@ using SchoolProject.Persistence.Context;
 using SchoolProject.Persistence.Repositories.Baskets;
 using SchoolProject.Persistence.Repositories.Comments;
 using SchoolProject.Persistence.Repositories.Posts;
-using SchoolProject.Persistence.Repositories.PublicProfiles;
 using SchoolProject.Persistence.Repositories.Users;
 using SchoolProject.Persistence.Services;
 
@@ -44,9 +42,6 @@ namespace SchoolProject.Persistence
 
             services.AddScoped<IUserCommandRepository, UserCommandRepository>();
             services.AddScoped<IUserQueryRepository, UserQueryRepository>();
-
-            services.AddScoped<IPublicProfileCommandRepository, PublicProfileCommandRepository>();
-            services.AddScoped<IPublicProfileQueryRepository, PublicProfileQueryRepository>();
 
 
             services.AddScoped<IBasketCommandRepository, BasketCommandRepository>();

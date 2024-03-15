@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Users.Commands.Add;
 using SchoolProject.Application.Features.Users.Commands.Delete;
+using SchoolProject.Application.Features.Users.Commands.Follow;
 using SchoolProject.Application.Features.Users.Commands.Update;
 using SchoolProject.Application.Features.Users.DTOs;
 using SchoolProject.Application.Features.Users.Queries.GetAll;
@@ -57,6 +58,12 @@ namespace SchoolProject.API.Controllers
         public async Task<IActionResult> GetAll([FromQuery] GetAllUserQueryRequest getAllUserQueryRequest)
         {
             IDataResult<GetAllUserQueryResponse> response = await _mediator.Send(getAllUserQueryRequest);
+            return Ok(response);
+        }
+        [HttpPut]
+        public async Task<IActionResult> FollowSomeone(FollowUserCommandRequest followUserCommandRequest)
+        {
+            IDataResult<UserDTO> response = await _mediator.Send(followUserCommandRequest);
             return Ok(response);
         }
     }

@@ -24,7 +24,8 @@ namespace SchoolProject.Persistence.Services
         public async Task<UserDTO> AddAsync(AddUserDTO addUserDTO)
         {
             User user = await _userCommandRepository.AddAsync(new()
-            { NickName = addUserDTO.NickName,
+            {
+                NickName = addUserDTO.NickName,
                 Name = addUserDTO.Name,
                 Surname = addUserDTO.Surname,
                 Mail = addUserDTO.Mail,
@@ -32,7 +33,7 @@ namespace SchoolProject.Persistence.Services
                 Password = addUserDTO.password
             });
             await _userCommandRepository.SaveAsync();
-            return new() { Id = Convert.ToString(user.Id), Mail = user.Mail, Name = user.Name, NickName = user.NickName, PhoneNumber = user.PhoneNumber, Surname = user.Surname  , Password = user.Password};
+            return new() { Id = Convert.ToString(user.Id), Mail = user.Mail, Name = user.Name, NickName = user.NickName, PhoneNumber = user.PhoneNumber, Surname = user.Surname, Password = user.Password };
         }
 
         public async Task<UserDTO> DeleteAsync(string id)
@@ -51,11 +52,11 @@ namespace SchoolProject.Persistence.Services
                 Surname = u.Surname,
                 NickName = u.NickName,
                 PhoneNumber = u.PhoneNumber
-            }).ToListAsync(), await _userQueryRepository.GetAll().CountAsync());      
+            }).ToListAsync(), await _userQueryRepository.GetAll().CountAsync());
 
         public async Task<GetByIdUserDTO> GetByIdAsync(string id)
         {
-            User? user = await _userQueryRepository.Table.Include(u=>u.Posts).ThenInclude(c => c.Comments).Include(u => u.Followers).Include(u => u.Follows).FirstOrDefaultAsync(u=>u.Id == Guid.Parse(id));
+            User? user = await _userQueryRepository.Table.Include(u => u.Posts).ThenInclude(c => c.Comments).Include(u => u.Followers).Include(u => u.Follows).FirstOrDefaultAsync(u => u.Id == Guid.Parse(id));
             return new()
             {
                 Id = Convert.ToString(user.Id),
@@ -112,6 +113,25 @@ namespace SchoolProject.Persistence.Services
                 Mail = user.Mail,
                 PhoneNumber = user.PhoneNumber,
                 Password = user.Password
+            };
+        }
+        public async Task<UserDTO> FollowSomeoneAsync(string user1Id, string user2Id)
+        {
+            User? user1 = await _userQueryRepository.Table.Include(u => u.Follows).FirstOrDefaultAsync(u => u.Id == Guid.Parse(user1Id));
+            User? user2 = await _userQueryRepository.Table.Include(u => u.Followers).FirstOrDefaultAsync(u => u.Id == Guid.Parse(user2Id));
+            user1.Follows.Add(user2);
+
+            user2.Followers.Add(user1);
+            _userCommandRepository.Update(user1);
+            await _userCommandRepository.SaveAsync();
+            _userCommandRepository.Update(user2);
+            await _userCommandRepository.SaveAsync();
+            return new()
+            {
+                Id = Convert.ToString(user1.Id),
+                Name = user1.Name,
+                Surname = user1.Surname,
+                NickName = user1.NickName,
             };
         }
     }

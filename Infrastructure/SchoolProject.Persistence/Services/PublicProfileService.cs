@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Application.Abstraction.Repository.Posts;
-using SchoolProject.Application.Abstraction.Repository.PublicProfiles;
 using SchoolProject.Application.Abstraction.Repository.Users;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Features.Comments.DTOs;
@@ -16,7 +15,7 @@ namespace SchoolProject.Persistence.Services
         private readonly IUserCommandRepository _userCommandRepository;
         private readonly IUserQueryRepository _userQueryRepository;
 
-        public PublicProfileService(IPublicProfileQueryRepository publicProfileQueryRepository, IPublicProfileCommandRepository publicProfileCommandRepository, IUserCommandRepository userCommandRepository, IUserQueryRepository userQueryRepository)
+        public PublicProfileService(IUserQueryRepository userQueryRepository, IUserCommandRepository userCommandRepository)
         {
             _userCommandRepository = userCommandRepository;
             _userQueryRepository = userQueryRepository;

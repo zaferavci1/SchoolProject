@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj": {}
+    "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj": {}
   },
   "projects": {
-    "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj": {
+    "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj",
+        "projectUniqueName": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj",
         "projectName": "SchoolProject.Infrastructure",
-        "projectPath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj",
-        "packagesPath": "/Users/zaferavci/.nuget/packages/",
-        "outputPath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/",
+        "projectPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj",
+        "packagesPath": "/Users/serkanyilmaz/.nuget/packages/",
+        "outputPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/zaferavci/.nuget/NuGet/NuGet.Config"
+          "/Users/serkanyilmaz/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -53,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.313/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.314/RuntimeIdentifierGraph.json"
         }
       }
     }

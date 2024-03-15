@@ -29,5 +29,6 @@ namespace SchoolProject.Persistence
 
         public T Update(T entity)
             => Table.Update(entity).Entity;
+        
     }
 }

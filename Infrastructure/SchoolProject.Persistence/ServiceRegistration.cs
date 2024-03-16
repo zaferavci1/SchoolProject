@@ -46,6 +46,9 @@ namespace SchoolProject.Persistence
 
             services.AddScoped<IBasketCommandRepository, BasketCommandRepository>();
             services.AddScoped<IBasketQueryRepository, BasketQueryRepository>();
+
+
+            services.AddDataProtection();
         }
 	}
 }

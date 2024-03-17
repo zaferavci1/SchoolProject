@@ -1,24 +1,33 @@
 ﻿<Properties StartupConfiguration="{C3121B99-5EE8-4404-BD10-69F4DB95ED23}|https">
-  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/SchoolProject.Persistence/Services/PostService.cs">
+  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/SchoolProject.Persistence/Services/CommentService.cs">
     <Files>
-      <File FileName="Infrastructure/SchoolProject.Persistence/Services/UserService.cs" Line="114" Column="81" />
-      <File FileName="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" Line="82" Column="77" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/CommentService.cs" Line="50" Column="42" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" Line="26" Column="81" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SchoolProject" expanded="True" selected="True" />
+          <Node name="SchoolProject" expanded="True">
+            <Node name="Infrastructure" expanded="True">
+              <Node name="SchoolProject.Persistence">
+                <Node name="Repositories" expanded="True" />
+                <Node name="Services" expanded="True">
+                  <Node name="CommentService.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/Services/PostService.cs" relfile="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" line="34" column="1" />
+      <Breakpoint enabled="false" file="/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/Services/PostService.cs" relfile="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" line="34" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

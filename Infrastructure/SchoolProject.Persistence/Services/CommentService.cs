@@ -14,21 +14,24 @@ namespace SchoolProject.Persistence.Services
         private readonly ICommentCommandRepository _commentCommandRepository;
         private readonly IDataProtector dataProtector;
         private readonly IDataProtector postDataProtector;
+        private readonly IDataProtector userDataProtector;
 
         public CommentService(ICommentQueryRepository commentQueryRepository, ICommentCommandRepository commentCommandRepository , IDataProtectionProvider dataProtectionProvider)
         {
             _commentQueryRepository = commentQueryRepository;
             _commentCommandRepository = commentCommandRepository;
             dataProtector = dataProtectionProvider.CreateProtector("Comments");
+            userDataProtector = dataProtectionProvider.CreateProtector("Users");
             postDataProtector = dataProtectionProvider.CreateProtector("Posts");
         }
 
         public async Task<CommentDTO> AddAsync(AddCommentDTO addCommentDTO)
         {
-            Comment comment = await _commentCommandRepository.AddAsync(new() { PostID = Guid.Parse(postDataProtector.Unprotect(addCommentDTO.PostId)), Content = addCommentDTO.Content });
+            Comment comment = await _commentCommandRepository.AddAsync(new() {UserId = Guid.Parse(userDataProtector.Unprotect(addCommentDTO.UserId)), PostID = Guid.Parse(postDataProtector.Unprotect(addCommentDTO.PostId)), Content = addCommentDTO.Content });
             await _commentCommandRepository.SaveAsync();
             return new()
             {
+                UserId = userDataProtector.Protect(comment.UserId.ToString()),
                 PostId = postDataProtector.Protect(comment.PostID.ToString()),
                 Id = dataProtector.Protect(comment.Id.ToString()),
                 Content = comment.Content
@@ -42,6 +45,7 @@ namespace SchoolProject.Persistence.Services
             await _commentCommandRepository.SaveAsync();
             return new()
             {
+                UserId = userDataProtector.Protect(comment.UserId.ToString()),
                 PostId = postDataProtector.Protect(comment.PostID.ToString()),
                 Id = dataProtector.Protect(comment.Id.ToString()),
                 Content = comment.Content
@@ -51,10 +55,13 @@ namespace SchoolProject.Persistence.Services
         public async Task<(List<GetAllCommentsDTO>, int totalCount)> GetAllAsync(int page, int size)
         => (await _commentQueryRepository.GetAll().Where(c => c.IsActive == true).Include(c => c.ReplyComments).Skip(page * size).Take(size).Select(c => new GetAllCommentsDTO()
             {
+
                 Id =dataProtector.Protect(c.Id.ToString()),
                 Content = c.Content,
                 LikeCount = c.LikeCount,
-                ReplyComments = c.ReplyComments.Select(x => new CommentDTO()
+                UserId = userDataProtector.Protect(c.UserId.ToString()),
+                PostId = postDataProtector.Protect(c.PostID.ToString()),
+            ReplyComments = c.ReplyComments.Select(x => new CommentDTO()
                 {
                     PostId = postDataProtector.Protect(x.PostID.ToString()),
                     Id = dataProtector.Protect(x.Id.ToString()),
@@ -72,10 +79,13 @@ namespace SchoolProject.Persistence.Services
             return new()
             {
                 Id = id,
+                UserId = userDataProtector.Protect(comment.UserId.ToString()),
+                PostId = postDataProtector.Protect(comment.PostID.ToString()),
                 Content = comment.Content,
                 LikeCount = comment.LikeCount,
                 ReplyComments = comment.ReplyComments.Select(x => new CommentDTO()
                 {
+                    UserId = userDataProtector.Protect(x.UserId.ToString()),
                     PostId = postDataProtector.Protect(x.PostID.ToString()),
                     Id = dataProtector.Protect(x.Id.ToString()),
                     Content = x.Content,
@@ -93,6 +103,8 @@ namespace SchoolProject.Persistence.Services
             _commentCommandRepository.SaveAsync();
             return new()
             {
+
+                UserId = userDataProtector.Protect(comment.UserId.ToString()),
                 PostId = postDataProtector.Protect(comment.PostID.ToString()),
                 Id = dataProtector.Protect(comment.Id.ToString()),
                 Content = comment.Content

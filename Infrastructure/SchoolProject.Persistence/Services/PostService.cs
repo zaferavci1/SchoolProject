@@ -38,7 +38,7 @@ namespace SchoolProject.Persistence.Services
                 UserId = userDataProtector.Protect(post.UserId.ToString()),
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
-                Title = post.Content
+                Title = post.Title
             };
         }
 
@@ -51,7 +51,7 @@ namespace SchoolProject.Persistence.Services
                 UserId = userDataProtector.Protect(post.UserId.ToString()),
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
-                Title = post.Content
+                Title = post.Title
             };
         }
 
@@ -59,9 +59,11 @@ namespace SchoolProject.Persistence.Services
         public async Task<(List<GetAllPostsDTO>, int totalCount)> GetAllAsync(int page, int size)
         => (await _postQueryRepository.GetAll().Where(p => p.IsActive == true).Include(p => p.Comments).Skip(page * size).Take(size).Select(p => new GetAllPostsDTO
         {
+            UserId = userDataProtector.Protect(p.UserId.ToString()),
             Id = postDataProtector.Protect(p.Id.ToString()),
             Comments = p.Comments.Select(c => new CommentDTO
             {
+                UserId =userDataProtector.Protect(c.UserId.ToString()),
                 PostId = postDataProtector.Protect(c.PostID.ToString()),
                 Id = commentDataProtector.Protect(c.Id.ToString()),
                 Content = c.Content,
@@ -79,6 +81,7 @@ namespace SchoolProject.Persistence.Services
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Comments = post.Comments.Select(c => new CommentDTO()
                 {
+                    UserId = userDataProtector.Protect(c.UserId.ToString()),
                     PostId = postDataProtector.Protect(c.PostID.ToString()),
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,

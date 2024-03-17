@@ -15,7 +15,7 @@ namespace SchoolProject.Application.Features.Comments.Commands.Add
         }
         public async Task<IDataResult<CommentDTO>> Handle(AddCommentCommandRequest request, CancellationToken cancellationToken)
         {
-            CommentDTO commentDTO = await _commentService.AddAsync(new() { Content = request.Content , PostId = request.PostId});
+            CommentDTO commentDTO = await _commentService.AddAsync(new() {UserId= request.UserId, PostId = request.PostId, Content = request.Content });
             var data = new SuccessDataResult<CommentDTO>(request.PostId + " 'a yorum eklendi", commentDTO);
             return data;
         }

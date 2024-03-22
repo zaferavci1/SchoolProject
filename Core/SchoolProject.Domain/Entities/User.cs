@@ -1,4 +1,6 @@
-﻿using System;
+﻿	using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace SchoolProject.Domain.Entities
 {
 	public class User : BaseEntity
@@ -12,7 +14,8 @@ namespace SchoolProject.Domain.Entities
 		public List<User> Followers { get; set; }
 		public List<User> Follows { get; set; }
 		public List<Post> Posts { get; set; }
-		public List<Basket> Basket { get; set; }
+        public List<Comment> Comments { get; set; }
+        public List<Basket> Basket { get; set; }
 		public bool IsProfilePrivate { get; set; } = false;
 
 	}

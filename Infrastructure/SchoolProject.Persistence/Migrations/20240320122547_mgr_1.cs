@@ -16,11 +16,11 @@ namespace SchoolProject.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    NickName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NickName = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Mail = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsProfilePrivate = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -137,6 +137,7 @@ namespace SchoolProject.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PostID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LikeCount = table.Column<int>(type: "int", nullable: false),
@@ -185,6 +186,24 @@ namespace SchoolProject.Persistence.Migrations
                 name: "IX_Posts_UserId",
                 table: "Posts",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Mail",
+                table: "User",
+                column: "Mail",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_NickName",
+                table: "User",
+                column: "NickName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_PhoneNumber",
+                table: "User",
+                column: "PhoneNumber",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserUser_FollowsId",

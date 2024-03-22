@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Application.Abstraction.Repository.Users;
@@ -30,26 +31,28 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<UserDTO> AddAsync(AddUserDTO addUserDTO)
         {
-            User user = await _userCommandRepository.AddAsync(new()
-            {
-                NickName = addUserDTO.NickName,
-                Name = addUserDTO.Name,
-                Surname = addUserDTO.Surname,
-                Mail = addUserDTO.Mail,
-                PhoneNumber = addUserDTO.PhoneNumber,
-                Password = addUserDTO.password
-            });
-            await _userCommandRepository.SaveAsync();
-            return new()
-            {
-                Id = userDataProtector.Protect(user.Id.ToString()),
-                Mail = user.Mail,
-                Name = user.Name,
-                NickName = user.NickName,
-                PhoneNumber = user.PhoneNumber,
-                Surname = user.Surname,
-                Password = user.Password
-            };
+            
+                User user = await _userCommandRepository.AddAsync(new()
+                {
+                    NickName = addUserDTO.NickName,
+                    Name = addUserDTO.Name,
+                    Surname = addUserDTO.Surname,
+                    Mail = addUserDTO.Mail,
+                    PhoneNumber = addUserDTO.PhoneNumber,
+                    Password = addUserDTO.password
+                });
+                await _userCommandRepository.SaveAsync();
+                return new()
+                {
+                    Id = userDataProtector.Protect(user.Id.ToString()),
+                    Mail = user.Mail,
+                    Name = user.Name,
+                    NickName = user.NickName,
+                    PhoneNumber = user.PhoneNumber,
+                    Surname = user.Surname,
+                    Password = user.Password
+                };
+            
         }
 
         public async Task<UserDTO> DeleteAsync(string id)
@@ -106,16 +109,29 @@ namespace SchoolProject.Persistence.Services
                 }).ToList() ?? new List<PublicProfilesDTO>(),
                 Posts = user.Posts?.Select(p => new GetAllPostsDTO()
                 {
+                    UserId = userDataProtector.Protect(p.UserId.ToString()),
                     Id = postDataProtector.Protect(p.Id.ToString()),
                     Content = p.Content,
                     Title = p.Title,
+                    LikeCount = p.LikeCount,
                     Comments = p.Comments.Select(c => new CommentDTO()
                     {
+                        UserId = userDataProtector.Protect(c.UserId.ToString()),
                         PostId = postDataProtector.Protect(c.PostID.ToString()),
                         Id = commentDataProtector.Protect(c.Id.ToString()),
                         Content = c.Content,
+                        LikeCount = c.LikeCount
                     }).ToList() ?? new List<CommentDTO>()
-                }).ToList() ?? new List<GetAllPostsDTO>(),
+                }
+                ).ToList() ?? new List<GetAllPostsDTO>(),
+                Comments = user.Comments.Select(c => new GetAllCommentsDTO()
+                {
+                    PostId = postDataProtector.Protect(c.PostID.ToString()),
+                    UserId = userDataProtector.Protect(c.UserId.ToString()),
+                    Id = commentDataProtector.Protect(c.Id.ToString()),
+                    Content = c.Content,
+                    LikeCount = c.LikeCount
+                }).ToList() ?? new List<GetAllCommentsDTO>()
             };
         }
 
@@ -142,7 +158,7 @@ namespace SchoolProject.Persistence.Services
                 Password = user.Password
             };
         }
-        public async Task<UserDTO> FollowSomeoneAsync(string user1Id, string user2Id)
+        public async Task<(UserDTO,UserDTO)> FollowSomeoneAsync(string user1Id, string user2Id)
         {
             User? user1 = await _userQueryRepository.Table.Include(u => u.Follows).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(user1Id)));
             User? user2 = await _userQueryRepository.Table.Include(u => u.Followers).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(user2Id)));
@@ -153,13 +169,55 @@ namespace SchoolProject.Persistence.Services
             await _userCommandRepository.SaveAsync();
             _userCommandRepository.Update(user2);
             await _userCommandRepository.SaveAsync();
-            return new()
+            return (new()
             {
                 Id = userDataProtector.Protect(user1.Id.ToString()),
                 Name = user1.Name,
                 Surname = user1.Surname,
                 NickName = user1.NickName,
-            };
+            },
+            new()
+            {
+                Id = userDataProtector.Protect(user2.Id.ToString()),
+                Name = user2.Name,
+                Surname = user2.Surname,
+                NickName = user2.NickName,
+            }
+            );
+        }
+
+        public async Task<(List<GetAllPostsDTO>,  int totalCount)> GetUsersPostsAsync(string id)
+        {
+            User? user = await _userQueryRepository.Table.Include(u => u.Posts).ThenInclude(c => c.Comments).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
+            return new(user?.Posts.Select(p => new GetAllPostsDTO()
+            {
+                UserId = userDataProtector.Protect(p.UserId.ToString()),
+                Id = postDataProtector.Protect(p.Id.ToString()),
+                Content = p.Content,
+                Title = p.Title,
+                LikeCount = p.LikeCount,
+                Comments = p.Comments.Select(c => new CommentDTO()
+                {
+                    UserId = userDataProtector.Protect(c.UserId.ToString()),
+                    PostId = postDataProtector.Protect(c.PostID.ToString()),
+                    Id = commentDataProtector.Protect(c.Id.ToString()),
+                    Content = c.Content,
+                    LikeCount=c.LikeCount
+                }).ToList() ?? new List<CommentDTO>()
+            }).ToList() ?? new List<GetAllPostsDTO>(),user.Posts.Count());
+        }
+
+        public async Task<(List<GetAllCommentsDTO>, int totalCount)> GetUsersCommentsAsync(string id)
+        {
+            User? user = await _userQueryRepository.Table.Include(c => c.Comments).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
+            return new(user.Comments.Select(c=>new GetAllCommentsDTO()
+            {
+                UserId = userDataProtector.Protect(c.UserId.ToString()),
+                PostId = postDataProtector.Protect(c.PostID.ToString()), 
+                Id = commentDataProtector.Protect(c.Id.ToString()),
+                Content = c.Content,
+                LikeCount = c.LikeCount
+            }).ToList() ?? new List<GetAllCommentsDTO>(), user.Comments.Count());
         }
     }
 }

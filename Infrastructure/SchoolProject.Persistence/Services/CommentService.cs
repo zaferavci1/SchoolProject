@@ -34,7 +34,8 @@ namespace SchoolProject.Persistence.Services
                 UserId = userDataProtector.Protect(comment.UserId.ToString()),
                 PostId = postDataProtector.Protect(comment.PostID.ToString()),
                 Id = dataProtector.Protect(comment.Id.ToString()),
-                Content = comment.Content
+                Content = comment.Content,
+                LikeCount = comment.LikeCount
             };
 
         }
@@ -48,7 +49,8 @@ namespace SchoolProject.Persistence.Services
                 UserId = userDataProtector.Protect(comment.UserId.ToString()),
                 PostId = postDataProtector.Protect(comment.PostID.ToString()),
                 Id = dataProtector.Protect(comment.Id.ToString()),
-                Content = comment.Content
+                Content = comment.Content,
+                LikeCount = comment.LikeCount
             };
         }
 
@@ -94,20 +96,37 @@ namespace SchoolProject.Persistence.Services
             };
         }
 
+        public async Task<CommentDTO> LikeAsync(string id)
+        {
+            Comment comment = await _commentQueryRepository.GetByIdAsync(dataProtector.Unprotect(id));
+            comment.LikeCount += 1;
+            _commentCommandRepository.Update(comment);
+            await _commentCommandRepository.SaveAsync();
+            return new()
+            {
+                UserId = userDataProtector.Protect(comment.UserId.ToString()),
+                PostId = postDataProtector.Protect(comment.PostID.ToString()),
+                Id = dataProtector.Protect(comment.Id.ToString()),
+                Content = comment.Content,
+                LikeCount = comment.LikeCount
+            };
+        }
+
         public async Task<CommentDTO> UpdateAsync(UpdateCommentDTO updateCommentDTO)
         {
             Comment comment = await _commentQueryRepository.GetByIdAsync(dataProtector.Unprotect(updateCommentDTO.Id));
             comment.IsActive = updateCommentDTO.IsActive;
             comment.Content = updateCommentDTO.Content;
             _commentCommandRepository.Update(comment);
-            _commentCommandRepository.SaveAsync();
+            await _commentCommandRepository.SaveAsync();
             return new()
             {
 
                 UserId = userDataProtector.Protect(comment.UserId.ToString()),
                 PostId = postDataProtector.Protect(comment.PostID.ToString()),
                 Id = dataProtector.Protect(comment.Id.ToString()),
-                Content = comment.Content
+                Content = comment.Content,
+                LikeCount = comment.LikeCount
             };
         }
     }

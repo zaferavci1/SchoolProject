@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "kMZ6fO078gDcs7bxHUBlOx5n/8Nmjj9rJ05iCC+3Q9/wkYrSqk5tMQuLbYQBCy1kcxi7t0gie/IKjVdxrkJqTg==",
+  "dgSpecHash": "F9OBfjQZ1C0enRLrHa1UkhvopEdXWrZwm6c9oLTk7pOGQYMR0TLH1paDmt3lsimUtDSghiEquOk9ZIIHardLtg==",
   "success": true,
   "projectFilePath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/SchoolProject.Persistence.csproj",
   "expectedPackageFiles": [
     "/Users/serkanyilmaz/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/fluentvalidation/11.9.0/fluentvalidation.11.9.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.1/fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/mediatr/12.0.1/mediatr.12.0.1.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",

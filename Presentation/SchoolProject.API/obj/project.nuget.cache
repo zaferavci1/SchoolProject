@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "9Vpg72hZ50tGvMFncv+dLs8+heIuyXe8DXMe7fXaja4+BrjhWET7iEQVJ5WFy+XdpgjnhzGUMsgUfXJ6i9YYpQ==",
+  "dgSpecHash": "zmZYs47lFB4egbYKqWDv/qWdGXGceJyUUumuMSk2BlepFS/XFAbnvHdl/71DKqGBgHf5TLCfgOj960M9xQIyfA==",
   "success": true,
   "projectFilePath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/SchoolProject.API.csproj",
   "expectedPackageFiles": [
     "/Users/serkanyilmaz/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/fluentvalidation/11.9.0/fluentvalidation.11.9.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.1/fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/mediatr/12.2.0/mediatr.12.2.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.cryptography.internal/8.0.3/microsoft.aspnetcore.cryptography.internal.8.0.3.nupkg.sha512",

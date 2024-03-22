@@ -1,59 +1,47 @@
 ﻿<Properties StartupConfiguration="{C3121B99-5EE8-4404-BD10-69F4DB95ED23}|https">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Core/SchoolProject.Domain/Application/Features/Users/DTOs/AddUserDTO.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/SchoolProject.Persistence/Services/PostService.cs">
     <Files>
-      <File FileName="Core/SchoolProject.Domain/Entities/User.cs" Line="20" Column="1" />
-      <File FileName="Core/SchoolProject.Domain/Application/Features/Users/DTOs/UserDTO.cs" Line="13" Column="48" />
-      <File FileName="Core/SchoolProject.Domain/Application/Features/Users/DTOs/AddUserDTO.cs" Line="6" Column="22" />
-      <File FileName="Core/SchoolProject.Domain/Application/Features/Posts/DTOs/GetAllPostsDTO.cs" Line="1" Column="1" />
-      <File FileName="Core/SchoolProject.Domain/Application/Features/Posts/DTOs/GetByIdPostDTO.cs" Line="1" Column="1" />
-      <File FileName="Core/SchoolProject.Domain/Application/Features/Posts/DTOs/PostDTO.cs" Line="1" Column="1" />
-      <File FileName="Core/SchoolProject.Domain/Application/Features/Posts/DTOs/UpdatePostDTO.cs" Line="1" Column="1" />
-      <File FileName="Core/SchoolProject.Domain/Application/Features/PublicProfiles/DTOs/AddPublicProfilesDTO.cs" Line="7" Column="3" />
-      <File FileName="Core/SchoolProject.Domain/Application/Features/PublicProfiles/DTOs/GetAllPublicProfilesDTO.cs" Line="1" Column="1" />
-      <File FileName="Core/SchoolProject.Domain/Application/Features/PublicProfiles/DTOs/GetByIdPublicProfileDTO.cs" Line="1" Column="1" />
-      <File FileName="Core/SchoolProject.Domain/Application/Features/PublicProfiles/DTOs/PublicProfilesDTO.cs" Line="1" Column="1" />
-      <File FileName="Core/SchoolProject.Domain/Application/Features/PublicProfiles/DTOs/UpdatePublicProfileDTO.cs" Line="1" Column="1" />
+      <File FileName="Presentation/SchoolProject.API/Controllers/PostController.cs" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" Line="98" Column="10" />
+      <File FileName="Core/SchoolProject.Domain/Entities/User.cs" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/CommentService.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Comments/Commands/Like/LikeCommentCommandHandler.cs" />
+      <File FileName="Core/SchoolProject.Application/Pipelines/Validation/ValidationBehavior.cs" />
+      <File FileName="Presentation/SchoolProject.API/Controllers/CommentController.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Posts/Commands/Like/LikePostCommandHandler.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Posts/Commands/Add/AddPostCommandRequest.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Posts/Commands/Like/LikePostCommandRequest.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Comments/Queries/GetById/GetByIdCommentQueryRequest.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Comments/Commands/Like/LikeCommentCommandRequest.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Baskets/Commands/Like/LikeBasketCommandRequest.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Baskets/Commands/Like/LikeBasketCommandHandler.cs" />
+      <File FileName="Presentation/SchoolProject.API/Controllers/BasketController.cs" />
+      <File FileName="Presentation/SchoolProject.API/Program.cs" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/PublicProfileService.cs" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/NotificationService.cs" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/BasketService.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SchoolProject">
-            <Node name="Core" expanded="True">
-              <Node name="SchoolProject.Domain" expanded="True">
-                <Node name="Application" expanded="True">
-                  <Node name="Features" expanded="True">
-                    <Node name="Baskets" expanded="True">
-                      <Node name="Commands" expanded="True">
-                        <Node name="Add" expanded="True" />
-                      </Node>
-                      <Node name="Queries" expanded="True" />
-                    </Node>
-                    <Node name="Comments" expanded="True">
-                      <Node name="Commands" expanded="True" />
-                      <Node name="Queries" expanded="True" />
-                    </Node>
-                    <Node name="Cryptos" expanded="True">
-                      <Node name="Commands" expanded="True" />
-                      <Node name="Queries" expanded="True" />
-                    </Node>
-                    <Node name="Posts" expanded="True">
-                      <Node name="DTOs" expanded="True" />
-                      <Node name="Queries" expanded="True" />
-                    </Node>
-                    <Node name="PublicProfiles" expanded="True">
-                      <Node name="DTOs" expanded="True" />
-                    </Node>
-                    <Node name="Users" expanded="True">
-                      <Node name="DTOs" expanded="True">
-                        <Node name="AddUserDTO.cs" selected="True" />
-                      </Node>
-                      <Node name="Queries" expanded="True" />
-                    </Node>
-                  </Node>
+          <Node name="SchoolProject" expanded="True">
+            <Node name="Core" expanded="True" />
+            <Node name="Infrastructure" expanded="True">
+              <Node name="SchoolProject.Persistence" expanded="True">
+                <Node name="Services" expanded="True">
+                  <Node name="PostService.cs" selected="True" />
                 </Node>
-                <Node name="Entities" expanded="True">
-                  <Node name="Common" expanded="True" />
-                </Node>
+              </Node>
+            </Node>
+            <Node name="Presentation" expanded="True">
+              <Node name="SchoolProject.API" expanded="True">
+                <Node name="Controllers" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -61,11 +49,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

@@ -8,14 +8,14 @@ namespace SchoolProject.Persistence.Context
 	public class SchoolProjectDbContext : DbContext
 	{
 		public DbSet<User> Users { get; set; }
-		public DbSet<PublicProfile> PublicProfiles { get; set; }
+		public DbSet<User> PublicProfiles { get; set; }
 		public DbSet<Crypto> Cryptos { get; set; }
 		public DbSet<Post>  Posts { get; set; }
 		public DbSet<Comment> Comments { get; set; }
 		public DbSet<Basket> Baskets { get; set; }
         public SchoolProjectDbContext(DbContextOptions<SchoolProjectDbContext> options) : base(options)
         {
-
+            
         }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
@@ -34,6 +34,22 @@ namespace SchoolProject.Persistence.Context
 
             return base.SaveChangesAsync(cancellationToken);
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+               .HasIndex(u => u.PhoneNumber)
+               .IsUnique();
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Mail)
+                .IsUnique();
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.NickName)
+                .IsUnique();
+        }
+
+     
     }
 
 }

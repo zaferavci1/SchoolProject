@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Xml.Linq;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Application.Abstraction.Repository.Posts;
 using SchoolProject.Application.Abstraction.Services;
@@ -12,54 +14,121 @@ namespace SchoolProject.Persistence.Services
 	{
         private readonly IPostCommandRepository _postCommandRepository;
         private readonly IPostQueryRepository _postQueryRepository;
+        private readonly IDataProtector postDataProtector;
+        private readonly IDataProtector userDataProtector;
+        private readonly IDataProtector commentDataProtector;
 
-        public PostService(IPostCommandRepository postCommandRepository, IPostQueryRepository postQueryRepository)
+
+        public PostService(IPostCommandRepository postCommandRepository, IPostQueryRepository postQueryRepository,IDataProtectionProvider dataProtectionProvider)
         {
             _postCommandRepository = postCommandRepository;
             _postQueryRepository = postQueryRepository;
+            postDataProtector = dataProtectionProvider.CreateProtector("Posts");
+            userDataProtector = dataProtectionProvider.CreateProtector("Users");
+            commentDataProtector = dataProtectionProvider.CreateProtector("Comments");
         }
 
 
         public async Task<PostDTO> AddAsync(AddPostDTO addPostDTO)
         {
-            Post post = await _postCommandRepository.AddAsync(new() { UserId = Guid.Parse(addPostDTO.UserId) ,Title = addPostDTO.Title, Content = addPostDTO.Content });
+            Post post = await _postCommandRepository.AddAsync(new() { UserId = Guid.Parse(userDataProtector.Unprotect(addPostDTO.UserId)),Title = addPostDTO.Title, Content = addPostDTO.Content });
             await _postCommandRepository.SaveAsync();
-            return new() { Id = Convert.ToString(post.Id), Content = post.Content, Title = post.Content };
+            return new()
+            {
+                UserId = userDataProtector.Protect(post.UserId.ToString()),
+                Id = postDataProtector.Protect(post.Id.ToString()),
+                Content = post.Content,
+                Title = post.Title,
+                LikeCount = post.LikeCount
+            };
         }
 
         public async Task<PostDTO> DeleteAsync(string id)
         {
-            Post post = await _postCommandRepository.RemoveAsync(Convert.ToString(id));
+            Post post = await _postCommandRepository.RemoveAsync(postDataProtector.Unprotect(id));
             await _postCommandRepository.SaveAsync();
-            return new() { Id = Convert.ToString(post.Id), Content = post.Content, Title = post.Content };
-            return new() { UserId =Convert.ToString( post.UserId), Id = Convert.ToString(post.Id), Content = post.Content, Title = post.Content };
+            return new()
+            {
+                UserId = userDataProtector.Protect(post.UserId.ToString()),
+                Id = postDataProtector.Protect(post.Id.ToString()),
+                Content = post.Content,
+                Title = post.Title,
+                LikeCount = post.LikeCount
+            };
         }
-        
+
 
         public async Task<(List<GetAllPostsDTO>, int totalCount)> GetAllAsync(int page, int size)
         => (await _postQueryRepository.GetAll().Where(p => p.IsActive == true).Include(p => p.Comments).Skip(page * size).Take(size).Select(p => new GetAllPostsDTO
         {
-            Id = Convert.ToString(p.Id),
-            Comments = p.Comments.Select( c => new CommentDTO {Content = c.Content, Id = Convert.ToString(c.Id) , LikeCount = c.LikeCount , PostId=Convert.ToString(c.PostID)}).ToList(),
+            UserId = userDataProtector.Protect(p.UserId.ToString()),
+            Id = postDataProtector.Protect(p.Id.ToString()),
+            Comments = p.Comments.Select(c => new CommentDTO
+            {
+                UserId =userDataProtector.Protect(c.UserId.ToString()),
+                PostId = postDataProtector.Protect(c.PostID.ToString()),
+                Id = commentDataProtector.Protect(c.Id.ToString()),
+                Content = c.Content,
+                LikeCount = c.LikeCount
+            }).ToList(),
             Title = p.Title,
-            Content = p.Content
+            Content = p.Content,
+            LikeCount = p.LikeCount
         }).ToListAsync(), await _postQueryRepository.GetAll().CountAsync());
 
         public async Task<GetByIdPostDTO> GetByIdAsync(string id)
         {
-            Post post = await _postQueryRepository.Table.Include(p => p.Comments).FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
-            return new() { Id = Convert.ToString(post.Id), Comments = post.Comments, Content = post.Content, Title = post.Title };
+            Post post = await _postQueryRepository.Table.Include(p => p.Comments).FirstOrDefaultAsync(p => p.Id == Guid.Parse(postDataProtector.Unprotect(id)));
+            return new()
+            {
+                UserId = userDataProtector.Protect(post.UserId.ToString()),
+                Id = postDataProtector.Protect(post.Id.ToString()),
+                Comments = post.Comments.Select(c => new CommentDTO()
+                {
+                    UserId = userDataProtector.Protect(c.UserId.ToString()),
+                    PostId = postDataProtector.Protect(c.PostID.ToString()),
+                    Id = commentDataProtector.Protect(c.Id.ToString()),
+                    Content = c.Content,
+                    LikeCount = c.LikeCount
+                }).ToList() ?? new List<CommentDTO>(),
+                Content = post.Content,
+                Title = post.Title,
+                likeCount = post.LikeCount
+            };
+        }
+
+        public async Task<PostDTO> LikeAsync(string id)
+        {
+            Post post = await _postQueryRepository.GetByIdAsync(postDataProtector.Unprotect(id));
+            post.LikeCount += 1;
+            _postCommandRepository.Update(post);
+            await _postCommandRepository.SaveAsync();
+            return new()
+            {
+                UserId = userDataProtector.Protect(post.UserId.ToString()),
+                Id = postDataProtector.Protect(post.Id.ToString()),
+                Content = post.Content,
+                Title = post.Content,
+                LikeCount = post.LikeCount
+            };
         }
 
         public async Task<PostDTO> UpdateAsync(UpdatePostDTO updatePostDTO)
         {
-            Post post = await _postQueryRepository.GetByIdAsync(updatePostDTO.Id);
+            Post post = await _postQueryRepository.GetByIdAsync(postDataProtector.Unprotect(updatePostDTO.Id));
             post.Title = updatePostDTO.Title;
             post.Content = updatePostDTO.Content;
             post.IsActive = updatePostDTO.IsActive;
+            _postCommandRepository.Update(post);    
             await _postCommandRepository.SaveAsync();
-            return new() { UserId = Convert.ToString(post.UserId), Id = Convert.ToString(post.Id), Content = post.Content, Title = post.Title };
-
+            return new()
+            {
+                UserId = userDataProtector.Protect(post.UserId.ToString()),
+                Id = postDataProtector.Protect(post.Id.ToString()),
+                Content = post.Content,
+                Title = post.Content,
+                LikeCount = post.LikeCount
+            };
         }
     }
 }

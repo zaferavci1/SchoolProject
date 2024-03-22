@@ -7,6 +7,7 @@ namespace SchoolProject.Application.Features.Comments.Commands.Add
 {
 	public class AddCommentCommandRequest : IRequest<IDataResult<CommentDTO>>
 	{
+        public string UserId { get; set; }
         public string PostId { get; set; }
         public string Content { get; set; }
     }

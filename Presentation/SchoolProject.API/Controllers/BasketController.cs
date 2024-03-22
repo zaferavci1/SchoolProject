@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Baskets.Commands.Add;
 using SchoolProject.Application.Features.Baskets.Commands.Delete;
+using SchoolProject.Application.Features.Baskets.Commands.Like;
 using SchoolProject.Application.Features.Baskets.Commands.Update;
 using SchoolProject.Application.Features.Baskets.DTOs;
 using SchoolProject.Application.Features.Baskets.Queries.GetAll;
@@ -46,6 +47,12 @@ namespace SchoolProject.API.Controllers
         public async Task<IActionResult> GetById([FromRoute] GetByIdBasketQueryRequest getByIdBasketQueryRequest)
         {
             IDataResult<GetByIdBasketDTO> response = await _mediator.Send(getByIdBasketQueryRequest);
+            return Ok(response);
+        }
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> Like([FromRoute] LikeBasketCommandRequest likeBasketCommandRequest)
+        {
+            IDataResult<BasketDTO> response = await _mediator.Send(likeBasketCommandRequest);
             return Ok(response);
         }
 

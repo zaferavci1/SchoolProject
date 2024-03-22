@@ -13,6 +13,7 @@
     <None Remove="Services\" />
     <None Remove="Configurations\" />
     <None Remove="Repositories\Baskets\" />
+    <None Remove="Repositories\Notificationss\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Context\" />
@@ -21,6 +22,7 @@
     <Folder Include="Services\" />
     <Folder Include="Configurations\" />
     <Folder Include="Repositories\Baskets\" />
+    <Folder Include="Repositories\Notificationss\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\SchoolProject.Domain\SchoolProject.Domain.csproj" />
@@ -41,5 +43,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection" Version="8.0.3" />
   </ItemGroup>
 </Project>

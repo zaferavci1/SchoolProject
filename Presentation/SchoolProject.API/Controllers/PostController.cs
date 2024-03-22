@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Posts.Commands.Add;
 using SchoolProject.Application.Features.Posts.Commands.Delete;
+using SchoolProject.Application.Features.Posts.Commands.Like;
 using SchoolProject.Application.Features.Posts.Commands.Update;
 using SchoolProject.Application.Features.Posts.DTOs;
 using SchoolProject.Application.Features.Posts.Queries.GetAll;
@@ -49,6 +50,12 @@ namespace SchoolProject.API.Controllers
         public async Task<IActionResult> GetById([FromRoute] GetByIdPostQueryRequest getByIdPostQueryRequest)
         {
             IDataResult<GetByIdPostDTO> response = await _mediator.Send(getByIdPostQueryRequest);
+            return Ok(response);
+        }
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> Like([FromRoute] LikePostCommandRequest likePostCommandRequest)
+        {
+            IDataResult<PostDTO> response = await _mediator.Send(likePostCommandRequest);
             return Ok(response);
         }
 

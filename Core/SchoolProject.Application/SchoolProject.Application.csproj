@@ -17,6 +17,23 @@
     <None Remove="Features\Comments\Queries\" /> 
     <None Remove="Utilities\" />
     <None Remove="Utilities\Common\" /> 
+    <None Remove="Features\Users\Commands\Follow\" />
+    <None Remove="Features\Users\Validators\" />
+    <None Remove="Pipelines\" />
+    <None Remove="Pipelines\Validation\" />
+    <None Remove="Features\Posts\Validators\" />
+    <None Remove="Features\Comments\Validators\" />
+    <None Remove="Features\Baskets\Validators\" />
+    <None Remove="Features\Users\Queries\GetByIdUsersPosts\" />
+    <None Remove="Features\Users\Queries\GetByIdUsersComments\" />
+    <None Remove="Abstraction\Repository\Notifications\" />
+    <None Remove="Features\Notifications\" />
+    <None Remove="Features\Notifications\DTOs\" />
+    <None Remove="Features\Notifications\Commands\" />
+    <None Remove="Features\Notifications\Queries\" />
+    <None Remove="Features\Posts\Commands\Like\" />
+    <None Remove="Features\Comments\Commands\Like\" />
+    <None Remove="Features\Baskets\Commands\Like\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -29,8 +46,30 @@
     <Folder Include="Features\Comments\Queries\" /> 
     <Folder Include="Utilities\" />
     <Folder Include="Utilities\Common\" />  
+    <Folder Include="Features\Users\Commands\Follow\" />
+    <Folder Include="Features\Users\Validators\" />
+    <Folder Include="Pipelines\" />
+    <Folder Include="Pipelines\Validation\" />
+    <Folder Include="Features\Posts\Validators\" />
+    <Folder Include="Features\Comments\Validators\" />
+    <Folder Include="Features\Baskets\Validators\" />
+    <Folder Include="Features\Users\Queries\GetByIdUsersPosts\" />
+    <Folder Include="Features\Users\Queries\GetByIdUsersComments\" />
+    <Folder Include="Abstraction\Repository\Notifications\" />
+    <Folder Include="Features\Notifications\" />
+    <Folder Include="Features\Notifications\DTOs\" />
+    <Folder Include="Features\Notifications\" />
+    <Folder Include="Features\Notifications\Commands\" />
+    <Folder Include="Features\Notifications\Queries\" />
+    <Folder Include="Features\Posts\Commands\Like\" />
+    <Folder Include="Features\Comments\Commands\Like\" />
+    <Folder Include="Features\Baskets\Commands\Like\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolProject.Domain\SchoolProject.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
   </ItemGroup>
 </Project>

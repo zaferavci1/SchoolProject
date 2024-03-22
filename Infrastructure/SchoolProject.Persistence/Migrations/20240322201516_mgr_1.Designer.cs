@@ -12,7 +12,7 @@ using SchoolProject.Persistence.Context;
 namespace SchoolProject.Persistence.Migrations
 {
     [DbContext(typeof(SchoolProjectDbContext))]
-    [Migration("20240320122547_mgr_1")]
+    [Migration("20240322201516_mgr_1")]
     partial class mgr1
     {
         /// <inheritdoc />
@@ -102,6 +102,8 @@ namespace SchoolProject.Persistence.Migrations
                     b.HasIndex("CommentId");
 
                     b.HasIndex("PostID");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -283,6 +285,12 @@ namespace SchoolProject.Persistence.Migrations
                         .HasForeignKey("PostID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("SchoolProject.Domain.Entities.User", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Crypto", b =>
@@ -334,6 +342,8 @@ namespace SchoolProject.Persistence.Migrations
             modelBuilder.Entity("SchoolProject.Domain.Entities.User", b =>
                 {
                     b.Navigation("Basket");
+
+                    b.Navigation("Comments");
 
                     b.Navigation("Posts");
                 });

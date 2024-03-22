@@ -100,6 +100,8 @@ namespace SchoolProject.Persistence.Migrations
 
                     b.HasIndex("PostID");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Comments");
                 });
 
@@ -280,6 +282,12 @@ namespace SchoolProject.Persistence.Migrations
                         .HasForeignKey("PostID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("SchoolProject.Domain.Entities.User", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Crypto", b =>
@@ -331,6 +339,8 @@ namespace SchoolProject.Persistence.Migrations
             modelBuilder.Entity("SchoolProject.Domain.Entities.User", b =>
                 {
                     b.Navigation("Basket");
+
+                    b.Navigation("Comments");
 
                     b.Navigation("Posts");
                 });

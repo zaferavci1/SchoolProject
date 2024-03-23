@@ -47,6 +47,13 @@ namespace SchoolProject.Persistence.Context
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.NickName)
                 .IsUnique();
+
+            modelBuilder.Entity<Comment>().
+                HasOne(c => c.User).
+                WithMany(c => c.Comments).
+                HasForeignKey(c => c.UserId).
+                OnDelete(DeleteBehavior.ClientSetNull);
+
         }
 
      

@@ -34,6 +34,22 @@ namespace SchoolProject.Persistence.Context
 
             return base.SaveChangesAsync(cancellationToken);
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+               .HasIndex(u => u.PhoneNumber)
+               .IsUnique();
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Mail)
+                .IsUnique();
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.NickName)
+                .IsUnique();
+        }
+
+     
     }
 
 }

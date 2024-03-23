@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Comments.Commands.Add;
 using SchoolProject.Application.Features.Comments.Commands.Delete;
+using SchoolProject.Application.Features.Comments.Commands.Like;
 using SchoolProject.Application.Features.Comments.Commands.Update;
 using SchoolProject.Application.Features.Comments.DTOs;
 using SchoolProject.Application.Features.Comments.Queries.GetAll;
@@ -45,6 +46,12 @@ namespace SchoolProject.API.Controllers
         public async Task<IActionResult> GetById([FromRoute] GetByIdCommentQueryRequest getByIdCommentQueryRequest)
         {
             IDataResult<GetByIdCommentDTO> response = await _mediator.Send(getByIdCommentQueryRequest);
+            return Ok(response);
+        }
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> Like([FromRoute] LikeCommentCommandRequest likeCommentCommandRequest)
+        {
+            IDataResult<CommentDTO> response = await _mediator.Send(likeCommentCommandRequest);
             return Ok(response);
         }
 

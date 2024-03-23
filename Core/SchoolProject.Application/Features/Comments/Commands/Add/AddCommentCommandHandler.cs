@@ -19,8 +19,6 @@ namespace SchoolProject.Application.Features.Comments.Commands.Add
             var data = new SuccessDataResult<CommentDTO>(request.PostId + " 'a yorum eklendi", commentDTO);
             return data;
         }
-
-
     }
 }
 

@@ -38,7 +38,8 @@ namespace SchoolProject.Persistence.Services
                 UserId = userDataProtector.Protect(post.UserId.ToString()),
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
-                Title = post.Title
+                Title = post.Title,
+                LikeCount = post.LikeCount
             };
         }
 
@@ -51,7 +52,8 @@ namespace SchoolProject.Persistence.Services
                 UserId = userDataProtector.Protect(post.UserId.ToString()),
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
-                Title = post.Title
+                Title = post.Title,
+                LikeCount = post.LikeCount
             };
         }
 
@@ -70,7 +72,8 @@ namespace SchoolProject.Persistence.Services
                 LikeCount = c.LikeCount
             }).ToList(),
             Title = p.Title,
-            Content = p.Content
+            Content = p.Content,
+            LikeCount = p.LikeCount
         }).ToListAsync(), await _postQueryRepository.GetAll().CountAsync());
 
         public async Task<GetByIdPostDTO> GetByIdAsync(string id)
@@ -78,6 +81,7 @@ namespace SchoolProject.Persistence.Services
             Post post = await _postQueryRepository.Table.Include(p => p.Comments).FirstOrDefaultAsync(p => p.Id == Guid.Parse(postDataProtector.Unprotect(id)));
             return new()
             {
+                UserId = userDataProtector.Protect(post.UserId.ToString()),
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Comments = post.Comments.Select(c => new CommentDTO()
                 {
@@ -85,9 +89,27 @@ namespace SchoolProject.Persistence.Services
                     PostId = postDataProtector.Protect(c.PostID.ToString()),
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
+                    LikeCount = c.LikeCount
                 }).ToList() ?? new List<CommentDTO>(),
                 Content = post.Content,
-                Title = post.Title
+                Title = post.Title,
+                likeCount = post.LikeCount
+            };
+        }
+
+        public async Task<PostDTO> LikeAsync(string id)
+        {
+            Post post = await _postQueryRepository.GetByIdAsync(postDataProtector.Unprotect(id));
+            post.LikeCount += 1;
+            _postCommandRepository.Update(post);
+            await _postCommandRepository.SaveAsync();
+            return new()
+            {
+                UserId = userDataProtector.Protect(post.UserId.ToString()),
+                Id = postDataProtector.Protect(post.Id.ToString()),
+                Content = post.Content,
+                Title = post.Content,
+                LikeCount = post.LikeCount
             };
         }
 
@@ -104,7 +126,8 @@ namespace SchoolProject.Persistence.Services
                 UserId = userDataProtector.Protect(post.UserId.ToString()),
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
-                Title = post.Content
+                Title = post.Content,
+                LikeCount = post.LikeCount
             };
         }
     }

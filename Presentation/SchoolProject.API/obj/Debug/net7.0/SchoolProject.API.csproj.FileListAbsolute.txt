@@ -88,6 +88,9 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/SchoolProject.API.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Azure.Core.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Azure.Identity.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/FluentValidation.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/FluentValidation.AspNetCore.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/FluentValidation.DependencyInjectionExtensions.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/MediatR.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/MediatR.Contracts.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll

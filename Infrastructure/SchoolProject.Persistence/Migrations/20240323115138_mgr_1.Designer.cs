@@ -12,7 +12,7 @@ using SchoolProject.Persistence.Context;
 namespace SchoolProject.Persistence.Migrations
 {
     [DbContext(typeof(SchoolProjectDbContext))]
-    [Migration("20240322201516_mgr_1")]
+    [Migration("20240323115138_mgr_1")]
     partial class mgr1
     {
         /// <inheritdoc />
@@ -56,7 +56,7 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("UserId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -271,7 +271,9 @@ namespace SchoolProject.Persistence.Migrations
                 {
                     b.HasOne("SchoolProject.Domain.Entities.User", null)
                         .WithMany("Basket")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Comment", b =>
@@ -286,11 +288,12 @@ namespace SchoolProject.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SchoolProject.Domain.Entities.User", null)
+                    b.HasOne("SchoolProject.Domain.Entities.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Crypto", b =>

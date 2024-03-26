@@ -22,4 +22,3 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/refint/SchoolProject.Domain.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/SchoolProject.Domain.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/ref/SchoolProject.Domain.dll
-/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/SchoolProject.Domain.sourcelink.json

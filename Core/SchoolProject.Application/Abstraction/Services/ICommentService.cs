@@ -11,7 +11,7 @@ namespace SchoolProject.Application.Abstraction.Services
         Task<CommentDTO> AddAsync(AddCommentDTO addCommentDTO);
         Task<CommentDTO> UpdateAsync(UpdateCommentDTO updateCommentDTO);
         Task<CommentDTO> DeleteAsync(string id);
-        Task<CommentDTO> LikeAsync(string id);
+        Task<CommentDTO> LikeAsync(string id, string userId);
     }
 }
 

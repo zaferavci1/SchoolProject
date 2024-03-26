@@ -8,11 +8,26 @@ namespace SchoolProject.Persistence.Context
 	public class SchoolProjectDbContext : DbContext
 	{
 		public DbSet<User> Users { get; set; }
+
 		public DbSet<User> PublicProfiles { get; set; }
+
 		public DbSet<Crypto> Cryptos { get; set; }
+
 		public DbSet<Post>  Posts { get; set; }
-		public DbSet<Comment> Comments { get; set; }
-		public DbSet<Basket> Baskets { get; set; }
+
+        public DbSet<PostLike> PostLikes { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<CommentLike> CommentLikes { get; set; }
+
+        public DbSet<Basket> Baskets { get; set; }
+
+        public DbSet<BasketLike> BasketLikes { get; set; }
+
+        public DbSet<UserFollower> UserFollowers { get; set; }
+
+
         public SchoolProjectDbContext(DbContextOptions<SchoolProjectDbContext> options) : base(options)
         {
             
@@ -30,7 +45,6 @@ namespace SchoolProject.Persistence.Context
                 else if (data.State == EntityState.Modified)
                     data.Entity.UpdatedDate = DateTime.UtcNow;
             }
-
 
             return base.SaveChangesAsync(cancellationToken);
         }
@@ -53,6 +67,71 @@ namespace SchoolProject.Persistence.Context
                 WithMany(c => c.Comments).
                 HasForeignKey(c => c.UserId).
                 OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<UserFollower>().HasOne(uf => uf.Followee).WithMany(uf => uf.Followees).
+                HasForeignKey(uf => uf.FolloweeId).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<UserFollower>().HasOne(uf => uf.Follower).WithMany(uf => uf.Followers).
+                HasForeignKey(uf => uf.FollowerId).OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<UserFollower>().HasKey(uf => new
+            {
+                uf.FolloweeId,
+                uf.FollowerId
+            });
+
+            modelBuilder.Entity<PostLike>().
+                HasOne(pl => pl.Post).
+                WithMany(pl => pl.PostLikes).
+                HasForeignKey(pl => pl.PostId).
+                OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<PostLike>().
+                HasOne(u => u.User).
+                WithMany(u => u.PostLikes).
+                HasForeignKey(u => u.UserId).
+                OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<PostLike>().HasKey(pl => new
+            {
+                pl.UserId,
+                pl.PostId
+            });
+
+
+            modelBuilder.Entity<CommentLike>().
+                HasOne(cl => cl.Comment).
+                WithMany(cl => cl.CommentLikes).
+                HasForeignKey(cl => cl.CommentId).
+                OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<CommentLike>().
+                HasOne(u => u.User).
+                WithMany(u => u.CommentLikes).
+                HasForeignKey(u => u.UserId).
+                OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<CommentLike>().HasKey(cl => new
+            {
+                cl.UserId,
+                cl.CommentId
+            });
+
+            modelBuilder.Entity<BasketLike>().
+                HasOne(bl => bl.Basket).
+                WithMany(bl => bl.BasketLikes).
+                HasForeignKey(bl => bl.BasketId).
+                OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<BasketLike>().
+                HasOne(u => u.User).
+                WithMany(u => u.BasketLikes).
+                HasForeignKey(u => u.UserId).
+                OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<BasketLike>().HasKey(bl => new
+            {
+                bl.UserId,
+                bl.BasketId
+            });
 
         }
 

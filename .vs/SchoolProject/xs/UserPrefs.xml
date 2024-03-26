@@ -1,47 +1,38 @@
 ﻿<Properties StartupConfiguration="{C3121B99-5EE8-4404-BD10-69F4DB95ED23}|https">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/SchoolProject.Persistence/Services/PostService.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Presentation/SchoolProject.API/Program.cs">
     <Files>
-      <File FileName="Presentation/SchoolProject.API/Controllers/PostController.cs" />
-      <File FileName="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" Line="98" Column="10" />
-      <File FileName="Core/SchoolProject.Domain/Entities/User.cs" />
-      <File FileName="Infrastructure/SchoolProject.Persistence/Services/CommentService.cs" />
-      <File FileName="Core/SchoolProject.Application/Features/Comments/Commands/Like/LikeCommentCommandHandler.cs" />
-      <File FileName="Core/SchoolProject.Application/Pipelines/Validation/ValidationBehavior.cs" />
-      <File FileName="Presentation/SchoolProject.API/Controllers/CommentController.cs" />
-      <File FileName="Core/SchoolProject.Application/Features/Posts/Commands/Like/LikePostCommandHandler.cs" />
-      <File FileName="Core/SchoolProject.Application/Features/Posts/Commands/Add/AddPostCommandRequest.cs" />
-      <File FileName="Core/SchoolProject.Application/Features/Posts/Commands/Like/LikePostCommandRequest.cs" />
-      <File FileName="Core/SchoolProject.Application/Features/Comments/Queries/GetById/GetByIdCommentQueryRequest.cs" />
-      <File FileName="Core/SchoolProject.Application/Features/Comments/Commands/Like/LikeCommentCommandRequest.cs" />
-      <File FileName="Core/SchoolProject.Application/Features/Baskets/Commands/Like/LikeBasketCommandRequest.cs" />
-      <File FileName="Core/SchoolProject.Application/Features/Baskets/Commands/Like/LikeBasketCommandHandler.cs" />
-      <File FileName="Presentation/SchoolProject.API/Controllers/BasketController.cs" />
-      <File FileName="Presentation/SchoolProject.API/Program.cs" />
-      <File FileName="Infrastructure/SchoolProject.Persistence/Services/PublicProfileService.cs" />
-      <File FileName="Infrastructure/SchoolProject.Persistence/Services/NotificationService.cs" />
-      <File FileName="Infrastructure/SchoolProject.Persistence/Services/BasketService.cs" />
+      <File FileName="Core/SchoolProject.Application/Abstraction/Services/IBasketService.cs" Line="15" Column="58" />
+      <File FileName="Core/SchoolProject.Application/Features/Baskets/Commands/Like/LikeBasketCommandHandler.cs" Line="17" Column="79" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/CommentService.cs" Line="1" Column="1" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/BasketService.cs" Line="88" Column="42" />
+      <File FileName="Presentation/SchoolProject.API/Program.cs" Line="20" Column="31" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SchoolProject" expanded="True">
-            <Node name="Core" expanded="True" />
-            <Node name="Infrastructure" expanded="True">
-              <Node name="SchoolProject.Persistence" expanded="True">
-                <Node name="Services" expanded="True">
-                  <Node name="PostService.cs" selected="True" />
+          <Node name="SchoolProject">
+            <Node name="Core" expanded="True">
+              <Node name="SchoolProject.Application">
+                <Node name="Abstraction" expanded="True">
+                  <Node name="Services" expanded="True" />
                 </Node>
+                <Node name="Features" expanded="True" />
+              </Node>
+              <Node name="SchoolProject.Domain">
+                <Node name="Entities" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="Infrastructure" expanded="True">
+              <Node name="SchoolProject.Persistence">
+                <Node name="Context" expanded="True" />
+                <Node name="Services" expanded="True" />
               </Node>
             </Node>
             <Node name="Presentation" expanded="True">
               <Node name="SchoolProject.API" expanded="True">
-                <Node name="Controllers" expanded="True" />
+                <Node name="Program.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -49,5 +40,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/Services/PostService.cs" relfile="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" line="108" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

@@ -48,8 +48,8 @@ namespace SchoolProject.API.Controllers
             IDataResult<GetByIdCommentDTO> response = await _mediator.Send(getByIdCommentQueryRequest);
             return Ok(response);
         }
-        [HttpGet("{Id}")]
-        public async Task<IActionResult> Like([FromRoute] LikeCommentCommandRequest likeCommentCommandRequest)
+        [HttpPut]
+        public async Task<IActionResult> Like(LikeCommentCommandRequest likeCommentCommandRequest)
         {
             IDataResult<CommentDTO> response = await _mediator.Send(likeCommentCommandRequest);
             return Ok(response);

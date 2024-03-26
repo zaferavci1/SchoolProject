@@ -16,7 +16,7 @@ namespace SchoolProject.Application.Features.Posts.Commands.Like
 
         public async Task<IDataResult<PostDTO>> Handle(LikePostCommandRequest request, CancellationToken cancellationToken)
         {
-            PostDTO postDTO = await _postService.LikeAsync(request.Id);
+            PostDTO postDTO = await _postService.LikeAsync(request.Id,request.UserId);
             var data = new SuccessDataResult<PostDTO>(postDTO.Title + "Post'u begenildi.", postDTO);
             return data;
         }

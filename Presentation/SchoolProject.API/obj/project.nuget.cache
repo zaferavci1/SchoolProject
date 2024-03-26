@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zmZYs47lFB4egbYKqWDv/qWdGXGceJyUUumuMSk2BlepFS/XFAbnvHdl/71DKqGBgHf5TLCfgOj960M9xQIyfA==",
+  "dgSpecHash": "UA2nJpwKTOiMebgXJ9l0QfzJAdu31MNzc4JBwBoTShAr9oZJd84nflFHIL83QHbdlSc9qBR6pKMc2QHliC1d8Q==",
   "success": true,
   "projectFilePath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/SchoolProject.API.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,7 @@
     "/Users/serkanyilmaz/.nuget/packages/microsoft.sqlserver.server/1.0.0/microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/riok.mapperly/3.4.0/riok.mapperly.3.4.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

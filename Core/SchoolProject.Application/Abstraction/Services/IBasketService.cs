@@ -12,7 +12,7 @@ namespace SchoolProject.Application.Abstraction.Services
         Task<BasketDTO> AddAsync(AddBasketDTO addBasketDTO);
         Task<BasketDTO> UpdateAsync(UpdateBasketDTO updateBasketDTO);
         Task<BasketDTO> DeleteAsync(string id);
-        Task<BasketDTO> LikeAsync(string id);
+        Task<BasketDTO> LikeAsync(string id,string userId);
     }
 }
 

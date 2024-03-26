@@ -17,7 +17,7 @@ namespace SchoolProject.Application.Features.Comments.Commands.Like
 
         public async Task<IDataResult<CommentDTO>> Handle(LikeCommentCommandRequest request, CancellationToken cancellationToken)
         {
-            CommentDTO commentDTO = await _commentService.LikeAsync(request.Id);
+            CommentDTO commentDTO = await _commentService.LikeAsync(request.Id,request.UserId);
             var data = new SuccessDataResult<CommentDTO>(request.Id + " Yorumu begenildi", commentDTO);
             return data;
         }

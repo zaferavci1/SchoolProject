@@ -8,6 +8,7 @@ namespace SchoolProject.Application.Features.Posts.Commands.Like
 	public class LikePostCommandRequest : IRequest<IDataResult<PostDTO>>
     {
         public string Id { get; set; }
+        public string UserId { get; set; }
     }
 }
 

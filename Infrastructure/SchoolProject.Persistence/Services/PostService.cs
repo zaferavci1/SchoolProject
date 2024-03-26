@@ -3,10 +3,12 @@ using System.Xml.Linq;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Application.Abstraction.Repository.Posts;
+using SchoolProject.Application.Abstraction.Repository.Users;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Features.Comments.DTOs;
 using SchoolProject.Application.Features.Posts.DTOs;
 using SchoolProject.Domain.Entities;
+using SchoolProject.Persistence.Context;
 
 namespace SchoolProject.Persistence.Services
 {
@@ -14,18 +16,22 @@ namespace SchoolProject.Persistence.Services
 	{
         private readonly IPostCommandRepository _postCommandRepository;
         private readonly IPostQueryRepository _postQueryRepository;
+        private readonly IUserQueryRepository _userQueryRepository;
         private readonly IDataProtector postDataProtector;
         private readonly IDataProtector userDataProtector;
         private readonly IDataProtector commentDataProtector;
+        private readonly SchoolProjectDbContext _dbContext;
 
 
-        public PostService(IPostCommandRepository postCommandRepository, IPostQueryRepository postQueryRepository,IDataProtectionProvider dataProtectionProvider)
+        public PostService(IPostCommandRepository postCommandRepository, IPostQueryRepository postQueryRepository, IDataProtectionProvider dataProtectionProvider, SchoolProjectDbContext dbContext, IUserQueryRepository userQueryRepository)
         {
             _postCommandRepository = postCommandRepository;
             _postQueryRepository = postQueryRepository;
+            _userQueryRepository = userQueryRepository;
             postDataProtector = dataProtectionProvider.CreateProtector("Posts");
             userDataProtector = dataProtectionProvider.CreateProtector("Users");
             commentDataProtector = dataProtectionProvider.CreateProtector("Comments");
+            _dbContext = dbContext;
         }
 
 
@@ -66,7 +72,7 @@ namespace SchoolProject.Persistence.Services
             Comments = p.Comments.Select(c => new CommentDTO
             {
                 UserId =userDataProtector.Protect(c.UserId.ToString()),
-                PostId = postDataProtector.Protect(c.PostID.ToString()),
+                PostId = postDataProtector.Protect(c.PostId.ToString()),
                 Id = commentDataProtector.Protect(c.Id.ToString()),
                 Content = c.Content,
                 LikeCount = c.LikeCount
@@ -86,7 +92,7 @@ namespace SchoolProject.Persistence.Services
                 Comments = post.Comments.Select(c => new CommentDTO()
                 {
                     UserId = userDataProtector.Protect(c.UserId.ToString()),
-                    PostId = postDataProtector.Protect(c.PostID.ToString()),
+                    PostId = postDataProtector.Protect(c.PostId.ToString()),
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
                     LikeCount = c.LikeCount
@@ -97,11 +103,19 @@ namespace SchoolProject.Persistence.Services
             };
         }
 
-        public async Task<PostDTO> LikeAsync(string id)
+        public async Task<PostDTO> LikeAsync(string id,string userId)
         {
             Post post = await _postQueryRepository.GetByIdAsync(postDataProtector.Unprotect(id));
             post.LikeCount += 1;
+            PostLike pl = new()
+            {
+                PostId = Guid.Parse(postDataProtector.Unprotect(id)),
+                UserId = Guid.Parse(userDataProtector.Unprotect(userId))
+            };
             _postCommandRepository.Update(post);
+
+            await _dbContext.PostLikes.AddAsync(pl);
+
             await _postCommandRepository.SaveAsync();
             return new()
             {

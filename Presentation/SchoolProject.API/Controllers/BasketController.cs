@@ -49,8 +49,8 @@ namespace SchoolProject.API.Controllers
             IDataResult<GetByIdBasketDTO> response = await _mediator.Send(getByIdBasketQueryRequest);
             return Ok(response);
         }
-        [HttpGet("{Id}")]
-        public async Task<IActionResult> Like([FromRoute] LikeBasketCommandRequest likeBasketCommandRequest)
+        [HttpPut]
+        public async Task<IActionResult> Like(LikeBasketCommandRequest likeBasketCommandRequest)
         {
             IDataResult<BasketDTO> response = await _mediator.Send(likeBasketCommandRequest);
             return Ok(response);

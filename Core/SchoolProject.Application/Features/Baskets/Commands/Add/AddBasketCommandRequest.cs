@@ -8,6 +8,7 @@ namespace SchoolProject.Application.Features.Baskets.Commands.Add
 	public class AddBasketCommandRequest : IRequest<IDataResult<BasketDTO>>
     {
         public string BasketName { get; set; }
+        public string UserId { get; set; }
     }
 }
 

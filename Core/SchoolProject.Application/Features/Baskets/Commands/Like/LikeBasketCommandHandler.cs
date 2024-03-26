@@ -16,7 +16,7 @@ namespace SchoolProject.Application.Features.Baskets.Commands.Like
 
         public async Task<IDataResult<BasketDTO>> Handle(LikeBasketCommandRequest request, CancellationToken cancellationToken)
         {
-            BasketDTO basketDTO = await _basketService.LikeAsync(request.Id);
+            BasketDTO basketDTO = await _basketService.LikeAsync(request.Id , request.UserId);
             return new SuccessDataResult<BasketDTO>("Sepet Başarıyla Begenildi", basketDTO);
 
         }

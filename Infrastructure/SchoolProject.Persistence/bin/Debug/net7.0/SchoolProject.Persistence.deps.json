@@ -16,6 +16,7 @@
           "Microsoft.Extensions.Configuration": "7.0.0",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
           "Microsoft.Extensions.Configuration.UserSecrets": "7.0.0",
+          "Riok.Mapperly": "3.4.0",
           "SchoolProject.Application": "1.0.0",
           "SchoolProject.Domain": "1.0.0",
           "System.Configuration.ConfigurationManager": "7.0.0"
@@ -592,6 +593,14 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {
             "assemblyVersion": "2.2.0.0",
             "fileVersion": "2.2.1.1"
+          }
+        }
+      },
+      "Riok.Mapperly/3.4.0": {
+        "runtime": {
+          "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {
+            "assemblyVersion": "3.4.0.0",
+            "fileVersion": "3.4.0.0"
           }
         }
       },
@@ -1270,6 +1279,13 @@
       "sha512": "sha512-KZYeKBET/2Z0gY1WlTAK7+RHTl7GSbtvTLDXEZZojUdAPqpQNDL6tHv7VUpqfX5VEOh+uRGKaZXkuD253nEOBQ==",
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
+    },
+    "Riok.Mapperly/3.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bTxBEQ0+2x816IL78Fv0B/KkaGRtzfisit9dfWTfa7jjjwMMzpMW9A+V/hyxqHdJtYvtDL6dUNMLJige4zxJvw==",
+      "path": "riok.mapperly/3.4.0",
+      "hashPath": "riok.mapperly.3.4.0.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",

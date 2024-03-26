@@ -52,8 +52,8 @@ namespace SchoolProject.API.Controllers
             IDataResult<GetByIdPostDTO> response = await _mediator.Send(getByIdPostQueryRequest);
             return Ok(response);
         }
-        [HttpGet("{Id}")]
-        public async Task<IActionResult> Like([FromRoute] LikePostCommandRequest likePostCommandRequest)
+        [HttpPut]
+        public async Task<IActionResult> Like(LikePostCommandRequest likePostCommandRequest)
         {
             IDataResult<PostDTO> response = await _mediator.Send(likePostCommandRequest);
             return Ok(response);

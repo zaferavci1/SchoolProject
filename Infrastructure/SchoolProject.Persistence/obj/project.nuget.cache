@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Brjyy/TbUt+JoAPIXWvEmLliOsp6mFLaVhu2LQBEgrTe3BpU8U7IYF9WOy7PqoiwoBr/iti5EhUYXz7SfOra1w==",
+  "dgSpecHash": "v0iRoXVnFzHvLyxoZQpXAQa6If5XvN7RiYnTL7OjNg7saZhFOx6ofZhYkZUAUxgB80zTcOS5LLsn8uMmpJAxWA==",
   "success": true,
   "projectFilePath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/SchoolProject.Persistence.csproj",
   "expectedPackageFiles": [
@@ -59,6 +59,7 @@
     "/Users/serkanyilmaz/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/riok.mapperly/3.4.0/riok.mapperly.3.4.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/system.codedom/4.4.0/system.codedom.4.4.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/system.configuration.configurationmanager/7.0.0/system.configuration.configurationmanager.7.0.0.nupkg.sha512",

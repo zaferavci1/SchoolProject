@@ -12,7 +12,7 @@ using SchoolProject.Persistence.Context;
 namespace SchoolProject.Persistence.Migrations
 {
     [DbContext(typeof(SchoolProjectDbContext))]
-    [Migration("20240323115138_mgr_1")]
+    [Migration("20240325152040_mgr_1")]
     partial class mgr1
     {
         /// <inheritdoc />
@@ -252,19 +252,19 @@ namespace SchoolProject.Persistence.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("UserUser", b =>
+            modelBuilder.Entity("SchoolProject.Domain.Entities.UserFollower", b =>
                 {
-                    b.Property<Guid>("FollowersId")
+                    b.Property<Guid>("FolloweeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("FollowsId")
+                    b.Property<Guid>("FollowerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("FollowersId", "FollowsId");
+                    b.HasKey("FolloweeId", "FollowerId");
 
-                    b.HasIndex("FollowsId");
+                    b.HasIndex("FollowerId");
 
-                    b.ToTable("UserUser");
+                    b.ToTable("UserFollower");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Basket", b =>
@@ -312,19 +312,23 @@ namespace SchoolProject.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("UserUser", b =>
+            modelBuilder.Entity("SchoolProject.Domain.Entities.UserFollower", b =>
                 {
-                    b.HasOne("SchoolProject.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("FollowersId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("SchoolProject.Domain.Entities.User", "Followee")
+                        .WithMany("Followees")
+                        .HasForeignKey("FolloweeId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("SchoolProject.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("FollowsId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                    b.HasOne("SchoolProject.Domain.Entities.User", "Follower")
+                        .WithMany("Followers")
+                        .HasForeignKey("FollowerId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.Navigation("Followee");
+
+                    b.Navigation("Follower");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Basket", b =>
@@ -347,6 +351,10 @@ namespace SchoolProject.Persistence.Migrations
                     b.Navigation("Basket");
 
                     b.Navigation("Comments");
+
+                    b.Navigation("Followees");
+
+                    b.Navigation("Followers");
 
                     b.Navigation("Posts");
                 });

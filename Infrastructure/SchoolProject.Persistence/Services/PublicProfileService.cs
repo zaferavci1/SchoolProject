@@ -45,27 +45,42 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<GetByIdPublicProfileDTO> GetByIdAsync(string id)
         {
-            User? user = await _userQueryRepository.Table.Include(u => u.Posts).ThenInclude(c => c.Comments).Include(u => u.Followers).Include(u => u.Follows).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
+            User? user = await _userQueryRepository.Table
+                .Include(u => u.Posts)
+                .ThenInclude(c => c.Comments)
+                .Include(u => u.Followees)
+                .Include(u => u.Followers)
+                .FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
+            List<PublicProfilesDTO> followers = user.Followers.Join(
+               _userQueryRepository.GetAll(),
+               uf => uf.FolloweeId,
+               user => user.Id,
+               (uf, user) => new PublicProfilesDTO
+               {
+                   Id = user.Id.ToString(),
+                   Name = user.Name,
+                   Surname = user.Surname,
+                   NickName = user.NickName
+               }).ToList();
+            List<PublicProfilesDTO> followees = user.Followees.Join(
+                _userQueryRepository.GetAll(),
+                uf => uf.FollowerId,
+                user => user.Id,
+                (uf, user) => new PublicProfilesDTO
+                {
+                    Id = user.Id.ToString(),
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    NickName = user.NickName
+                }).ToList();
             return new()
             {
                 Id = userDataProtector.Protect(user.Id.ToString()),
                 Name = user.Name,
                 Surname = user.Surname,
                 NickName = user.NickName,
-                Followers = user.Followers?.Select(f => new PublicProfilesDTO()
-                {
-                    Id = userDataProtector.Protect(f.Id.ToString()),
-                    Name = f.Name,
-                    Surname = f.Surname,
-                    NickName = f.NickName
-                }).ToList() ?? new List<PublicProfilesDTO>(),
-                Follows = user.Follows?.Select(f => new PublicProfilesDTO()
-                {
-                    Id = userDataProtector.Protect(f.Id.ToString()),
-                    Name = f.Name,
-                    Surname = f.Surname,
-                    NickName = f.NickName
-                }).ToList() ?? new List<PublicProfilesDTO>(),
+                Followers = followers,
+                Follows = followees,
                 Posts = user.Posts?.Select(p => new GetAllPostsDTO()
                 {
                     UserId = userDataProtector.Protect(p.UserId.ToString()),
@@ -76,7 +91,7 @@ namespace SchoolProject.Persistence.Services
                     Comments = p.Comments.Select(c => new CommentDTO()
                     {
                         UserId = userDataProtector.Protect(c.UserId.ToString()),
-                        PostId = postDataProtector.Protect(c.PostID.ToString()),
+                        PostId = postDataProtector.Protect(c.PostId.ToString()),
                         Id = commentDataProtector.Protect(c.Id.ToString()),
                         Content = c.Content,
                         LikeCount = c.LikeCount
@@ -85,7 +100,8 @@ namespace SchoolProject.Persistence.Services
                 ).ToList() ?? new List<GetAllPostsDTO>(),
                 Comments = user.Comments.Select(c => new GetAllCommentsDTO()
                 {
-                    PostId = postDataProtector.Protect(c.PostID.ToString()),
+                    PostId = postDataProtector.Protect(c.PostId
+                    .ToString()),
                     UserId = userDataProtector.Protect(c.UserId.ToString()),
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,

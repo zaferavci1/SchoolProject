@@ -83,24 +83,23 @@ namespace SchoolProject.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserUser",
+                name: "UserFollower",
                 columns: table => new
                 {
-                    FollowersId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FollowsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    FollowerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FolloweeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserUser", x => new { x.FollowersId, x.FollowsId });
+                    table.PrimaryKey("PK_UserFollower", x => new { x.FolloweeId, x.FollowerId });
                     table.ForeignKey(
-                        name: "FK_UserUser_User_FollowersId",
-                        column: x => x.FollowersId,
+                        name: "FK_UserFollower_User_FolloweeId",
+                        column: x => x.FolloweeId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_UserUser_User_FollowsId",
-                        column: x => x.FollowsId,
+                        name: "FK_UserFollower_User_FollowerId",
+                        column: x => x.FollowerId,
                         principalTable: "User",
                         principalColumn: "Id");
                 });
@@ -217,9 +216,9 @@ namespace SchoolProject.Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserUser_FollowsId",
-                table: "UserUser",
-                column: "FollowsId");
+                name: "IX_UserFollower_FollowerId",
+                table: "UserFollower",
+                column: "FollowerId");
         }
 
         /// <inheritdoc />
@@ -232,7 +231,7 @@ namespace SchoolProject.Persistence.Migrations
                 name: "Cryptos");
 
             migrationBuilder.DropTable(
-                name: "UserUser");
+                name: "UserFollower");
 
             migrationBuilder.DropTable(
                 name: "Posts");

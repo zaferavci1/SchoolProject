@@ -8,6 +8,7 @@ namespace SchoolProject.Application.Features.Comments.Commands.Like
 	public class LikeCommentCommandRequest : IRequest<IDataResult<CommentDTO>>
     {
         public string Id { get; set; }
+        public string UserId { get; set; }
     }
 }
 

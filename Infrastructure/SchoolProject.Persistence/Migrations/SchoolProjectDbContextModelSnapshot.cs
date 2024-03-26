@@ -63,6 +63,21 @@ namespace SchoolProject.Persistence.Migrations
                     b.ToTable("Baskets");
                 });
 
+            modelBuilder.Entity("SchoolProject.Domain.Entities.BasketLike", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BasketId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "BasketId");
+
+                    b.HasIndex("BasketId");
+
+                    b.ToTable("BasketLikes");
+                });
+
             modelBuilder.Entity("SchoolProject.Domain.Entities.Comment", b =>
                 {
                     b.Property<Guid>("Id")
@@ -85,7 +100,7 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<int>("LikeCount")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("PostID")
+                    b.Property<Guid>("PostId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("UpdatedDate")
@@ -98,11 +113,26 @@ namespace SchoolProject.Persistence.Migrations
 
                     b.HasIndex("CommentId");
 
-                    b.HasIndex("PostID");
+                    b.HasIndex("PostId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("SchoolProject.Domain.Entities.CommentLike", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CommentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "CommentId");
+
+                    b.HasIndex("CommentId");
+
+                    b.ToTable("CommentLikes");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Crypto", b =>
@@ -193,6 +223,21 @@ namespace SchoolProject.Persistence.Migrations
                     b.ToTable("Posts");
                 });
 
+            modelBuilder.Entity("SchoolProject.Domain.Entities.PostLike", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "PostId");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("PostLikes");
+                });
+
             modelBuilder.Entity("SchoolProject.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -249,19 +294,19 @@ namespace SchoolProject.Persistence.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("UserUser", b =>
+            modelBuilder.Entity("SchoolProject.Domain.Entities.UserFollower", b =>
                 {
-                    b.Property<Guid>("FollowersId")
+                    b.Property<Guid>("FolloweeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("FollowsId")
+                    b.Property<Guid>("FollowerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("FollowersId", "FollowsId");
+                    b.HasKey("FolloweeId", "FollowerId");
 
-                    b.HasIndex("FollowsId");
+                    b.HasIndex("FollowerId");
 
-                    b.ToTable("UserUser");
+                    b.ToTable("UserFollowers");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Basket", b =>
@@ -273,6 +318,25 @@ namespace SchoolProject.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SchoolProject.Domain.Entities.BasketLike", b =>
+                {
+                    b.HasOne("SchoolProject.Domain.Entities.Basket", "Basket")
+                        .WithMany("BasketLikes")
+                        .HasForeignKey("BasketId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("SchoolProject.Domain.Entities.User", "User")
+                        .WithMany("BasketLikes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Basket");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SchoolProject.Domain.Entities.Comment", b =>
                 {
                     b.HasOne("SchoolProject.Domain.Entities.Comment", null)
@@ -281,7 +345,7 @@ namespace SchoolProject.Persistence.Migrations
 
                     b.HasOne("SchoolProject.Domain.Entities.Post", null)
                         .WithMany("Comments")
-                        .HasForeignKey("PostID")
+                        .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -289,6 +353,25 @@ namespace SchoolProject.Persistence.Migrations
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
                         .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SchoolProject.Domain.Entities.CommentLike", b =>
+                {
+                    b.HasOne("SchoolProject.Domain.Entities.Comment", "Comment")
+                        .WithMany("CommentLikes")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("SchoolProject.Domain.Entities.User", "User")
+                        .WithMany("CommentLikes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
 
                     b.Navigation("User");
                 });
@@ -309,41 +392,80 @@ namespace SchoolProject.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("UserUser", b =>
+            modelBuilder.Entity("SchoolProject.Domain.Entities.PostLike", b =>
                 {
-                    b.HasOne("SchoolProject.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("FollowersId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("SchoolProject.Domain.Entities.Post", "Post")
+                        .WithMany("PostLikes")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("SchoolProject.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("FollowsId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                    b.HasOne("SchoolProject.Domain.Entities.User", "User")
+                        .WithMany("PostLikes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.Navigation("Post");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SchoolProject.Domain.Entities.UserFollower", b =>
+                {
+                    b.HasOne("SchoolProject.Domain.Entities.User", "Followee")
+                        .WithMany("Followees")
+                        .HasForeignKey("FolloweeId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("SchoolProject.Domain.Entities.User", "Follower")
+                        .WithMany("Followers")
+                        .HasForeignKey("FollowerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Followee");
+
+                    b.Navigation("Follower");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Basket", b =>
                 {
+                    b.Navigation("BasketLikes");
+
                     b.Navigation("Cryptos");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Comment", b =>
                 {
+                    b.Navigation("CommentLikes");
+
                     b.Navigation("ReplyComments");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("PostLikes");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.User", b =>
                 {
                     b.Navigation("Basket");
 
+                    b.Navigation("BasketLikes");
+
+                    b.Navigation("CommentLikes");
+
                     b.Navigation("Comments");
+
+                    b.Navigation("Followees");
+
+                    b.Navigation("Followers");
+
+                    b.Navigation("PostLikes");
 
                     b.Navigation("Posts");
                 });

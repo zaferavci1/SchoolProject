@@ -12,6 +12,7 @@ namespace SchoolProject.Application.Abstraction.Services
 		Task<PostDTO> UpdateAsync(UpdatePostDTO updatePostDTO);
 		Task<PostDTO> DeleteAsync(string id);
         Task<PostDTO> LikeAsync(string id,string userId);
+        Task<PostDTO> UnLikeAsync(string id, string userId);
 
     }
 }

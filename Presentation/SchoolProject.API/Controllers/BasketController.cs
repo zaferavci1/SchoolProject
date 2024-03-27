@@ -55,6 +55,12 @@ namespace SchoolProject.API.Controllers
             IDataResult<BasketDTO> response = await _mediator.Send(likeBasketCommandRequest);
             return Ok(response);
         }
+        [HttpPut]
+        public async Task<IActionResult> Like(LikeBasketCommandRequest likeBasketCommandRequest)
+        {
+            IDataResult<BasketDTO> response = await _mediator.Send(likeBasketCommandRequest);
+            return Ok(response);
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] GetAllBasketsQueryRequest getAllBasketQueryRequest)

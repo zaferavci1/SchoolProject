@@ -13,6 +13,7 @@ namespace SchoolProject.Application.Abstraction.Services
         Task<BasketDTO> UpdateAsync(UpdateBasketDTO updateBasketDTO);
         Task<BasketDTO> DeleteAsync(string id);
         Task<BasketDTO> LikeAsync(string id,string userId);
+        Task<BasketDTO> UnLikeAsync(string id, string userId);
     }
 }
 

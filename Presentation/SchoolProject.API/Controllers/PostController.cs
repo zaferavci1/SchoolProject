@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Posts.Commands.Add;
 using SchoolProject.Application.Features.Posts.Commands.Delete;
 using SchoolProject.Application.Features.Posts.Commands.Like;
+using SchoolProject.Application.Features.Posts.Commands.UnLike;
 using SchoolProject.Application.Features.Posts.Commands.Update;
 using SchoolProject.Application.Features.Posts.DTOs;
 using SchoolProject.Application.Features.Posts.Queries.GetAll;
@@ -59,6 +60,12 @@ namespace SchoolProject.API.Controllers
             return Ok(response);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> UnLike(UnLikePostCommandRequest unLikePostCommandRequest)
+        {
+            IDataResult<PostDTO> response = await _mediator.Send(unLikePostCommandRequest);
+            return Ok(response);
+        }
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] GetAllPostQueryRequest getAllPostQueryRequest)
         {

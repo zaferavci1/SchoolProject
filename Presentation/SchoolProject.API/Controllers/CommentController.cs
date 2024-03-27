@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Comments.Commands.Add;
 using SchoolProject.Application.Features.Comments.Commands.Delete;
 using SchoolProject.Application.Features.Comments.Commands.Like;
+using SchoolProject.Application.Features.Comments.Commands.Unlike;
 using SchoolProject.Application.Features.Comments.Commands.Update;
 using SchoolProject.Application.Features.Comments.DTOs;
 using SchoolProject.Application.Features.Comments.Queries.GetAll;
@@ -55,6 +56,12 @@ namespace SchoolProject.API.Controllers
             return Ok(response);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> UnLike(UnLikeCommentCommandRequest unLikeCommentCommandRequest)
+        {
+            IDataResult<CommentDTO> response = await _mediator.Send(unLikeCommentCommandRequest);
+            return Ok(response);
+        }
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] GetAllCommentQueryRequest getAllCommentQueryRequest)
         {

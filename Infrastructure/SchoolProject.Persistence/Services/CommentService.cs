@@ -9,7 +9,7 @@ using SchoolProject.Persistence.Context;
 
 namespace SchoolProject.Persistence.Services
 {
-	public class CommentService : ICommentService
+    public class CommentService : ICommentService
 	{
         private readonly ICommentQueryRepository _commentQueryRepository;
         private readonly ICommentCommandRepository _commentCommandRepository;
@@ -103,13 +103,35 @@ namespace SchoolProject.Persistence.Services
         public async Task<CommentDTO> LikeAsync(string id,string userId)
         {
             Comment comment = await _commentQueryRepository.GetByIdAsync(commentdataProtector.Unprotect(id));
-            comment.LikeCount += 1;
             CommentLike cl = new()
             {
                 CommentId = Guid.Parse(commentdataProtector.Unprotect(id)),
                 UserId = Guid.Parse(userDataProtector.Unprotect(userId))
             };
+            comment.LikeCount -= 1;
             _context.CommentLikes.Add(cl);
+            _commentCommandRepository.Update(comment);
+            await _commentCommandRepository.SaveAsync();
+            return new()
+            {
+                UserId = userDataProtector.Protect(comment.UserId.ToString()),
+                PostId = postDataProtector.Protect(comment.PostId.ToString()),
+                Id = commentdataProtector.Protect(comment.Id.ToString()),
+                Content = comment.Content,
+                LikeCount = comment.LikeCount
+            };
+        }
+
+        public async Task<CommentDTO> UnLikeAsync(string id, string userId)
+        {
+            Comment comment = await _commentQueryRepository.GetByIdAsync(commentdataProtector.Unprotect(id));
+            comment.LikeCount -= 1;
+            CommentLike cl = new()
+            {
+                CommentId = Guid.Parse(commentdataProtector.Unprotect(id)),
+                UserId = Guid.Parse(userDataProtector.Unprotect(userId))
+            };
+            _context.CommentLikes.Remove(cl);
             _commentCommandRepository.Update(comment);
             await _commentCommandRepository.SaveAsync();
             return new()

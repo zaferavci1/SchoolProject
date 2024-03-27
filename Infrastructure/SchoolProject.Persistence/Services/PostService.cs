@@ -12,7 +12,7 @@ using SchoolProject.Persistence.Context;
 
 namespace SchoolProject.Persistence.Services
 {
-	public class PostService : IPostService
+    public class PostService : IPostService
 	{
         private readonly IPostCommandRepository _postCommandRepository;
         private readonly IPostQueryRepository _postQueryRepository;
@@ -115,6 +115,30 @@ namespace SchoolProject.Persistence.Services
             _postCommandRepository.Update(post);
 
             await _dbContext.PostLikes.AddAsync(pl);
+
+            await _postCommandRepository.SaveAsync();
+            return new()
+            {
+                UserId = userDataProtector.Protect(post.UserId.ToString()),
+                Id = postDataProtector.Protect(post.Id.ToString()),
+                Content = post.Content,
+                Title = post.Content,
+                LikeCount = post.LikeCount
+            };
+        }
+
+        public async Task<PostDTO> UnLikeAsync(string id, string userId)
+        {
+            Post post = await _postQueryRepository.GetByIdAsync(postDataProtector.Unprotect(id));
+            PostLike pl = new()
+            {
+                PostId = Guid.Parse(postDataProtector.Unprotect(id)),
+                UserId = Guid.Parse(userDataProtector.Unprotect(userId))
+            };
+
+            _dbContext.PostLikes.Remove(pl);
+            post.LikeCount -= 1;
+            _postCommandRepository.Update(post);
 
             await _postCommandRepository.SaveAsync();
             return new()

@@ -98,6 +98,26 @@ namespace SchoolProject.Persistence.Services
 
         }
 
+        public async Task<BasketDTO> UnLikeAsync(string id, string userId)
+        {
+            Basket? basket = await basketQueryRepository.Table.Include(b => b.Cryptos).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(id)));
+            basket.LikeCount -= 1;
+            BasketLike bl = new()
+            {
+                BasketId = Guid.Parse(basketDataProtector.Unprotect(id)),
+                UserId = Guid.Parse(userDataProtector.Unprotect(userId))
+            };
+            _context.BasketLikes.Remove(bl);
+            basketCommandRepository.Update(basket);
+            await basketCommandRepository.SaveAsync();
+            return new()
+            {
+                Id = basketDataProtector.Protect(basket.Id.ToString()),
+                BasketName = basket.BasketName,
+                LikeCount = basket.LikeCount
+            };
+        }
+
         public async Task<BasketDTO> UpdateAsync(UpdateBasketDTO updateBasketDTO)
         {
             Basket basket = await basketQueryRepository.Table.Include(b => b.Cryptos).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(updateBasketDTO.Id)));

@@ -34,6 +34,9 @@
     <None Remove="Features\Posts\Commands\Like\" />
     <None Remove="Features\Comments\Commands\Like\" />
     <None Remove="Features\Baskets\Commands\Like\" />
+    <None Remove="Features\Comments\Commands\Unlike\" />
+    <None Remove="Features\Posts\Commands\UnLike\" />
+    <None Remove="Features\Baskets\Commands\UnLike\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -64,6 +67,9 @@
     <Folder Include="Features\Posts\Commands\Like\" />
     <Folder Include="Features\Comments\Commands\Like\" />
     <Folder Include="Features\Baskets\Commands\Like\" />
+    <Folder Include="Features\Comments\Commands\Unlike\" />
+    <Folder Include="Features\Posts\Commands\UnLike\" />
+    <Folder Include="Features\Baskets\Commands\UnLike\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolProject.Domain\SchoolProject.Domain.csproj" />

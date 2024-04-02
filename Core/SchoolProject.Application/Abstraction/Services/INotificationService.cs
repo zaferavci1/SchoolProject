@@ -11,7 +11,8 @@ namespace SchoolProject.Application.Abstraction.Services
         Task<(List<GetAllNotificationsDTO>, int totalCount)> GetAllAsync(int page, int size);
         Task<GetByIdNotificationDTO> GetByIdAsync(string id);
         Task<NotificationDTO> AddAsync(AddFollowNotificationDTO addFollowNotificationDTO);
+        Task<NotificationDTO> AddAsync(AddCommentNotificationDTO addFollowNotificationDTO);
         Task<NotificationDTO> AddAsync(AddLikeCommentNotificationDTO addLikeCommentNotificationDTO);
-        Task<NotificationDTO> AddAsync(AddLikePostCommentNotificationDTO addLikePostCommentNotificationDTO);
+        Task<NotificationDTO> AddAsync(AddLikePostNotificationDTO addLikePostCommentNotificationDTO);
     }
 }

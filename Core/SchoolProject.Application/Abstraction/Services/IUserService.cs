@@ -12,7 +12,8 @@ namespace SchoolProject.Application.Abstraction.Services
         Task<UserDTO> AddAsync(AddUserDTO addUserDTO);
         Task<UserDTO> UpdateAsync(UpdateUserDTO updateUserDTO);
         Task<UserDTO> DeleteAsync(string id);
-        Task<(UserDTO, UserDTO)> FollowSomeoneAsync(string id1, string id2);
+        Task<(UserDTO, UserDTO)> FollowAsync(string user1Id, string user2Id);
+        Task<(UserDTO, UserDTO)> UnFollowAsync(string user1Id, string user2Id);
         Task<(List<GetAllPostsDTO>, int totalCount)> GetUsersPostsAsync(string id);
         Task<(List<GetAllCommentsDTO>, int totalCount)> GetUsersCommentsAsync(string id);
 

@@ -187,6 +187,49 @@ namespace SchoolProject.Persistence.Migrations
                     b.ToTable("Cryptos");
                 });
 
+            modelBuilder.Entity("SchoolProject.Domain.Entities.Notification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CommentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("FirstUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SecondUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FirstUserId");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("SchoolProject.Domain.Entities.Post", b =>
                 {
                     b.Property<Guid>("Id")
@@ -381,6 +424,41 @@ namespace SchoolProject.Persistence.Migrations
                     b.HasOne("SchoolProject.Domain.Entities.Basket", null)
                         .WithMany("Cryptos")
                         .HasForeignKey("BasketId");
+                });
+
+            modelBuilder.Entity("SchoolProject.Domain.Entities.Notification", b =>
+                {
+                    b.HasOne("SchoolProject.Domain.Entities.User", "FirstUser")
+                        .WithMany()
+                        .HasForeignKey("FirstUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolProject.Domain.Entities.Comment", "Comment")
+                        .WithMany()
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("SchoolProject.Domain.Entities.Post", "Post")
+                        .WithMany()
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("SchoolProject.Domain.Entities.User", "SecondUser")
+                        .WithMany()
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("FirstUser");
+
+                    b.Navigation("Post");
+
+                    b.Navigation("SecondUser");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Post", b =>

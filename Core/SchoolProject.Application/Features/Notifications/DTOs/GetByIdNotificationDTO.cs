@@ -1,7 +1,9 @@
 ﻿using System;
+using SchoolProject.Application.Abstraction.DTO;
+
 namespace SchoolProject.Application.Features.Notifications.DTOs
 {
-	public class GetByIdNotificationDTO
+	public class GetByIdNotificationDTO : IDTO
 	{
         public string FirstUserId { get; set; }
         public string SecondUserId { get; set; }

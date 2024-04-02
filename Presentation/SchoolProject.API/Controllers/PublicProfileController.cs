@@ -1,11 +1,9 @@
-﻿
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.PublicProfiles.DTOs;
 using SchoolProject.Application.Features.PublicProfiles.Queries.GetById;
 using SchoolProject.Application.Utilities.Common;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SchoolProject.API.Controllers
 {

@@ -21,6 +21,8 @@ namespace SchoolProject.Persistence.Context
 
         public DbSet<CommentLike> CommentLikes { get; set; }
 
+        public DbSet<Notification> Notifications { get; set; }
+
         public DbSet<Basket> Baskets { get; set; }
 
         public DbSet<BasketLike> BasketLikes { get; set; }
@@ -132,10 +134,29 @@ namespace SchoolProject.Persistence.Context
                 bl.UserId,
                 bl.BasketId
             });
-
+            modelBuilder.Entity<Notification>()
+               .HasOne(n => n.Post)
+               .WithMany()
+               .HasForeignKey(n => n.PostId)
+               .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Notification>()
+               .HasOne(n => n.FirstUser)
+               .WithMany()
+               .HasForeignKey(n => n.PostId)
+               .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Notification>()
+               .HasOne(n => n.SecondUser)
+               .WithMany()
+               .HasForeignKey(n => n.PostId)
+               .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Notification>()
+               .HasOne(n => n.Comment)
+               .WithMany()
+               .HasForeignKey(n => n.PostId)
+               .OnDelete(DeleteBehavior.NoAction);
         }
 
-     
+
     }
 
 }

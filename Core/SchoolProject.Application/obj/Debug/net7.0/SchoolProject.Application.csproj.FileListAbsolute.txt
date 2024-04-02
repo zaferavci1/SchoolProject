@@ -28,3 +28,4 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/refint/SchoolProject.Application.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/ref/SchoolProject.Application.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.sourcelink.json

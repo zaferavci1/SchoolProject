@@ -1,33 +1,21 @@
 ﻿<Properties StartupConfiguration="{C3121B99-5EE8-4404-BD10-69F4DB95ED23}|https">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/SchoolProject.Persistence/Services/BasketService.cs">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/Services/PostService.cs" relfile="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" line="108" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Presentation/SchoolProject.API/Controllers/NotificationController.cs">
     <Files>
-      <File FileName="Infrastructure/SchoolProject.Persistence/Services/BasketService.cs" Line="114" Column="14" />
+      <File FileName="Presentation/SchoolProject.API/Controllers/NotificationController.cs" Line="9" Column="45" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SchoolProject" expanded="True">
             <Node name="Core" expanded="True">
-              <Node name="SchoolProject.Application">
-                <Node name="Abstraction" expanded="True">
-                  <Node name="Repository" expanded="True" />
-                  <Node name="Services" expanded="True" />
-                </Node>
-                <Node name="Features" expanded="True">
-                  <Node name="Baskets" expanded="True">
-                    <Node name="Commands" expanded="True">
-                      <Node name="Like" expanded="True" />
-                      <Node name="UnLike" expanded="True" />
-                    </Node>
-                  </Node>
-                  <Node name="Comments" expanded="True">
-                    <Node name="Commands" expanded="True">
-                      <Node name="Like" expanded="True" />
-                      <Node name="Unlike" expanded="True" />
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
               <Node name="SchoolProject.Domain" expanded="True">
                 <Node name="Entities" expanded="True">
                   <Node name="Common" expanded="True" />
@@ -35,13 +23,12 @@
               </Node>
             </Node>
             <Node name="Infrastructure" expanded="True">
-              <Node name="SchoolProject.Persistence">
-                <Node name="Migrations" expanded="True" />
-                <Node name="Repositories" expanded="True">
-                  <Node name="Posts" expanded="True" />
-                </Node>
-                <Node name="Services" expanded="True">
-                  <Node name="BasketService.cs" selected="True" />
+              <Node name="SchoolProject.Infrastructure" expanded="True" />
+            </Node>
+            <Node name="Presentation" expanded="True">
+              <Node name="SchoolProject.API">
+                <Node name="Controllers">
+                  <Node name="NotificationController.cs" selected="True" />
                 </Node>
               </Node>
             </Node>
@@ -51,12 +38,4 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/Services/PostService.cs" relfile="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" line="108" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

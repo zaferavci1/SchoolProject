@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SchoolProject.Application.Abstraction.Repository.Baskets;
 using SchoolProject.Application.Abstraction.Repository.Comments;
+using SchoolProject.Application.Abstraction.Repository.Notifications;
 using SchoolProject.Application.Abstraction.Repository.Posts;
 using SchoolProject.Application.Abstraction.Repository.Users;
 using SchoolProject.Application.Abstraction.Services;
@@ -11,6 +12,7 @@ using SchoolProject.Persistence.Configurations;
 using SchoolProject.Persistence.Context;
 using SchoolProject.Persistence.Repositories.Baskets;
 using SchoolProject.Persistence.Repositories.Comments;
+using SchoolProject.Persistence.Repositories.Notificationss;
 using SchoolProject.Persistence.Repositories.Posts;
 using SchoolProject.Persistence.Repositories.Users;
 using SchoolProject.Persistence.Services;
@@ -47,6 +49,9 @@ namespace SchoolProject.Persistence
             services.AddScoped<IBasketCommandRepository, BasketCommandRepository>();
             services.AddScoped<IBasketQueryRepository, BasketQueryRepository>();
 
+
+            services.AddScoped<INotificationCommandRepository, NotificationCommandRepository>();
+            services.AddScoped<INotificationQueryRepository, NotificationQueryRepository>();
 
             services.AddDataProtection();
         }

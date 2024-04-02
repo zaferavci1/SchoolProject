@@ -1,16 +1,14 @@
-﻿
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Baskets.Commands.Add;
 using SchoolProject.Application.Features.Baskets.Commands.Delete;
 using SchoolProject.Application.Features.Baskets.Commands.Like;
+using SchoolProject.Application.Features.Baskets.Commands.UnLike;
 using SchoolProject.Application.Features.Baskets.Commands.Update;
 using SchoolProject.Application.Features.Baskets.DTOs;
 using SchoolProject.Application.Features.Baskets.Queries.GetAll;
 using SchoolProject.Application.Features.Baskets.Queries.GetById;
 using SchoolProject.Application.Utilities.Common;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SchoolProject.API.Controllers
 {
@@ -56,9 +54,9 @@ namespace SchoolProject.API.Controllers
             return Ok(response);
         }
         [HttpPut]
-        public async Task<IActionResult> Like(LikeBasketCommandRequest likeBasketCommandRequest)
+        public async Task<IActionResult> UnLike(UnLikeBasketCommandRequest unLikeBasketCommandRequest)
         {
-            IDataResult<BasketDTO> response = await _mediator.Send(likeBasketCommandRequest);
+            IDataResult<BasketDTO> response = await _mediator.Send(unLikeBasketCommandRequest);
             return Ok(response);
         }
 

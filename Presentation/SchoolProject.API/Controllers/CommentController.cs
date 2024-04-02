@@ -10,8 +10,6 @@ using SchoolProject.Application.Features.Comments.Queries.GetAll;
 using SchoolProject.Application.Features.Comments.Queries.GetById;
 using SchoolProject.Application.Utilities.Common;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace SchoolProject.API.Controllers
 {
     [ApiController]

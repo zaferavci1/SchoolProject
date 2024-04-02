@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Posts.Commands.Add;
 using SchoolProject.Application.Features.Posts.Commands.Delete;
@@ -13,8 +9,6 @@ using SchoolProject.Application.Features.Posts.DTOs;
 using SchoolProject.Application.Features.Posts.Queries.GetAll;
 using SchoolProject.Application.Features.Posts.Queries.GetById;
 using SchoolProject.Application.Utilities.Common;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SchoolProject.API.Controllers
 {

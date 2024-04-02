@@ -37,6 +37,14 @@
     <None Remove="Features\Comments\Commands\Unlike\" />
     <None Remove="Features\Posts\Commands\UnLike\" />
     <None Remove="Features\Baskets\Commands\UnLike\" />
+    <None Remove="Features\Users\Commands\UnFollow\" />
+    <None Remove="Features\Notifications\Commands\Add\" />
+    <None Remove="Features\Notifications\Commands\Add\Comment\" />
+    <None Remove="Features\Notifications\Commands\Add\CommentLike\" />
+    <None Remove="Features\Notifications\Commands\Add\PostLike\" />
+    <None Remove="Features\Notifications\Commands\Add\Follow\" />
+    <None Remove="Features\Notifications\Queries\GetById\" />
+    <None Remove="Features\Notifications\Queries\GetAll\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -70,6 +78,15 @@
     <Folder Include="Features\Comments\Commands\Unlike\" />
     <Folder Include="Features\Posts\Commands\UnLike\" />
     <Folder Include="Features\Baskets\Commands\UnLike\" />
+    <Folder Include="Features\Users\Commands\UnFollow\" />
+    <Folder Include="Features\Notifications\Commands\Add\" />
+    <Folder Include="Features\Notifications\Commands\Add\Comment\" />
+    <Folder Include="Features\Notifications\Commands\Add\CommentLike\" />
+    <Folder Include="Features\Notifications\Commands\Add\PostLike\" />
+    <Folder Include="Features\Notifications\Commands\Add\Follow\" />
+    <Folder Include="Features\Notifications\Queries\" />
+    <Folder Include="Features\Notifications\Queries\GetById\" />
+    <Folder Include="Features\Notifications\Queries\GetAll\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolProject.Domain\SchoolProject.Domain.csproj" />

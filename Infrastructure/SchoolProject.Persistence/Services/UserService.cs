@@ -177,7 +177,7 @@ namespace SchoolProject.Persistence.Services
 
             };
         }
-        public async Task<(UserDTO,UserDTO)> FollowSomeoneAsync(string user1Id, string user2Id)
+        public async Task<(UserDTO,UserDTO)> FollowAsync(string user1Id, string user2Id)
         {
             User? user1 = await _userQueryRepository.Table.Include(u => u.Followers).Include(u => u.Followees).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(user1Id)));
             User? user2 = await _userQueryRepository.Table.Include(u => u.Followers).Include(u => u.Followees).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(user2Id)));
@@ -237,6 +237,33 @@ namespace SchoolProject.Persistence.Services
                 Content = c.Content,
                 LikeCount = c.LikeCount
             }).ToList() ?? new List<GetAllCommentsDTO>(), user.Comments.Count());
+        }
+        public async Task<(UserDTO, UserDTO)> UnFollowAsync(string user1Id, string user2Id)
+        {
+            User? user1 = await _userQueryRepository.Table.Include(u => u.Followers).Include(u => u.Followees).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(user1Id)));
+            User? user2 = await _userQueryRepository.Table.Include(u => u.Followers).Include(u => u.Followees).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(user2Id)));
+            UserFollower uf = new()
+            {
+                FolloweeId = user1.Id,
+                FollowerId = user2.Id
+            };
+            context.UserFollowers.Remove(uf);
+            await _userCommandRepository.SaveAsync();
+            return (new()
+            {
+                Id = userDataProtector.Protect(user1.Id.ToString()),
+                Name = user1.Name,
+                Surname = user1.Surname,
+                NickName = user1.NickName,
+            },
+            new()
+            {
+                Id = userDataProtector.Protect(user2.Id.ToString()),
+                Name = user2.Name,
+                Surname = user2.Surname,
+                NickName = user2.NickName,
+            }
+            );
         }
     }
 }

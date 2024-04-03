@@ -34,6 +34,7 @@ namespace SchoolProject.Persistence
             services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IPublicProfileService, PublicProfileService>();
+            services.AddScoped<INotificationService, NotificationService>();
 
 
             services.AddScoped<ICommentCommandRepository, CommentCommandRepository>();

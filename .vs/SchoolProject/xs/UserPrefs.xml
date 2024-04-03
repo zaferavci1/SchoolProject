@@ -1,35 +1,44 @@
 ﻿<Properties StartupConfiguration="{C3121B99-5EE8-4404-BD10-69F4DB95ED23}|https">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/Services/PostService.cs" relfile="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" line="108" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Presentation/SchoolProject.API/Controllers/NotificationController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/SchoolProject.Persistence/ServiceRegistration.cs">
     <Files>
-      <File FileName="Presentation/SchoolProject.API/Controllers/NotificationController.cs" Line="9" Column="45" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/ServiceRegistration.cs" Line="38" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SchoolProject" expanded="True">
+          <Node name="SchoolProject">
             <Node name="Core" expanded="True">
-              <Node name="SchoolProject.Domain" expanded="True">
-                <Node name="Entities" expanded="True">
-                  <Node name="Common" expanded="True" />
+              <Node name="SchoolProject.Application" expanded="True">
+                <Node name="Features" expanded="True">
+                  <Node name="Baskets" expanded="True">
+                    <Node name="Commands" expanded="True" />
+                    <Node name="Validators" expanded="True" />
+                  </Node>
+                  <Node name="Posts" expanded="True">
+                    <Node name="Validators" expanded="True" />
+                  </Node>
+                  <Node name="Users" expanded="True">
+                    <Node name="Queries" expanded="True">
+                      <Node name="GetAll" expanded="True" />
+                    </Node>
+                  </Node>
                 </Node>
+                <Node name="Pipelines" expanded="True">
+                  <Node name="Validation" expanded="True" />
+                </Node>
+                <Node name="Utilities" expanded="True" />
               </Node>
             </Node>
             <Node name="Infrastructure" expanded="True">
               <Node name="SchoolProject.Infrastructure" expanded="True" />
+              <Node name="SchoolProject.Persistence">
+                <Node name="Context" expanded="True" />
+                <Node name="ServiceRegistration.cs" selected="True" />
+              </Node>
             </Node>
-            <Node name="Presentation" expanded="True">
+            <Node name="Presentation">
               <Node name="SchoolProject.API">
-                <Node name="Controllers">
-                  <Node name="NotificationController.cs" selected="True" />
-                </Node>
+                <Node name="Controllers" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -37,5 +46,13 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/Services/PostService.cs" relfile="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" line="108" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

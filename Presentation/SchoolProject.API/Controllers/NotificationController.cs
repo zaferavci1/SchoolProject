@@ -8,9 +8,6 @@ using SchoolProject.Application.Features.Notifications.Commands.Add.PostLike;
 using SchoolProject.Application.Features.Notifications.DTOs;
 using SchoolProject.Application.Features.Notifications.Queries.GetAll;
 using SchoolProject.Application.Features.Notifications.Queries.GetById;
-using SchoolProject.Application.Features.Users.DTOs;
-using SchoolProject.Application.Features.Users.Queries.GetAll;
-using SchoolProject.Application.Features.Users.Queries.GetById;
 using SchoolProject.Application.Utilities.Common;
 
 namespace SchoolProject.API.Controllers
@@ -20,30 +17,31 @@ namespace SchoolProject.API.Controllers
     public class NotificationController : ControllerBase
     {
         private readonly IMediator _mediator;
+
         public NotificationController(IMediator mediator)
         {
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<IActionResult> Add(AddFollowNotificationCommandRequest addFollowNotificationCommandRequest)
+        public async Task<IActionResult> AddFollowNotification(AddFollowNotificationCommandRequest addFollowNotificationCommandRequest)
         {
             IDataResult<NotificationDTO> response = await _mediator.Send(addFollowNotificationCommandRequest);
             return Ok(response);
         }
         [HttpPost]
-        public async Task<IActionResult> Add(AddCommentNotificationCommandRequest addCommentNotificationCommandRequest)
+        public async Task<IActionResult> AddCommentNotification(AddCommentNotificationCommandRequest addCommentNotificationCommandRequest)
         {
             IDataResult<NotificationDTO> response = await _mediator.Send(addCommentNotificationCommandRequest);
             return Ok(response);
         }
         [HttpPost]
-        public async Task<IActionResult> Add(AddLikeCommentNotificationCommandRequest addLikeCommentNotificationCommandRequest)
+        public async Task<IActionResult> AddLikeCommentNotification(AddLikeCommentNotificationCommandRequest addLikeCommentNotificationCommandRequest)
         {
             IDataResult<NotificationDTO> response = await _mediator.Send(addLikeCommentNotificationCommandRequest);
             return Ok(response);
         }
         [HttpPost]
-        public async Task<IActionResult> Add(AddLikePostNotificationCommandRequest addLikePostNotificationCommandRequest)
+        public async Task<IActionResult> AddLikePostNotification(AddLikePostNotificationCommandRequest addLikePostNotificationCommandRequest)
         {
             IDataResult<NotificationDTO> response = await _mediator.Send(addLikePostNotificationCommandRequest);
             return Ok(response);

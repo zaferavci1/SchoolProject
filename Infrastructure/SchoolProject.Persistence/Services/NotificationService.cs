@@ -1,4 +1,5 @@
 ﻿using System;
+using MediatR;
 using Microsoft.AspNetCore.DataProtection;
 using SchoolProject.Application.Abstraction.Repository.Notifications;
 using SchoolProject.Application.Abstraction.Repository.Users;
@@ -78,10 +79,9 @@ namespace SchoolProject.Persistence.Services
                 PostId = Guid.Parse(postDataProtector.Unprotect(addLikePostNotificationDTO.PostId)),
                 Message = $"{postLikerUser.NickName} Adlı kullanıcı bir gönderinizi beğendi.",
                 Type = NotificationType.LikePost
-
             };
             await _notificationCommandRepository.AddAsync(notification);
-            await _notificationCommandRepository.SaveAsync();
+                await _notificationCommandRepository.SaveAsync();
             return new() { Id = notificationDataProtector.Protect(notification.Id.ToString()), Message = notification.Message };
         }
 
@@ -103,14 +103,14 @@ namespace SchoolProject.Persistence.Services
         }
 
         public async Task<(List<GetAllNotificationsDTO>, int totalCount)> GetAllAsync(int page, int size)
-        => new(_notificationQueryRepository.GetAll().Skip(size * page).Take(size).Select(n => new GetAllNotificationsDTO()
+        => new(_notificationQueryRepository.GetAll().Skip(size * page).Take(size).Select(notification => new GetAllNotificationsDTO()
         {
-            FirstUserId = userDataProtector.Protect(n.FirstUserId.ToString()),
-            SecondUserId = userDataProtector.Protect(n.SecondUserId.ToString()),
-            PostId = postDataProtector.Protect(n.PostId.ToString()),
-            CommentId = commentDataProtector.Protect(n.CommentId.ToString()),
-            Type = n.Type,
-            Message = n.Message
+            FirstUserId = userDataProtector.Protect(notification.FirstUserId.ToString()),
+            SecondUserId = userDataProtector.Protect(notification.SecondUserId.ToString()),
+            PostId = notification.PostId.HasValue ? postDataProtector.Protect(notification.PostId.ToString()) : null,
+            CommentId = notification.CommentId.HasValue ? commentDataProtector.Protect(notification.CommentId.ToString()) : null,
+            Type = notification.Type.ToString(),
+            Message = notification.Message
         }).ToList() ?? new(), _notificationQueryRepository.GetAll().Count());
 
         public async Task<GetByIdNotificationDTO> GetByIdAsync(string id)
@@ -119,10 +119,11 @@ namespace SchoolProject.Persistence.Services
             return new()
             {
                 FirstUserId = userDataProtector.Protect(notification.FirstUserId.ToString()),
-                SecondUserId = userDataProtector.Protect(notification.SecondUser.ToString()),
-                PostId = postDataProtector.Protect(notification.Post.ToString()),
-                CommentId = commentDataProtector.Protect(notification.Comment.ToString()),
-                Message = notification.Message
+                SecondUserId = userDataProtector.Protect(notification.SecondUserId.ToString()),
+                PostId = notification.PostId.HasValue ? postDataProtector.Protect(notification.PostId.ToString()) : null,
+                CommentId = notification.CommentId.HasValue ? commentDataProtector.Protect(notification.CommentId.ToString()) : null,
+                Message = notification.Message,
+                Type = notification.Type.ToString()
             };
         }
     }

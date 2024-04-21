@@ -50,6 +50,14 @@
             "FluentValidation.AspNetCore": {
               "target": "Package",
               "version": "[11.3.0, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.4.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -68,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.315/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -132,7 +140,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.315/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -158,7 +166,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/SchoolProject.Application.csproj": {
+                "projectPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/SchoolProject.Application.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -186,7 +198,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.315/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -218,6 +230,9 @@
               },
               "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/SchoolProject.Domain.csproj": {
                 "projectPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/SchoolProject.Domain.csproj"
+              },
+              "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj": {
+                "projectPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj"
               }
             }
           }
@@ -293,7 +308,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.315/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -314,6 +329,7 @@
         ],
         "sources": {
           "/usr/local/share/dotnet/library-packs": {},
+          "/usr/local/share/dotnet/sdk/7.0.315/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -377,7 +393,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.315/RuntimeIdentifierGraph.json"
         }
       }
     }

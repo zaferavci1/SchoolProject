@@ -13,7 +13,8 @@ namespace SchoolProject.Domain.Entities
 		public string PhoneNumber { get; set; }
 		public string Password { get; set; }
 
-		public List<UserFollower> Followers { get; set; }
+
+        public List<UserFollower> Followers { get; set; }
 		public List<UserFollower> Followees { get; set; }
 
 		public List<Post> Posts { get; set; }

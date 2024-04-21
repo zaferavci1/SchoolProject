@@ -9,10 +9,10 @@ namespace SchoolProject.Domain.Entities
         public Guid SecondUserId { get; set; }
         public User SecondUser { get; set; }
 
-        public Guid PostId { get; set; }
+        public Guid? PostId { get; set; }
         public Post Post { get; set; }
 
-        public Guid CommentId { get; set; }
+        public Guid? CommentId { get; set; }
         public Comment Comment { get; set; }
 
         public string Message { get; set; }

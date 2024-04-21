@@ -1,4 +1,5 @@
 ﻿using System;
+using Mapster;
 using MediatR;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Features.Posts.DTOs;
@@ -17,7 +18,7 @@ namespace SchoolProject.Application.Features.Posts.Commands.Update
 
         public async Task<IDataResult<PostDTO>> Handle(UpdatePostCommandRequest request, CancellationToken cancellationToken)
         {
-            PostDTO postDTO = await _postService.UpdateAsync(new() { Id = request.Id, Content = request.Content, IsActive = request.IsActive, Title = request.Title });
+            PostDTO postDTO = await _postService.UpdateAsync(request.Adapt<UpdatePostDTO>());
             return new SuccessDataResult<PostDTO>(postDTO.Title + "Gönderi Güncellendi.", postDTO);
         }
     }

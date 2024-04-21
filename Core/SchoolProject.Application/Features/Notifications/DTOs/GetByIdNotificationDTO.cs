@@ -1,5 +1,6 @@
 ﻿using System;
-using SchoolProject.Application.Abstraction.DTO;
+using SchoolProject.Application.Abstraction.DTOs;
+using SchoolProject.Domain.Entities;
 
 namespace SchoolProject.Application.Features.Notifications.DTOs
 {
@@ -9,7 +10,8 @@ namespace SchoolProject.Application.Features.Notifications.DTOs
         public string SecondUserId { get; set; }
         public string PostId { get; set; }
         public string CommentId { get; set; }
-        public string Message { get; set; } 
-	}
+        public string Message { get; set; }
+        public string Type { get; set; }
+    }
 }
 

@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using FluentValidation;
+using Mapster;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SchoolProject.Application.Pipelines.Validation;
@@ -14,6 +15,10 @@ namespace SchoolProject.Application
             services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddValidatorsFromAssembly(typeof(ServiceRegistration).Assembly);
+            TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetExecutingAssembly());
+
+
+            services.AddDataProtection();
         }
     }
 }

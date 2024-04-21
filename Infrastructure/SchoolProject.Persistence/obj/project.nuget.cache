@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FjYMJ4wZojPCjdZplhPISKf5kg27WMMP/sP3cxJR82lW+ee8WbM63EGyGCrrO+UtkQXNGAnuMxJxX7dwr0OWZg==",
+  "dgSpecHash": "LZUhFPRfZJELIqz7DP9OTJ5rHEGCm9p6HnfBHm/kYwIjZoF4h2OFTK4u5IbPTf3SryTaaSHMIuA4HyqciWPkfg==",
   "success": true,
   "projectFilePath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/SchoolProject.Persistence.csproj",
   "expectedPackageFiles": [
@@ -10,8 +10,11 @@
     "/Users/serkanyilmaz/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.1/fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/mapster/7.4.0/mapster.7.4.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/mapster.core/1.2.1/mapster.core.1.2.1.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/mediatr/12.0.1/mediatr.12.0.1.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.0/microsoft.aspnetcore.authentication.jwtbearer.7.0.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.cryptography.internal/8.0.3/microsoft.aspnetcore.cryptography.internal.8.0.3.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.dataprotection/8.0.3/microsoft.aspnetcore.dataprotection.8.0.3.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.dataprotection.abstractions/8.0.3/microsoft.aspnetcore.dataprotection.abstractions.8.0.3.nupkg.sha512",

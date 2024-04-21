@@ -45,6 +45,14 @@
     <None Remove="Features\Notifications\Commands\Add\Follow\" />
     <None Remove="Features\Notifications\Queries\GetById\" />
     <None Remove="Features\Notifications\Queries\GetAll\" />
+    <None Remove="Abstraction\Services\Authentications\" />
+    <None Remove="Abstraction\Token\" />
+    <None Remove="Features\Users\Rules\" />
+    <None Remove="Features\Auth\" />
+    <None Remove="Features\Auth\Commands\" />
+    <None Remove="Features\Auth\DTOs\" />
+    <None Remove="Features\Auth\Rules\" />
+    <None Remove="Features\Auth\Commands\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -87,6 +95,14 @@
     <Folder Include="Features\Notifications\Queries\" />
     <Folder Include="Features\Notifications\Queries\GetById\" />
     <Folder Include="Features\Notifications\Queries\GetAll\" />
+    <Folder Include="Abstraction\Services\Authentications\" />
+    <Folder Include="Abstraction\Token\" />
+    <Folder Include="Features\Users\Rules\" />
+    <Folder Include="Features\Auth\" />
+    <Folder Include="Features\Auth\Commands\" />
+    <Folder Include="Features\Auth\DTOs\" />
+    <Folder Include="Features\Auth\Rules\" />
+    <Folder Include="Features\Auth\Commands\Login\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolProject.Domain\SchoolProject.Domain.csproj" />
@@ -94,5 +110,7 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.9.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
   </ItemGroup>
 </Project>

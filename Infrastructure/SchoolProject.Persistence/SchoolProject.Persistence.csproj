@@ -14,6 +14,7 @@
     <None Remove="Configurations\" />
     <None Remove="Repositories\Baskets\" />
     <None Remove="Repositories\Notificationss\" />
+    <None Remove="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Context\" />
@@ -23,10 +24,12 @@
     <Folder Include="Configurations\" />
     <Folder Include="Repositories\Baskets\" />
     <Folder Include="Repositories\Notificationss\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\SchoolProject.Domain\SchoolProject.Domain.csproj" />
     <ProjectReference Include="..\..\Core\SchoolProject.Application\SchoolProject.Application.csproj" />
+    <ProjectReference Include="..\SchoolProject.Infrastructure\SchoolProject.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">

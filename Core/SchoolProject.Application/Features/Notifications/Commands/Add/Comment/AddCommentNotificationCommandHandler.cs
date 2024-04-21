@@ -1,4 +1,5 @@
 ﻿using System;
+using Mapster;
 using MediatR;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Features.Notifications.DTOs;
@@ -19,14 +20,7 @@ namespace SchoolProject.Application.Features.Notifications.Commands.Add.Comment
 
         public async Task<IDataResult<NotificationDTO>> Handle(AddCommentNotificationCommandRequest request, CancellationToken cancellationToken)
         {
-            NotificationDTO notificationDTO = await _notificationService.AddAsync(new AddCommentNotificationDTO()
-            {
-                UserId = request.UserId,
-                CommenterUserId = request.CommenterUserId,
-                PostId = request.PostId,
-                CommentId = request.CommentId,
-                Message = request.Message
-            });
+            NotificationDTO notificationDTO = await _notificationService.AddAsync(request.Adapt<AddCommentNotificationDTO>());
             var data = new SuccessDataResult<NotificationDTO>(notificationDTO.Message, notificationDTO);
             return data;
         }

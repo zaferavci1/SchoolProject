@@ -1,4 +1,4 @@
-﻿using SchoolProject.Application.Abstraction.DTO;
+﻿using SchoolProject.Application.Abstraction.DTOs;
 ﻿using System;
  
 

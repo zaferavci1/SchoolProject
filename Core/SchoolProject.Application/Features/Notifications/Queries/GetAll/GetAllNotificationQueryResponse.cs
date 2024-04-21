@@ -1,6 +1,6 @@
 ﻿using System;
 using MediatR;
-using SchoolProject.Application.Abstraction.DTO;
+using SchoolProject.Application.Abstraction.DTOs;
 using SchoolProject.Application.Features.Notifications.DTOs;
 using SchoolProject.Application.Utilities.Common;
 

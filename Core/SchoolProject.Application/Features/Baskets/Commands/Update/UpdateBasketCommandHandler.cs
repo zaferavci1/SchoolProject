@@ -1,4 +1,5 @@
 ﻿using System;
+using Mapster;
 using MediatR;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Features.Baskets.DTOs;
@@ -16,7 +17,7 @@ namespace SchoolProject.Application.Features.Baskets.Commands.Update
 
         public async Task<IDataResult<BasketDTO>> Handle(UpdateBasketCommandRequest request, CancellationToken cancellationToken)
         {
-            BasketDTO basketDTO = await _service.UpdateAsync(new() { Id = request.Id, BasketName = request.BasketName });
+            BasketDTO basketDTO = await _service.UpdateAsync(request.Adapt<UpdateBasketDTO>());
             return new SuccessDataResult<BasketDTO>("Sepet Başarıyla Güncellendi", basketDTO);
         }
     }

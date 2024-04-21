@@ -21,4 +21,9 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/refint/SchoolProject.Infrastructure.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/SchoolProject.Infrastructure.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/ref/SchoolProject.Infrastructure.dll
-/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/SchoolProject.Infrastructure.sourcelink.json
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/SchoolProject.Infrastructure.csproj.AssemblyReference.cache
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Debug/net7.0/SchoolProject.Application.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Debug/net7.0/SchoolProject.Domain.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Debug/net7.0/SchoolProject.Application.pdb
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Debug/net7.0/SchoolProject.Domain.pdb
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/SchoolProject.Infrastructure.csproj.CopyComplete

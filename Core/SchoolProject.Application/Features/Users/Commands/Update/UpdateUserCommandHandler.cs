@@ -1,7 +1,9 @@
 ﻿using System;
+using Mapster;
 using MediatR;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Features.Users.DTOs;
+using SchoolProject.Application.Features.Users.Rules;
 using SchoolProject.Application.Utilities.Common;
 
 namespace SchoolProject.Application.Features.Users.Commands.Update
@@ -9,27 +11,20 @@ namespace SchoolProject.Application.Features.Users.Commands.Update
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommandRequest, IDataResult<UserDTO>>
     {
         IUserService _userService;
+        UserBusinessRules _userBusinessRules;
 
-        public UpdateUserCommandHandler(IUserService userService)
+        public UpdateUserCommandHandler(IUserService userService, UserBusinessRules userBusinessRules)
         {
             _userService = userService;
+            _userBusinessRules = userBusinessRules;
         }
 
         public async Task<IDataResult<UserDTO>> Handle(UpdateUserCommandRequest request, CancellationToken cancellationToken)
         {
-            UserDTO userDTO = await _userService.UpdateAsync(
-                new()
-                {
-                    Id = request.Id,
-                    Name = request.Name,
-                    Surname = request.Surname,
-                    NickName = request.NickName,
-                    Mail = request.Mail,
-                    PhoneNumber = request.PhoneNumber,
-                    IsActive = request.IsActive,
-                    Password = request.Password,
-                    IsProfilePrivate = request.IsProfilePrivate
-                });
+            await _userBusinessRules.IsUserExist(request.Id);
+            await _userBusinessRules.IsUserActive(request.Id);
+
+            UserDTO userDTO = await _userService.UpdateAsync(request.Adapt<UpdateUserDTO>());
             return new SuccessDataResult<UserDTO>(userDTO.Name + "Kullanıcı Güncellendi.", userDTO);
         }
     }

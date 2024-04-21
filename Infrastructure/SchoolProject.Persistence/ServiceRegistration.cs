@@ -8,6 +8,7 @@ using SchoolProject.Application.Abstraction.Repository.Notifications;
 using SchoolProject.Application.Abstraction.Repository.Posts;
 using SchoolProject.Application.Abstraction.Repository.Users;
 using SchoolProject.Application.Abstraction.Services;
+using SchoolProject.Application.Abstraction.Token;
 using SchoolProject.Persistence.Configurations;
 using SchoolProject.Persistence.Context;
 using SchoolProject.Persistence.Repositories.Baskets;
@@ -16,6 +17,8 @@ using SchoolProject.Persistence.Repositories.Notificationss;
 using SchoolProject.Persistence.Repositories.Posts;
 using SchoolProject.Persistence.Repositories.Users;
 using SchoolProject.Persistence.Services;
+using SchoolProject.Infrastructure.Services.Token;
+using SchoolProject.Application.Features.Users.Rules;
 
 namespace SchoolProject.Persistence
 {
@@ -35,6 +38,8 @@ namespace SchoolProject.Persistence
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IPublicProfileService, PublicProfileService>();
             services.AddScoped<INotificationService, NotificationService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ITokenHandler, TokenHandler>();
 
 
             services.AddScoped<ICommentCommandRepository, CommentCommandRepository>();
@@ -53,6 +58,8 @@ namespace SchoolProject.Persistence
 
             services.AddScoped<INotificationCommandRepository, NotificationCommandRepository>();
             services.AddScoped<INotificationQueryRepository, NotificationQueryRepository>();
+
+            services.AddScoped<UserBusinessRules, UserBusinessRules>();
 
             services.AddDataProtection();
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Mapster;
 using MediatR;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Features.Comments.DTOs;
@@ -15,7 +16,7 @@ namespace SchoolProject.Application.Features.Comments.Commands.Add
         }
         public async Task<IDataResult<CommentDTO>> Handle(AddCommentCommandRequest request, CancellationToken cancellationToken)
         {
-            CommentDTO commentDTO = await _commentService.AddAsync(new() {UserId= request.UserId, PostId = request.PostId, Content = request.Content });
+            CommentDTO commentDTO = await _commentService.AddAsync(request.Adapt<AddCommentDTO>());
             var data = new SuccessDataResult<CommentDTO>(request.PostId + " 'a yorum eklendi", commentDTO);
             return data;
         }

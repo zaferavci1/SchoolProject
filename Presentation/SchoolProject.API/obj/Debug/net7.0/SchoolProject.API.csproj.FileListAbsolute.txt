@@ -179,3 +179,6 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/obj/Debug/net7.0/SchoolProject.API.genruntimeconfig.cache
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/obj/Debug/net7.0/ref/SchoolProject.API.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Riok.Mapperly.Abstractions.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Mapster.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Mapster.Core.dll

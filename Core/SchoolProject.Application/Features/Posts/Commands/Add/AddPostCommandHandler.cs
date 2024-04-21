@@ -1,4 +1,5 @@
 ﻿using System;
+using Mapster;
 using MediatR;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Features.Posts.DTOs;
@@ -17,7 +18,7 @@ namespace SchoolProject.Application.Features.Posts.Commands.Add
 
         public async Task<IDataResult<PostDTO>> Handle(AddPostCommandRequest request, CancellationToken cancellationToken)
         {
-            PostDTO postDTO = await _postService.AddAsync(new() {UserId = request.UserId, Content = request.Content, Title = request.Title });
+            PostDTO postDTO = await _postService.AddAsync(request.Adapt<AddPostDTO>());
             var data = new SuccessDataResult<PostDTO>(postDTO.Title + "Post eklendi.", postDTO);
             return data;
         }

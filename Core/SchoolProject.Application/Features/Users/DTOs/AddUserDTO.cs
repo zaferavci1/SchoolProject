@@ -1,5 +1,5 @@
 ﻿using System;
-using SchoolProject.Application.Abstraction.DTO;
+using SchoolProject.Application.Abstraction.DTOs;
 using SchoolProject.Domain.Entities;
 
 namespace SchoolProject.Application.Features.Users.DTOs
@@ -11,7 +11,7 @@ namespace SchoolProject.Application.Features.Users.DTOs
         public string Surname { get; set; }
         public string Mail { get; set; }
         public string PhoneNumber { get; set; }
-        public string password { get; set; }
+        public string Password { get; set; }
     }
 }
 

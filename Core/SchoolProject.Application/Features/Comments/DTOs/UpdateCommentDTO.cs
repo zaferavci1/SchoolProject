@@ -1,5 +1,5 @@
 ﻿using System;
-using SchoolProject.Application.Abstraction.DTO;
+using SchoolProject.Application.Abstraction.DTOs;
 
 namespace SchoolProject.Application.Features.Comments.DTOs
 {

@@ -34,7 +34,6 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<UserDTO> AddAsync(AddUserDTO addUserDTO)
         {
-            
                 User user = await _userCommandRepository.AddAsync(new()
                 {
                     NickName = addUserDTO.NickName,
@@ -42,7 +41,7 @@ namespace SchoolProject.Persistence.Services
                     Surname = addUserDTO.Surname,
                     Mail = addUserDTO.Mail,
                     PhoneNumber = addUserDTO.PhoneNumber,
-                    Password = addUserDTO.password
+                    Password = addUserDTO.Password
                 });
                 await _userCommandRepository.SaveAsync();
                 return new()
@@ -61,6 +60,7 @@ namespace SchoolProject.Persistence.Services
         public async Task<UserDTO> DeleteAsync(string id)
         {
             User user = await _userCommandRepository.RemoveAsync(userDataProtector.Unprotect(id));
+            _userCommandRepository.Update(user);
             await _userCommandRepository.SaveAsync();
             return new()
             {
@@ -265,6 +265,7 @@ namespace SchoolProject.Persistence.Services
             }
             );
         }
+
     }
 }
 

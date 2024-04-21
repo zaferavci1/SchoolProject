@@ -35,7 +35,6 @@ namespace SchoolProject.Persistence.Services
             await basketCommandRepository.SaveAsync();
             return new()
             {
-                
                 Id = basketDataProtector.Protect(basket.Id.ToString()),
                 BasketName = basket.BasketName,
                 LikeCount = basket.LikeCount

@@ -1,58 +1,92 @@
 ﻿<Properties StartupConfiguration="{C3121B99-5EE8-4404-BD10-69F4DB95ED23}|https">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/SchoolProject.Persistence/ServiceRegistration.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/Services/PostService.cs" relfile="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" line="108" column="1" />
+      <Breakpoint file="/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/Services/UserService.cs" relfile="Infrastructure/SchoolProject.Persistence/Services/UserService.cs" line="90" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Core/SchoolProject.Application/Features/Users/Rules/UserBusinessRules.cs">
     <Files>
-      <File FileName="Infrastructure/SchoolProject.Persistence/ServiceRegistration.cs" Line="38" Column="1" />
+      <File FileName="Core/SchoolProject.Application/Features/Auth/Commands/Login/LoginUserCommandHandler.cs" Line="15" Column="122" />
+      <File FileName="Core/SchoolProject.Application/Features/Users/Queries/GetAll/GetAllUserQueryHandler.cs" Line="25" Column="63" />
+      <File FileName="Presentation/SchoolProject.API/Controllers/AuthController.cs" Line="12" Column="41" />
+      <File FileName="Presentation/SchoolProject.API/Controllers/BasketController.cs" Line="31" Column="1" />
+      <File FileName="Core/SchoolProject.Application/Features/Auth/Commands/Login/LoginUserCommandRequest.cs" Line="7" Column="38" />
+      <File FileName="Presentation/SchoolProject.API/Controllers/UserController.cs" Line="19" Column="41" />
+      <File FileName="Presentation/SchoolProject.API/Controllers/PublicProfileController.cs" Line="1" Column="1" />
+      <File FileName="Presentation/SchoolProject.API/Controllers/PostController.cs" Line="16" Column="41" />
+      <File FileName="Presentation/SchoolProject.API/Program.cs" Line="34" Column="1" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/AuthService.cs" Line="1" Column="1" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/BasketService.cs" Line="34" Column="1" />
+      <File FileName="Infrastructure/SchoolProject.Infrastructure/Services/Token/TokenHandler.cs" Line="27" Column="58" />
+      <File FileName="Core/SchoolProject.Application/Features/Baskets/Commands/Add/AddBasketCommandHandler.cs" Line="20" Column="1" />
+      <File FileName="Core/SchoolProject.Application/Pipelines/Validation/ValidationBehavior.cs" Line="27" Column="1" />
+      <File FileName="Core/SchoolProject.Application/Features/Baskets/Commands/Add/AddBasketCommandRequest.cs" Line="11" Column="1" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/UserService.cs" Line="90" Column="1" />
+      <File FileName="Core/SchoolProject.Application/Features/Users/Rules/UserBusinessRules.cs" Line="54" Column="37" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SchoolProject">
             <Node name="Core" expanded="True">
-              <Node name="SchoolProject.Application" expanded="True">
-                <Node name="Features" expanded="True">
-                  <Node name="Baskets" expanded="True">
-                    <Node name="Commands" expanded="True" />
-                    <Node name="Validators" expanded="True" />
+              <Node name="SchoolProject.Application">
+                <Node name="Abstraction" expanded="True">
+                  <Node name="DTOs" expanded="True" />
+                  <Node name="Services" expanded="True">
+                    <Node name="Authentications" expanded="True" />
                   </Node>
-                  <Node name="Posts" expanded="True">
-                    <Node name="Validators" expanded="True" />
+                  <Node name="Token" expanded="True" />
+                </Node>
+                <Node name="Features">
+                  <Node name="Auth" expanded="True" />
+                  <Node name="Baskets" expanded="True">
+                    <Node name="Commands" expanded="True">
+                      <Node name="Add" expanded="True" />
+                    </Node>
                   </Node>
                   <Node name="Users" expanded="True">
+                    <Node name="Commands" expanded="True">
+                      <Node name="Add" expanded="True" />
+                      <Node name="Delete" expanded="True" />
+                    </Node>
                     <Node name="Queries" expanded="True">
                       <Node name="GetAll" expanded="True" />
+                      <Node name="GetById" expanded="True" />
                     </Node>
+                    <Node name="Rules" expanded="True">
+                      <Node name="UserBusinessRules.cs" selected="True" />
+                    </Node>
+                    <Node name="Validators" expanded="True" />
                   </Node>
                 </Node>
                 <Node name="Pipelines" expanded="True">
                   <Node name="Validation" expanded="True" />
                 </Node>
-                <Node name="Utilities" expanded="True" />
+                <Node name="Utilities" expanded="True">
+                  <Node name="Common" expanded="True" />
+                </Node>
               </Node>
+              <Node name="SchoolProject.Domain" expanded="True" />
             </Node>
             <Node name="Infrastructure" expanded="True">
-              <Node name="SchoolProject.Infrastructure" expanded="True" />
+              <Node name="SchoolProject.Infrastructure">
+                <Node name="Services" expanded="True">
+                  <Node name="Token" expanded="True" />
+                </Node>
+              </Node>
               <Node name="SchoolProject.Persistence">
-                <Node name="Context" expanded="True" />
-                <Node name="ServiceRegistration.cs" selected="True" />
+                <Node name="Services" expanded="True" />
               </Node>
             </Node>
-            <Node name="Presentation">
-              <Node name="SchoolProject.API">
-                <Node name="Controllers" expanded="True" />
-              </Node>
-            </Node>
+            <Node name="Presentation" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/Services/PostService.cs" relfile="Infrastructure/SchoolProject.Persistence/Services/PostService.cs" line="108" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

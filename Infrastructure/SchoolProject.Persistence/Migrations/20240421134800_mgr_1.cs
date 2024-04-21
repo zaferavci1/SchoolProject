@@ -252,8 +252,8 @@ namespace SchoolProject.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Notifications", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Notifications_Comments_PostId",
-                        column: x => x.PostId,
+                        name: "FK_Notifications_Comments_CommentId",
+                        column: x => x.CommentId,
                         principalTable: "Comments",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -265,11 +265,10 @@ namespace SchoolProject.Persistence.Migrations
                         name: "FK_Notifications_User_FirstUserId",
                         column: x => x.FirstUserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Notifications_User_PostId",
-                        column: x => x.PostId,
+                        name: "FK_Notifications_User_SecondUserId",
+                        column: x => x.SecondUserId,
                         principalTable: "User",
                         principalColumn: "Id");
                 });
@@ -310,6 +309,11 @@ namespace SchoolProject.Persistence.Migrations
                 column: "BasketId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Notifications_CommentId",
+                table: "Notifications",
+                column: "CommentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Notifications_FirstUserId",
                 table: "Notifications",
                 column: "FirstUserId");
@@ -318,6 +322,11 @@ namespace SchoolProject.Persistence.Migrations
                 name: "IX_Notifications_PostId",
                 table: "Notifications",
                 column: "PostId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Notifications_SecondUserId",
+                table: "Notifications",
+                column: "SecondUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PostLikes_PostId",

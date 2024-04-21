@@ -1,4 +1,5 @@
 ﻿using System;
+using Mapster;
 using MediatR;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Features.Notifications.Commands.Add.CommentLike;
@@ -18,12 +19,7 @@ namespace SchoolProject.Application.Features.Notifications.Commands.Add.Follow
 
         public async Task<IDataResult<NotificationDTO>> Handle(AddFollowNotificationCommandRequest request, CancellationToken cancellationToken)
         {
-            NotificationDTO notificationDTO = await _notificationService.AddAsync(new AddFollowNotificationDTO()
-            {
-                UserId = request.UserId,
-                FollowerUserId = request.FollowerUserId,
-                Message = request.Message
-            });
+            NotificationDTO notificationDTO = await _notificationService.AddAsync(request.Adapt<AddFollowNotificationDTO>());
             var data = new SuccessDataResult<NotificationDTO>(notificationDTO.Message, notificationDTO);
             return data;
         }

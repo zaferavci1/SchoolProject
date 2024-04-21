@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Users.Commands.Add;
 using SchoolProject.Application.Features.Users.Commands.Delete;
@@ -81,6 +82,7 @@ namespace SchoolProject.API.Controllers
             IDataResult<GetByIdUsersCommentsQueryResponse> response = await _mediator.Send(getByIdUsersCommentsQueryRequest);
             return Ok(response);
         }
+
     }
 }
 

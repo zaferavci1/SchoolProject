@@ -135,25 +135,30 @@ namespace SchoolProject.Persistence.Context
                 bl.BasketId
             });
             modelBuilder.Entity<Notification>()
-               .HasOne(n => n.Post)
-               .WithMany()
-               .HasForeignKey(n => n.PostId)
-               .OnDelete(DeleteBehavior.NoAction);
+                .HasOne(n => n.Post)
+                .WithMany()
+                .HasForeignKey(n => n.PostId) // Ensure this is pointing to an existing column in the Post table
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.SetNull); // Adjust delete behavior based on your requirements
+
             modelBuilder.Entity<Notification>()
-               .HasOne(n => n.FirstUser)
-               .WithMany()
-               .HasForeignKey(n => n.PostId)
-               .OnDelete(DeleteBehavior.NoAction);
+                .HasOne(n => n.FirstUser)
+                .WithMany()
+                .HasForeignKey(n => n.FirstUserId) // Correct FK to FirstUserId
+                .OnDelete(DeleteBehavior.SetNull);
+
             modelBuilder.Entity<Notification>()
-               .HasOne(n => n.SecondUser)
-               .WithMany()
-               .HasForeignKey(n => n.PostId)
-               .OnDelete(DeleteBehavior.NoAction);
+                .HasOne(n => n.SecondUser)
+                .WithMany()
+                .HasForeignKey(n => n.SecondUserId) // Correct FK to SecondUserId
+                .OnDelete(DeleteBehavior.SetNull);
+
             modelBuilder.Entity<Notification>()
-               .HasOne(n => n.Comment)
-               .WithMany()
-               .HasForeignKey(n => n.PostId)
-               .OnDelete(DeleteBehavior.NoAction);
+                .HasOne(n => n.Comment)
+                .WithMany()
+                .HasForeignKey(n => n.CommentId) // Correct FK to CommentId
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.SetNull);
         }
 
 

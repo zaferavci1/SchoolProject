@@ -193,7 +193,7 @@ namespace SchoolProject.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CommentId")
+                    b.Property<Guid?>("CommentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedDate")
@@ -209,7 +209,7 @@ namespace SchoolProject.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PostId")
+                    b.Property<Guid?>("PostId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("SecondUserId")
@@ -223,9 +223,13 @@ namespace SchoolProject.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CommentId");
+
                     b.HasIndex("FirstUserId");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("SecondUserId");
 
                     b.ToTable("Notifications");
                 });
@@ -428,28 +432,26 @@ namespace SchoolProject.Persistence.Migrations
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Notification", b =>
                 {
+                    b.HasOne("SchoolProject.Domain.Entities.Comment", "Comment")
+                        .WithMany()
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("SchoolProject.Domain.Entities.User", "FirstUser")
                         .WithMany()
                         .HasForeignKey("FirstUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SchoolProject.Domain.Entities.Comment", "Comment")
-                        .WithMany()
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.HasOne("SchoolProject.Domain.Entities.Post", "Post")
                         .WithMany()
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("SchoolProject.Domain.Entities.User", "SecondUser")
                         .WithMany()
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .HasForeignKey("SecondUserId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.Navigation("Comment");

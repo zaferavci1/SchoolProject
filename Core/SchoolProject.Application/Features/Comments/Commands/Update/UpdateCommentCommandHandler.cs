@@ -1,4 +1,5 @@
 ﻿using System;
+using Mapster;
 using MediatR;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Features.Comments.DTOs;
@@ -16,7 +17,7 @@ namespace SchoolProject.Application.Features.Comments.Commands.Update
 
         public async Task<IDataResult<CommentDTO>> Handle(UpdateCommentCommandRequest request, CancellationToken cancellationToken)
         {
-            CommentDTO commentDTO = await _commentService.UpdateAsync(new UpdateCommentDTO() { Id = request.Id, Content = request.Content, IsActive = request.IsActive });
+            CommentDTO commentDTO = await _commentService.UpdateAsync(request.Adapt<UpdateCommentDTO>());
             return new SuccessDataResult<CommentDTO>(request.Id + " Yorum Güncellendi", commentDTO);
         }
     }

@@ -12,7 +12,7 @@ using SchoolProject.Persistence.Context;
 namespace SchoolProject.Persistence.Migrations
 {
     [DbContext(typeof(SchoolProjectDbContext))]
-    [Migration("20240402150415_mgr_1")]
+    [Migration("20240421134800_mgr_1")]
     partial class mgr1
     {
         /// <inheritdoc />
@@ -226,9 +226,13 @@ namespace SchoolProject.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CommentId");
+
                     b.HasIndex("FirstUserId");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("SecondUserId");
 
                     b.ToTable("Notifications");
                 });
@@ -431,27 +435,25 @@ namespace SchoolProject.Persistence.Migrations
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Notification", b =>
                 {
+                    b.HasOne("SchoolProject.Domain.Entities.Comment", "Comment")
+                        .WithMany()
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
                     b.HasOne("SchoolProject.Domain.Entities.User", "FirstUser")
                         .WithMany()
                         .HasForeignKey("FirstUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SchoolProject.Domain.Entities.Comment", "Comment")
-                        .WithMany()
-                        .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SchoolProject.Domain.Entities.Post", "Post")
                         .WithMany()
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SchoolProject.Domain.Entities.User", "SecondUser")
                         .WithMany()
-                        .HasForeignKey("PostId")
+                        .HasForeignKey("SecondUserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

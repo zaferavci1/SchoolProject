@@ -19,6 +19,7 @@ using SchoolProject.Persistence.Repositories.Users;
 using SchoolProject.Persistence.Services;
 using SchoolProject.Infrastructure.Services.Token;
 using SchoolProject.Application.Features.Users.Rules;
+using SchoolProject.Application.Features.Posts.Rules;
 
 namespace SchoolProject.Persistence
 {
@@ -58,8 +59,9 @@ namespace SchoolProject.Persistence
 
             services.AddScoped<INotificationCommandRepository, NotificationCommandRepository>();
             services.AddScoped<INotificationQueryRepository, NotificationQueryRepository>();
-
+            
             services.AddScoped<UserBusinessRules, UserBusinessRules>();
+            services.AddScoped<PostBusinessRules, PostBusinessRules>();
 
             services.AddDataProtection();
         }

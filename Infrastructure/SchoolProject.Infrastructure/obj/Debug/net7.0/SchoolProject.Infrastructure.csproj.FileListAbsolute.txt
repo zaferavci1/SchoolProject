@@ -27,3 +27,4 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Debug/net7.0/SchoolProject.Application.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Debug/net7.0/SchoolProject.Domain.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/SchoolProject.Infrastructure.csproj.CopyComplete
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/SchoolProject.Infrastructure.sourcelink.json

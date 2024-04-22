@@ -53,6 +53,8 @@
     <None Remove="Features\Auth\DTOs\" />
     <None Remove="Features\Auth\Rules\" />
     <None Remove="Features\Auth\Commands\Login\" />
+    <None Remove="Features\Posts\Rules\" />
+    <None Remove="Features\Comments\Rules\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -103,6 +105,8 @@
     <Folder Include="Features\Auth\DTOs\" />
     <Folder Include="Features\Auth\Rules\" />
     <Folder Include="Features\Auth\Commands\Login\" />
+    <Folder Include="Features\Posts\Rules\" />
+    <Folder Include="Features\Comments\Rules\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolProject.Domain\SchoolProject.Domain.csproj" />

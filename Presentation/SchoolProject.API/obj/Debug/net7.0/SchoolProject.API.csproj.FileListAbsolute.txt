@@ -182,3 +182,4 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Mapster.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Mapster.Core.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/obj/Debug/net7.0/SchoolProject.API.sourcelink.json

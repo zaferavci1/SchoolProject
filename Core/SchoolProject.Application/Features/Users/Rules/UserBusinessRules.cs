@@ -10,12 +10,10 @@ namespace SchoolProject.Application.Features.Users.Rules
 {
 	public class UserBusinessRules
 	{
-		private readonly IUserService _userService;
         private readonly IUserQueryRepository _userQueryRepository;
         private readonly IDataProtector userDataProtector;
-        public UserBusinessRules(IUserService userService, IUserQueryRepository userQueryRepository , IDataProtectionProvider dataProtectionProvider)
+        public UserBusinessRules(IUserQueryRepository userQueryRepository , IDataProtectionProvider dataProtectionProvider)
         {
-            _userService = userService;
             _userQueryRepository = userQueryRepository;
             userDataProtector = dataProtectionProvider.CreateProtector("Users");
         }

@@ -21,6 +21,7 @@ namespace SchoolProject.Persistence
         {
             T entity = await Table.FirstOrDefaultAsync(data => data.Id == Guid.Parse(id));
             entity.IsActive = false;
+            Update(entity);
             return entity;
         }
 

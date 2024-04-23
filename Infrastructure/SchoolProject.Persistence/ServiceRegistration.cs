@@ -22,6 +22,8 @@ using SchoolProject.Application.Features.Users.Rules;
 using SchoolProject.Application.Features.Posts.Rules;
 using Mapster;
 using System.Reflection;
+using SchoolProject.Application.Features.Comments.Rules;
+using SchoolProject.Application.Features.Baskets.Rules;
 
 namespace SchoolProject.Persistence
 {
@@ -64,6 +66,8 @@ namespace SchoolProject.Persistence
             
             services.AddScoped<UserBusinessRules, UserBusinessRules>();
             services.AddScoped<PostBusinessRules, PostBusinessRules>();
+            services.AddScoped<CommentBusinessRules, CommentBusinessRules>();
+            services.AddScoped<BasketBusinessRules, BasketBusinessRules>();
 
             TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetExecutingAssembly());
             services.AddDataProtection();

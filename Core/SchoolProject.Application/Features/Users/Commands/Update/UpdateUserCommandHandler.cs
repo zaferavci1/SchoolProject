@@ -23,6 +23,8 @@ namespace SchoolProject.Application.Features.Users.Commands.Update
         {
             await _userBusinessRules.IsUserExist(request.Id);
             await _userBusinessRules.IsUserActive(request.Id);
+            var a = request.Adapt<UpdateUserDTO>();
+            var b = 10;
             UserDTO userDTO = await _userService.UpdateAsync(request.Adapt<UpdateUserDTO>());
             return new SuccessDataResult<UserDTO>(userDTO.Name + "Kullanıcı Güncellendi.", userDTO);
         }

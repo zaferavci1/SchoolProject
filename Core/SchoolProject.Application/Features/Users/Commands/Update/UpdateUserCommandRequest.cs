@@ -14,7 +14,6 @@ namespace SchoolProject.Application.Features.Users.Commands.Update
         public string Mail { get; set; }
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
-        public bool IsActive { get; set; }
         public bool IsProfilePrivate { get; set; }
     }
 }

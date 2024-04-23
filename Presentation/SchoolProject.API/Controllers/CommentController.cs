@@ -1,4 +1,7 @@
-﻿using MediatR;
+﻿using System.Net;
+using MediatR;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Comments.Commands.Add;
 using SchoolProject.Application.Features.Comments.Commands.Delete;
@@ -14,6 +17,7 @@ namespace SchoolProject.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
+    [Authorize(AuthenticationSchemes="User")]
     public class CommentController : ControllerBase
     {
         private readonly IMediator _mediator;

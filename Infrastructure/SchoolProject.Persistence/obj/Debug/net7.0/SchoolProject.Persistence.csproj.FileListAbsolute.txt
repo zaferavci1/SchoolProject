@@ -19,7 +19,7 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/ref/SchoolProject.Persistence.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/bin/Debug/net7.0/SchoolProject.Infrastructure.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/bin/Debug/net7.0/SchoolProject.Infrastructure.pdb
-/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.sourcelink.json
+<<<<<<< Updated upstream
 /Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/bin/Debug/net7.0/SchoolProject.Persistence.deps.json
 /Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/bin/Debug/net7.0/SchoolProject.Persistence.runtimeconfig.json
 /Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/bin/Debug/net7.0/SchoolProject.Persistence.dll
@@ -41,3 +41,5 @@
 /Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.pdb
 /Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.genruntimeconfig.cache
 /Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/ref/SchoolProject.Persistence.dll
+=======
+>>>>>>> Stashed changes

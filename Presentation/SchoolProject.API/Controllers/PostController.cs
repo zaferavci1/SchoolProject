@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Posts.Commands.Add;
 using SchoolProject.Application.Features.Posts.Commands.Delete;
@@ -14,6 +15,7 @@ namespace SchoolProject.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
+    [Authorize(AuthenticationSchemes = "User")]
     public class PostController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -35,8 +37,8 @@ namespace SchoolProject.API.Controllers
             IDataResult<PostDTO> response = await _mediator.Send(updatePostCommandRequest);
             return Ok(response);
         }
-        [HttpDelete("{Id}")]
-        public async Task<IActionResult> Delete([FromRoute] DeletePostCommandRequest deletePostCommandRequest)
+        [HttpPut]
+        public async Task<IActionResult> Delete( DeletePostCommandRequest deletePostCommandRequest)
         {
             IDataResult<PostDTO> response = await _mediator.Send(deletePostCommandRequest);
             return Ok(response);

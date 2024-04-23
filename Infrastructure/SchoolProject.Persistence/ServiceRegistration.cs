@@ -20,6 +20,8 @@ using SchoolProject.Persistence.Services;
 using SchoolProject.Infrastructure.Services.Token;
 using SchoolProject.Application.Features.Users.Rules;
 using SchoolProject.Application.Features.Posts.Rules;
+using Mapster;
+using System.Reflection;
 
 namespace SchoolProject.Persistence
 {
@@ -63,6 +65,7 @@ namespace SchoolProject.Persistence
             services.AddScoped<UserBusinessRules, UserBusinessRules>();
             services.AddScoped<PostBusinessRules, PostBusinessRules>();
 
+            TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetExecutingAssembly());
             services.AddDataProtection();
         }
 	}

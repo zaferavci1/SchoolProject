@@ -4592,38 +4592,39 @@
     ]
   },
   "packageFolders": {
-    "/Users/zaferavci/.nuget/packages/": {}
+    "/Users/serkanyilmaz/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/SchoolProject.Persistence.csproj",
+      "projectUniqueName": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/SchoolProject.Persistence.csproj",
       "projectName": "SchoolProject.Persistence",
-      "projectPath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/SchoolProject.Persistence.csproj",
-      "packagesPath": "/Users/zaferavci/.nuget/packages/",
-      "outputPath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/",
+      "projectPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/SchoolProject.Persistence.csproj",
+      "packagesPath": "/Users/serkanyilmaz/.nuget/packages/",
+      "outputPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/zaferavci/.nuget/NuGet/NuGet.Config"
+        "/Users/serkanyilmaz/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/SchoolProject.Application.csproj": {
-              "projectPath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/SchoolProject.Application.csproj"
+            "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/SchoolProject.Application.csproj": {
+              "projectPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/SchoolProject.Application.csproj"
             },
-            "/Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/SchoolProject.Domain.csproj": {
-              "projectPath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/SchoolProject.Domain.csproj"
+            "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/SchoolProject.Domain.csproj": {
+              "projectPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/SchoolProject.Domain.csproj"
             },
-            "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj": {
-              "projectPath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj"
+            "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj": {
+              "projectPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj"
             }
           }
         }

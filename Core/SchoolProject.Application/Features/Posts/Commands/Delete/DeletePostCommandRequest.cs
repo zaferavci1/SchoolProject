@@ -8,6 +8,7 @@ namespace SchoolProject.Application.Features.Posts.Commands.Delete
 	public class DeletePostCommandRequest : IRequest<IDataResult<PostDTO>>
     {
 		public string Id { get; set; }
-	}
+        public string UserId { get; set; }
+    }
 }
 

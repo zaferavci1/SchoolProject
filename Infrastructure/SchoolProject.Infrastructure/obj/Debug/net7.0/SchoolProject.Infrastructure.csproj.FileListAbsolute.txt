@@ -15,7 +15,7 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Debug/net7.0/SchoolProject.Application.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Debug/net7.0/SchoolProject.Domain.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/SchoolProject.Infrastructure.csproj.CopyComplete
-/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/SchoolProject.Infrastructure.sourcelink.json
+<<<<<<< Updated upstream
 /Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Debug/net7.0/SchoolProject.Infrastructure.deps.json
 /Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Debug/net7.0/SchoolProject.Infrastructure.dll
 /Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/bin/Debug/net7.0/SchoolProject.Infrastructure.pdb
@@ -33,3 +33,5 @@
 /Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/refint/SchoolProject.Infrastructure.dll
 /Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/SchoolProject.Infrastructure.pdb
 /Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/ref/SchoolProject.Infrastructure.dll
+=======
+>>>>>>> Stashed changes

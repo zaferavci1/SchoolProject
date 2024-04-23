@@ -27,8 +27,7 @@ namespace SchoolProject.Application.Features.Users.Validators
                 .MinimumLength(6).WithMessage("Şifre en az 6 karakter olmalıdır.")
                 .Matches(@"[A-Z]").WithMessage("Şifre en az bir büyük harf içermelidir.")
                 .Matches(@"[a-z]").WithMessage("Şifre en az bir küçük harf içermelidir.")
-                .Matches(@"[0-9]").WithMessage("Şifre en az bir rakam içermelidir.")
-                .Matches(@"[\^$*.[]{}()?-""!@#%&/,><':;|_~`]").WithMessage("Şifre en az bir özel karakter içermelidir.");
+                .Matches(@"[0-9]").WithMessage("Şifre en az bir rakam içermelidir.");
         }
 	}
 }

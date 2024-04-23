@@ -11,7 +11,6 @@ namespace SchoolProject.Application.Features.Comments.Rules
 	public class CommentBusinessRules
 	{
         private readonly IUserQueryRepository _userQueryRepository;
-        private readonly IPostQueryRepository _postQueryRepository;
         private readonly ICommentQueryRepository _commentQueryRepository;
         private readonly IDataProtector _userDataProtector;
         private readonly IDataProtector _postDataProtector;
@@ -19,7 +18,6 @@ namespace SchoolProject.Application.Features.Comments.Rules
         public CommentBusinessRules(IUserQueryRepository userQueryRepository, IPostQueryRepository postQueryRepository, IDataProtectionProvider dataProtectionProvider, ICommentQueryRepository commentQueryRepository)
         {
             _userQueryRepository = userQueryRepository;
-            _postQueryRepository = postQueryRepository;
             _commentQueryRepository = commentQueryRepository;
             _userDataProtector = dataProtectionProvider.CreateProtector("Users");
             _postDataProtector = dataProtectionProvider.CreateProtector("Posts");
@@ -46,6 +44,10 @@ namespace SchoolProject.Application.Features.Comments.Rules
             bool check = await _userQueryRepository.Table.AnyAsync(u => u.CommentLikes.Any(cl => cl.UserId == Guid.Parse(_userDataProtector.Unprotect(userId)) && cl.CommentId == Guid.Parse(_commentDataProtector.Unprotect(commentId))));
             if (check) throw new Exception("Comment Allready Liked");
         }
+        public async Task IsOwnerCorrect(string commentId, string userId)
+        {
+            Comment? comment = await _commentQueryRepository.GetByIdAsync(_postDataProtector.Unprotect(commentId));
+            if (comment.UserId != Guid.Parse(_userDataProtector.Unprotect(userId))) throw new Exception("Owner Not Correct");
+        }
     }
 }
-

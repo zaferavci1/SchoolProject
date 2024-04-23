@@ -24,6 +24,7 @@ namespace SchoolProject.Application.Features.Posts.Commands.Update
         {
             await _postBusinessRules.IsPostExist(request.Id);
             await _postBusinessRules.IsPostActive(request.Id);
+            await _postBusinessRules.IsOwnerCorrect(request.Id,request.UserId);
             PostDTO postDTO = await _postService.UpdateAsync(request.Adapt<UpdatePostDTO>());
             return new SuccessDataResult<PostDTO>(postDTO.Title + "Gönderi Güncellendi.", postDTO);
         }

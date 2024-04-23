@@ -101,7 +101,7 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Mapster.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/Mapster.Core.dll
-/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/obj/Debug/net7.0/SchoolProject.API.sourcelink.json
+<<<<<<< Updated upstream
 /Users/zaferavci/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/appsettings.Development.json
 /Users/zaferavci/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/appsettings.json
 /Users/zaferavci/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/SchoolProject.API
@@ -205,3 +205,5 @@
 /Users/zaferavci/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/obj/Debug/net7.0/SchoolProject.API.pdb
 /Users/zaferavci/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/obj/Debug/net7.0/SchoolProject.API.genruntimeconfig.cache
 /Users/zaferavci/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/obj/Debug/net7.0/ref/SchoolProject.API.dll
+=======
+>>>>>>> Stashed changes

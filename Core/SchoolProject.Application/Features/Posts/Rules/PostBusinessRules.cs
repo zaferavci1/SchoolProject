@@ -40,7 +40,11 @@ namespace SchoolProject.Application.Features.Posts.Rules
             bool check = await _userQueryRepository.Table.Include(u => u.PostLikes).AnyAsync(u => u.PostLikes.Any(pl => pl.PostId == Guid.Parse(_postDataProtector.Unprotect(postId)) && pl.UserId == Guid.Parse(_userDataProtector.Unprotect(userId)   )));
             if (check) throw new Exception("Post Allready Liked");
         }
-
+        public async Task IsOwnerCorrect(string postId, string userId)
+        {
+            Post? post = await _postQueryRepository.GetByIdAsync(_postDataProtector.Unprotect(postId));
+            if (post.UserId != Guid.Parse(_userDataProtector.Unprotect(userId))) throw new Exception("Owner Not Correct");
+        }
     }
 }
 

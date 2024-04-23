@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
+using Mapster;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Application.Abstraction.Repository.Users;
@@ -155,14 +156,8 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<UserDTO> UpdateAsync(UpdateUserDTO updateUserDTO)
         {
-            User user = await _userQueryRepository.GetByIdAsync(userDataProtector.Unprotect(updateUserDTO.Id));
-            user.Name = updateUserDTO.Name == "string" ? user.Name : updateUserDTO.Name;
-            user.Surname = updateUserDTO.Surname == "string" ? user.Surname : updateUserDTO.Surname;
-            user.NickName = updateUserDTO.NickName == "string" ? user.NickName : updateUserDTO.NickName;
-            user.Mail = updateUserDTO.Mail == "string" ? user.Mail : updateUserDTO.Mail;
-            user.IsActive = updateUserDTO.IsActive == default ? user.IsActive : updateUserDTO.IsActive;
-            user.IsProfilePrivate = updateUserDTO.IsProfilePrivate == default ? user.IsProfilePrivate : updateUserDTO.IsProfilePrivate;
-            user.Password = updateUserDTO.Password == "string" ? user.Password : updateUserDTO.Password;
+            updateUserDTO.Id = userDataProtector.Unprotect(updateUserDTO.Id);
+            User user = updateUserDTO.Adapt<User>();
             _userCommandRepository.Update(user);
             await _userCommandRepository.SaveAsync();
             return new()

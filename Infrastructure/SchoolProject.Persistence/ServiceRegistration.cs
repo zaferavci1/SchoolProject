@@ -64,6 +64,8 @@ namespace SchoolProject.Persistence
             
             services.AddScoped<UserBusinessRules, UserBusinessRules>();
             services.AddScoped<PostBusinessRules, PostBusinessRules>();
+            services.AddScoped<CommentBusinessRules, CommentBusinessRules>();
+            services.AddScoped<BasketBusinessRules, BasketBusinessRules>();
 
             TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetExecutingAssembly());
             services.AddDataProtection();

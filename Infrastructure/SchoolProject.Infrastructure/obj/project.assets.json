@@ -1182,33 +1182,32 @@
     ]
   },
   "packageFolders": {
-    "/Users/serkanyilmaz/.nuget/packages/": {}
+    "/Users/zaferavci/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj",
+      "projectUniqueName": "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj",
       "projectName": "SchoolProject.Infrastructure",
-      "projectPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj",
-      "packagesPath": "/Users/serkanyilmaz/.nuget/packages/",
-      "outputPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/",
+      "projectPath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/SchoolProject.Infrastructure.csproj",
+      "packagesPath": "/Users/zaferavci/.nuget/packages/",
+      "outputPath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/serkanyilmaz/.nuget/NuGet/NuGet.Config"
+        "/Users/zaferavci/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/SchoolProject.Application.csproj": {
-              "projectPath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/SchoolProject.Application.csproj"
+            "/Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/SchoolProject.Application.csproj": {
+              "projectPath": "/Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/SchoolProject.Application.csproj"
             }
           }
         }
@@ -1238,7 +1237,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.315/RuntimeIdentifierGraph.json"
       }
     }
   }

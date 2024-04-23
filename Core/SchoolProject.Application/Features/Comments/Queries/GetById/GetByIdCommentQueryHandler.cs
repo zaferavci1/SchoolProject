@@ -3,6 +3,7 @@ using MediatR;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Features.Comments.DTOs;
 using SchoolProject.Application.Features.Comments.Queries.GetById;
+using SchoolProject.Application.Features.Comments.Rules;
 using SchoolProject.Application.Utilities.Common;
 
 namespace SchoolProject.Application.Features.Baskets.Queries.GetById
@@ -11,12 +12,18 @@ namespace SchoolProject.Application.Features.Baskets.Queries.GetById
     {
 
         private ICommentService _commentService;
-        public GetByIdCommentQueryHandler(ICommentService commentService)
+        CommentBusinessRules _commentBusinessRules;
+
+        public GetByIdCommentQueryHandler(ICommentService commentService, CommentBusinessRules commentBusinessRules)
         {
             _commentService = commentService;
+            _commentBusinessRules = commentBusinessRules;
         }
         public async Task<IDataResult<GetByIdCommentDTO>> Handle(GetByIdCommentQueryRequest request, CancellationToken cancellationToken)
         {
+            await _commentBusinessRules.IsCommentExist(request.Id);
+            await _commentBusinessRules.IsCommentActive(request.Id);
+
             GetByIdCommentDTO getByIdCommentDTO = await _commentService.GetByIdAsync(request.Id);
             return new SuccessDataResult<GetByIdCommentDTO>("Yorum Getirildi", getByIdCommentDTO);
         }

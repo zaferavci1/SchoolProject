@@ -17,6 +17,10 @@ namespace SchoolProject.Application.Features.Baskets.Queries.GetAll
 
         public async Task<IDataResult<GetAllBasketsQueryResponse>> Handle(GetAllBasketsQueryRequest request, CancellationToken cancellationToken)
         {
+            if (request.Page < 0 || request.Size < 0)
+            {
+                throw new Exception("Page or Size cannot be less than 0");
+            }
             (List<GetAllBasketsDTO> Baskets, int TotalCount) data = await _service.GetAllAsync(request.Page, request.Size);
             return new SuccessDataResult<GetAllBasketsQueryResponse>("Müşteriler Listelendi", new() { getAllBasketsDTOs = data.Baskets, TotalCount = data.TotalCount });
         }

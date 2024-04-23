@@ -6,7 +6,8 @@ using SchoolProject.Application.Utilities.Common;
 namespace SchoolProject.Application.Features.Baskets.Commands.Update
 {
 	public class UpdateBasketCommandRequest :IRequest<IDataResult<BasketDTO>>
-	{
+    {
+        public string UserId { get; set; }
         public string Id { get; set; }
         public string BasketName { get; set; }
     }

@@ -21,6 +21,7 @@ namespace SchoolProject.Application.Features.Posts.Queries.GetById
         {
             await _postBusinessRules.IsPostExist(request.Id);
             await _postBusinessRules.IsPostActive(request.Id);
+
             GetByIdPostDTO getByIdPostDTO = await _postService.GetByIdAsync(request.Id);
             return new SuccessDataResult<GetByIdPostDTO>("Gönderi getirildi.", getByIdPostDTO);
         }

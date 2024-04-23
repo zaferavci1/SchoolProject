@@ -17,6 +17,10 @@ namespace SchoolProject.Application.Features.Comments.Queries.GetAll
         }
         public async Task<IDataResult<GetAllCommentQueryResponse>> Handle(GetAllCommentQueryRequest request, CancellationToken cancellationToken)
         {
+            if (request.Page < 0 || request.Size < 0)
+            {
+                throw new Exception("Page or Size cannot be less than 0");
+            }
             (List<GetAllCommentsDTO> getAllCommentsDTO ,int totalCount) data = await _commentService.GetAllAsync(request.Page, request.Size);
             return new SuccessDataResult<GetAllCommentQueryResponse>("Data Listelendi", new GetAllCommentQueryResponse() {  Comments = data.getAllCommentsDTO , TotalCommentCount = data.totalCount});
         }

@@ -50,12 +50,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-//app.UseMiddleware<CustomExceptionMiddleware>();
+app.UseMiddleware<CustomExceptionMiddleware>();
 app.UseCors("mycors");
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 

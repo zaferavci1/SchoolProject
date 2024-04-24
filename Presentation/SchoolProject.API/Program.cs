@@ -4,6 +4,9 @@ using System.Security.Claims;
 using System.Text;
 using SchoolProject.Application;
 using SchoolProject.Persistence;
+using TechBuddy.Extensions;
+using TechBuddy.Extensions.AspNetCore.ExceptionHandling;
+using SchoolProject.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +41,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             NameClaimType = ClaimTypes.Name 
         };
     });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -46,12 +50,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseMiddleware<CustomExceptionMiddleware>();
 app.UseCors("mycors");
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 

@@ -207,3 +207,4 @@
 /Users/zaferavci/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/obj/Debug/net7.0/ref/SchoolProject.API.dll
 =======
 >>>>>>> Stashed changes
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/bin/Debug/net7.0/TechBuddy.AspNetCore.ExceptionHandling.dll

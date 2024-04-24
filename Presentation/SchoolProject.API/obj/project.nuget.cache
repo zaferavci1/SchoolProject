@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sx7lzSc/y0e5ovhhLjS6fbfTu21IZUx9bx4MH66+0C5c67HkvH41bHZcgGhBMUednliWH2QreJlcjZ5ZUDmd3w==",
+  "dgSpecHash": "GhPu7ZGfjVTS66dS/0wZQ29CrMtasqS5e4CRUUb82SJT5VMWfnJkK8mUtr072/F5mfceOqIJ56H5b5iUo1k4pw==",
   "success": true,
   "projectFilePath": "/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/SchoolProject.API.csproj",
   "expectedPackageFiles": [
@@ -17,7 +17,15 @@
     "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.cryptography.internal/8.0.3/microsoft.aspnetcore.cryptography.internal.8.0.3.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.dataprotection/8.0.3/microsoft.aspnetcore.dataprotection.8.0.3.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.dataprotection.abstractions/8.0.3/microsoft.aspnetcore.dataprotection.abstractions.8.0.3.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.diagnostics/2.2.0/microsoft.aspnetcore.diagnostics.2.2.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.diagnostics.abstractions/2.2.0/microsoft.aspnetcore.diagnostics.abstractions.2.2.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.hosting.abstractions/2.2.0/microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.hosting.server.abstractions/2.2.0/microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.http.extensions/2.2.0/microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.http.features/2.2.0/microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.openapi/7.0.16/microsoft.aspnetcore.openapi.7.0.16.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/microsoft.aspnetcore.webutilities/2.2.0/microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.data.sqlclient/5.0.1/microsoft.data.sqlclient.5.0.1.nupkg.sha512",
@@ -54,6 +62,7 @@
     "/Users/serkanyilmaz/.nuget/packages/microsoft.identitymodel.protocols/6.21.0/microsoft.identitymodel.protocols.6.21.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/6.21.0/microsoft.identitymodel.protocols.openidconnect.6.21.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.identitymodel.tokens/6.21.0/microsoft.identitymodel.tokens.6.21.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/microsoft.net.http.headers/2.2.0/microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
@@ -78,6 +87,7 @@
     "/Users/serkanyilmaz/.nuget/packages/system.memory.data/1.0.2/system.memory.data.1.0.2.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/system.reflection/4.3.0/system.reflection.4.3.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/system.reflection.metadata/1.6.0/system.reflection.metadata.1.6.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/system.reflection.primitives/4.3.0/system.reflection.primitives.4.3.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/system.resources.resourcemanager/4.3.0/system.resources.resourcemanager.4.3.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512",
@@ -95,7 +105,8 @@
     "/Users/serkanyilmaz/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512",
     "/Users/serkanyilmaz/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "/Users/serkanyilmaz/.nuget/packages/system.windows.extensions/7.0.0/system.windows.extensions.7.0.0.nupkg.sha512"
+    "/Users/serkanyilmaz/.nuget/packages/system.windows.extensions/7.0.0/system.windows.extensions.7.0.0.nupkg.sha512",
+    "/Users/serkanyilmaz/.nuget/packages/techbuddy.extensions.aspnetcore.exceptionhandling/1.0.3/techbuddy.extensions.aspnetcore.exceptionhandling.1.0.3.nupkg.sha512"
   ],
   "logs": []
 }

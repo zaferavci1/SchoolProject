@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.16" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="TechBuddy.Extensions.AspNetCore.ExceptionHandling" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,5 +28,11 @@
     <ProjectReference Include="..\..\Infrastructure\SchoolProject.Persistence\SchoolProject.Persistence.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Middlewares\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Middlewares\" />
   </ItemGroup>
 </Project>

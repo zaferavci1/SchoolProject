@@ -56,6 +56,7 @@
     <None Remove="Features\Posts\Rules\" />
     <None Remove="Features\Comments\Rules\" />
     <None Remove="Features\Baskets\Rules\" />
+    <None Remove="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -109,6 +110,7 @@
     <Folder Include="Features\Posts\Rules\" />
     <Folder Include="Features\Comments\Rules\" />
     <Folder Include="Features\Baskets\Rules\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolProject.Domain\SchoolProject.Domain.csproj" />

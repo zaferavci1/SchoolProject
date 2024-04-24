@@ -372,6 +372,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "TechBuddy.Extensions.AspNetCore.ExceptionHandling": {
+              "target": "Package",
+              "version": "[1.0.3, )"
             }
           },
           "imports": [

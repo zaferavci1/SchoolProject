@@ -52,8 +52,7 @@ namespace SchoolProject.Persistence.Services
                     Name = user.Name,
                     NickName = user.NickName,
                     PhoneNumber = user.PhoneNumber,
-                    Surname = user.Surname,
-                    Password = user.Password
+                    Surname = user.Surname
                 };
             
         }
@@ -70,8 +69,7 @@ namespace SchoolProject.Persistence.Services
                 Name = user.Name,
                 Surname = user.Surname,
                 NickName = user.NickName,
-                PhoneNumber = user.PhoneNumber,
-                Password = user.Password
+                PhoneNumber = user.PhoneNumber
             };
         }
 
@@ -157,7 +155,9 @@ namespace SchoolProject.Persistence.Services
         public async Task<UserDTO> UpdateAsync(UpdateUserDTO updateUserDTO)
         {
             updateUserDTO.Id = userDataProtector.Unprotect(updateUserDTO.Id);
+            User user1 = await _userQueryRepository.GetByIdAsync(updateUserDTO.Id);
             User user = updateUserDTO.Adapt<User>();
+            user.Password = user1.Password;
             _userCommandRepository.Update(user);
             await _userCommandRepository.SaveAsync();
             return new()
@@ -167,8 +167,7 @@ namespace SchoolProject.Persistence.Services
                 Surname = user.Surname,
                 NickName = user.NickName,
                 Mail = user.Mail,
-                PhoneNumber = user.PhoneNumber,
-                Password = user.Password
+                PhoneNumber = user.PhoneNumber
 
             };
         }

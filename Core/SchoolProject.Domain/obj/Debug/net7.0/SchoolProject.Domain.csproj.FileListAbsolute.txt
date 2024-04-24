@@ -25,3 +25,4 @@
 /Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/ref/SchoolProject.Domain.dll
 =======
 >>>>>>> Stashed changes
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Domain/obj/Debug/net7.0/SchoolProject.Domain.sourcelink.json

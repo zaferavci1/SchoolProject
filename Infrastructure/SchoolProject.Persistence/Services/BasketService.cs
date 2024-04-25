@@ -43,7 +43,7 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<BasketDTO> DeleteAsync(string id)
         {
-            Basket basket = await basketCommandRepository.RemoveAsync(id);
+            Basket basket = await basketCommandRepository.RemoveAsync(basketDataProtector.Unprotect(id));
             await basketCommandRepository.SaveAsync();
             return new()
             {
@@ -65,7 +65,7 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<GetByIdBasketDTO> GetByIdAsync(string id)
         {
-            Basket basket = await basketQueryRepository.Table.Include(b => b.Cryptos).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(id)));
+            Basket? basket = await basketQueryRepository.Table.Include(b => b.Cryptos).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(id)));
 
             return new()
             {
@@ -119,7 +119,7 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<BasketDTO> UpdateAsync(UpdateBasketDTO updateBasketDTO)
         {
-            Basket basket = await basketQueryRepository.Table.Include(b => b.Cryptos).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(updateBasketDTO.Id)));
+            Basket? basket = await basketQueryRepository.Table.Include(b => b.Cryptos).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(updateBasketDTO.Id)));
             basket.BasketName = updateBasketDTO.BasketName;
             basketCommandRepository.Update(basket);
             await basketCommandRepository.SaveAsync();

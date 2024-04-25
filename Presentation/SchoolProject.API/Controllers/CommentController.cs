@@ -38,8 +38,8 @@ namespace SchoolProject.API.Controllers
             IDataResult<CommentDTO> response = await _mediator.Send(updateCommentCommandRequest);
             return Ok(response);
         }
-        [HttpDelete("{Id}")]
-        public async Task<IActionResult> Delete([FromRoute] DeleteCommentCommandRequest deleteCommentCommandRequest)
+        [HttpPut]
+        public async Task<IActionResult> Delete(DeleteCommentCommandRequest deleteCommentCommandRequest)
         {
             IDataResult<CommentDTO> response = await _mediator.Send(deleteCommentCommandRequest);
             return Ok(response);

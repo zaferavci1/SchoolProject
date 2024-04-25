@@ -54,7 +54,34 @@ namespace SchoolProject.Application.Features.Users.Rules
             bool check = await _userQueryRepository.Table.Include(u => u.Followees).AnyAsync(u => u.Followees.Any(f => f.FolloweeId == Guid.Parse(userDataProtector.Unprotect(firstUser)) && f.FollowerId == Guid.Parse(userDataProtector.Unprotect(secondUser))));
             if (!check) throw new CustomException<UserDTO>("User Allready Not Follow");
         }
-        
+        public async Task IsEmailsOwnerCorrect(string mail, string userId)
+        {
+            User? user = await _userQueryRepository.GetByIdAsync(userDataProtector.Unprotect(userId));
+
+            if (user.Mail != mail)
+            {
+                await IsEmailExists(mail);
+            }
+        }
+        public async Task IsNicNamesOwnerCorrect(string nickname, string userId)
+        {
+            User? user = await _userQueryRepository.GetByIdAsync(userDataProtector.Unprotect(userId));
+
+            if (user.NickName != nickname)
+            {
+                await IsNicNamekExists(nickname);
+            }
+        }
+        public async Task IsPhoneNumbersOwnerCorrect(string phoneNumber, string userId)
+        {
+            User? user = await _userQueryRepository.GetByIdAsync(userDataProtector.Unprotect(userId));
+
+            if (user.PhoneNumber != phoneNumber)
+            {
+                await IsPhoneNumberExist(phoneNumber);
+            }
+        }
+
     }
 }
 

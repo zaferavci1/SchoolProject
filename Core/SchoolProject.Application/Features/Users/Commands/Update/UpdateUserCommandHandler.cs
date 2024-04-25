@@ -23,8 +23,9 @@ namespace SchoolProject.Application.Features.Users.Commands.Update
         {
             await _userBusinessRules.IsUserExist(request.Id);
             await _userBusinessRules.IsUserActive(request.Id);
-            var a = request.Adapt<UpdateUserDTO>();
-            var b = 10;
+            await _userBusinessRules.IsEmailsOwnerCorrect(request.Mail,request.Id);
+            await _userBusinessRules.IsNicNamesOwnerCorrect(request.NickName, request.Id);
+            await _userBusinessRules.IsPhoneNumbersOwnerCorrect(request.PhoneNumber, request.Id);
             UserDTO userDTO = await _userService.UpdateAsync(request.Adapt<UpdateUserDTO>());
             return new SuccessDataResult<UserDTO>(userDTO.Name + "Kullanıcı Güncellendi.", userDTO);
         }

@@ -36,8 +36,8 @@ namespace SchoolProject.API.Controllers
             IDataResult<BasketDTO> response = await _mediator.Send(updateBasketCommandRequest);
             return Ok(response);
         }
-        [HttpDelete("{Id}")]
-        public async Task<IActionResult> Delete([FromRoute] DeleteBasketCommandRequest deleteBasketCommandRequest)
+        [HttpPut]
+        public async Task<IActionResult> Delete(DeleteBasketCommandRequest deleteBasketCommandRequest)
         {
             IDataResult<BasketDTO> response = await _mediator.Send(deleteBasketCommandRequest);
             return Ok(response);

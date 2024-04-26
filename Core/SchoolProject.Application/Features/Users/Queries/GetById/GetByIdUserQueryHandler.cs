@@ -20,8 +20,8 @@ namespace SchoolProject.Application.Features.Users.Queries.GetById
 
         public async Task<IDataResult<GetByIdUserDTO>> Handle(GetByIdUserQueryRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.Id);
-            await _userBusinessRules.IsUserActive(request.Id);
+            await _userBusinessRules.IsUserExistAsync(request.Id);
+            await _userBusinessRules.IsUserActiveAsync(request.Id);
 
             GetByIdUserDTO getByIdUserDTO = await _userService.GetByIdAsync(request.Id);
             return new SuccessDataResult<GetByIdUserDTO>("Kullanıcı Getirildi.", getByIdUserDTO);

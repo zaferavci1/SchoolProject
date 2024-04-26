@@ -24,11 +24,11 @@ namespace SchoolProject.Application.Features.Comments.Commands.Like
 
         public async Task<IDataResult<CommentDTO>> Handle(LikeCommentCommandRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.UserId);
-            await _userBusinessRules.IsUserActive(request.UserId);
-            await _commentBusinessRules.IsCommentExist(request.Id);
-            await _commentBusinessRules.IsCommentActive(request.Id);
-            await _commentBusinessRules.IsCommentAllreadyLiked(request.Id,request.UserId);
+            await _userBusinessRules.IsUserExistAsync(request.UserId);
+            await _userBusinessRules.IsUserActiveAsync(request.UserId);
+            await _commentBusinessRules.IsCommentExistAsync(request.Id);
+            await _commentBusinessRules.IsCommentActiveAsync(request.Id);
+            await _commentBusinessRules.IsCommentAllreadyLikedAsync(request.Id,request.UserId);
             CommentDTO commentDTO = await _commentService.LikeAsync(request.Id,request.UserId);
             var data = new SuccessDataResult<CommentDTO>(request.Id + " Yorumu begenildi", commentDTO);
             return data;

@@ -25,19 +25,19 @@ namespace SchoolProject.Application.Features.Baskets.Rules
             _basketDataProtector = dataProtectionProvider.CreateProtector("Baskets");
         }
 
-        public async Task IsBasketExist(string id)
+        public async Task IsBasketExistAsync(string id)
         {
             Basket? basket = await _basketQueryRepository.GetByIdAsync(_basketDataProtector.Unprotect(id));
             if (basket == null) throw new CustomException<BasketDTO>("Basket Not Exist");
         }
 
-        public async Task IsBasketActive(string id)
+        public async Task IsBasketActiveAsync(string id)
         {
             Basket? basket = await _basketQueryRepository.GetByIdAsync(_basketDataProtector.Unprotect(id));
             if (!basket.IsActive) throw new CustomException<BasketDTO>("Basket Not Active");
         }
 
-        public async Task IsBasketAlreadyLiked(string basketId, string userId)
+        public async Task IsBasketAlreadyLikedAsync(string basketId, string userId)
         {
             bool check = await _userQueryRepository.Table
                           .Include(u => u.BasketLikes)
@@ -45,7 +45,7 @@ namespace SchoolProject.Application.Features.Baskets.Rules
             if (check) throw new CustomException<BasketDTO>("Basket Already Liked");
         }
 
-        public async Task IsBasketLiked(string basketId, string userId)
+        public async Task IsBasketLikedAsync(string basketId, string userId)
         {
             bool check = await _userQueryRepository.Table
                           .Include(u => u.BasketLikes)
@@ -53,7 +53,7 @@ namespace SchoolProject.Application.Features.Baskets.Rules
             if (!check) throw new CustomException<BasketDTO>("Basket Not Liked");
         }
 
-        public async Task IsOwnerCorrect(string basketId, string userId)
+        public async Task IsOwnerCorrectAsync(string basketId, string userId)
         {
             Basket? basket = await _basketQueryRepository.GetByIdAsync(_basketDataProtector.Unprotect(basketId));
             if (basket.UserId != Guid.Parse(_userDataProtector.Unprotect(userId))) throw new CustomException<BasketDTO>("Owner Not Correct");

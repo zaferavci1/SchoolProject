@@ -20,8 +20,8 @@ namespace SchoolProject.Application.Features.Users.Commands.Delete
 
         public async Task<IDataResult<UserDTO>> Handle(DeleteUserCommandRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.Id);
-            await _userBusinessRules.IsUserActive(request.Id);
+            await _userBusinessRules.IsUserExistAsync(request.Id);
+            await _userBusinessRules.IsUserActiveAsync(request.Id);
 
             UserDTO userDTO = await _userService.DeleteAsync(request.Id);
             return new SuccessDataResult<UserDTO>(userDTO.Name + "Kullanıcı Silindi.", userDTO);

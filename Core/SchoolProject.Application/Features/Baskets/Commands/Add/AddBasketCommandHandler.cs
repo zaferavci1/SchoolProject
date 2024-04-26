@@ -21,8 +21,8 @@ namespace SchoolProject.Application.Features.Baskets.Commands.Add
 
         public async Task<IDataResult<BasketDTO>> Handle(AddBasketCommandRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.UserId);
-            await _userBusinessRules.IsUserActive(request.UserId);
+            await _userBusinessRules.IsUserExistAsync(request.UserId);
+            await _userBusinessRules.IsUserActiveAsync(request.UserId);
             BasketDTO basketDTO = await _basketService.AddAsync(request.Adapt<AddBasketDTO>());
             return new SuccessDataResult<BasketDTO>("Sepet Başarıyla Oluşturuldu", basketDTO);
 

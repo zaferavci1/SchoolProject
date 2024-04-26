@@ -20,9 +20,9 @@ namespace SchoolProject.Application.Features.Users.Commands.Add
 
         public async Task<IDataResult<UserDTO>> Handle(AddUserCommandRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsEmailExists(request.Mail);
-            await _userBusinessRules.IsNicNamekExists(request.NickName);
-            await _userBusinessRules.IsPhoneNumberExist(request.PhoneNumber);
+            await _userBusinessRules.IsEmailExistsAsync(request.Mail);
+            await _userBusinessRules.IsNicNamekExistsAsync(request.NickName);
+            await _userBusinessRules.IsPhoneNumberExistAsync(request.PhoneNumber);
 
             UserDTO userDTO = await _authService.CreateAsync(request);
             var data = new SuccessDataResult<UserDTO>(userDTO.Name + " Eklendi", userDTO);

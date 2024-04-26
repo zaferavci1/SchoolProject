@@ -159,6 +159,12 @@ namespace SchoolProject.Persistence.Context
                 .HasForeignKey(n => n.CommentId) // Correct FK to CommentId
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Crypto>()
+                      .HasOne<Basket>() 
+                      .WithMany()
+                      .HasForeignKey(u=>u.BasketId)
+                      .OnDelete(DeleteBehavior.SetNull);
         }
 
 

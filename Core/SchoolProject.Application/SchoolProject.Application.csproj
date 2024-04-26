@@ -57,6 +57,7 @@
     <None Remove="Features\Comments\Rules\" />
     <None Remove="Features\Baskets\Rules\" />
     <None Remove="Exceptions\" />
+    <None Remove="Features\Baskets\Commands\AddCrypto\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -111,6 +112,7 @@
     <Folder Include="Features\Comments\Rules\" />
     <Folder Include="Features\Baskets\Rules\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Features\Baskets\Commands\AddCrypto\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolProject.Domain\SchoolProject.Domain.csproj" />

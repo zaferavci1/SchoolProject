@@ -20,9 +20,9 @@ namespace SchoolProject.Application.Features.Posts.Commands.Delete
 
         public async Task<IDataResult<PostDTO>> Handle(DeletePostCommandRequest request, CancellationToken cancellationToken)
         {
-            await _postBusinessRules.IsPostExist(request.Id);
-            await _postBusinessRules.IsPostActive(request.Id);
-            await _postBusinessRules.IsOwnerCorrect(request.Id,request.UserId);
+            await _postBusinessRules.IsPostExistAsync(request.Id);
+            await _postBusinessRules.IsPostActiveAsync(request.Id);
+            await _postBusinessRules.IsOwnerCorrectAsync(request.Id,request.UserId);
             PostDTO postDTO = await _postService.DeleteAsync(request.Id);
             return new SuccessDataResult<PostDTO>(postDTO.Title + "Post silindi.", postDTO);
         }

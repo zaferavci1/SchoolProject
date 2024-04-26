@@ -19,66 +19,66 @@ namespace SchoolProject.Application.Features.Users.Rules
             _userQueryRepository = userQueryRepository;
             userDataProtector = dataProtectionProvider.CreateProtector("Users");
         }
-        public async Task IsUserExist(string id)
+        public async Task IsUserExistAsync(string id)
         {
             User? user = await _userQueryRepository.GetByIdAsync(userDataProtector.Unprotect(id));
             if (user == null) throw new CustomException<UserDTO>("User Not Found");
         }
-        public async Task IsUserActive(string id)
+        public async Task IsUserActiveAsync(string id)
         {
             User? user = await _userQueryRepository.GetByIdAsync(userDataProtector.Unprotect(id));
             if (!user.IsActive) throw new CustomException<UserDTO>("User Not Active");
         }
-        public async Task IsEmailExists(string email)
+        public async Task IsEmailExistsAsync(string email)
         {
             User? user =await _userQueryRepository.Table.FirstOrDefaultAsync(u=>u.Mail == email);
             if (user != null) throw new CustomException<UserDTO>("Email Exists");
         }
-        public async Task IsNicNamekExists(string nickName)
+        public async Task IsNicNamekExistsAsync(string nickName)
         {
             User? user = await _userQueryRepository.Table.FirstOrDefaultAsync(u => u.NickName == nickName);
             if (user != null) throw new CustomException<UserDTO>("NickName Exists");
         }
-        public async Task IsPhoneNumberExist(string phoneNumber)
+        public async Task IsPhoneNumberExistAsync(string phoneNumber)
         {
             User? user = await _userQueryRepository.Table.FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
             if (user != null) throw new CustomException<UserDTO>("PhoneNumber Exists");
         }
-        public async Task UserAllReadyFollowed(string firstUser, string secondUser)
+        public async Task UserAllReadyFollowedAsync(string firstUser, string secondUser)
         {
             bool check = await _userQueryRepository.Table.Include(u => u.Followees).AnyAsync(u => u.Followees.Any(f => f.FolloweeId == Guid.Parse(userDataProtector.Unprotect(firstUser)) && f.FollowerId == Guid.Parse(userDataProtector.Unprotect(secondUser))));
             if (check) throw new CustomException<UserDTO>("User Allready Followed");
         }
-        public async Task IsUserFollowee(string firstUser, string secondUser)
+        public async Task IsUserFolloweeAsync(string firstUser, string secondUser)
         {
             bool check = await _userQueryRepository.Table.Include(u => u.Followees).AnyAsync(u => u.Followees.Any(f => f.FolloweeId == Guid.Parse(userDataProtector.Unprotect(firstUser)) && f.FollowerId == Guid.Parse(userDataProtector.Unprotect(secondUser))));
             if (!check) throw new CustomException<UserDTO>("User Allready Not Follow");
         }
-        public async Task IsEmailsOwnerCorrect(string mail, string userId)
+        public async Task IsEmailsOwnerCorrectAsync(string mail, string userId)
         {
             User? user = await _userQueryRepository.GetByIdAsync(userDataProtector.Unprotect(userId));
 
             if (user.Mail != mail)
             {
-                await IsEmailExists(mail);
+                await IsEmailExistsAsync(mail);
             }
         }
-        public async Task IsNicNamesOwnerCorrect(string nickname, string userId)
+        public async Task IsNicNamesOwnerCorrectAsync(string nickname, string userId)
         {
             User? user = await _userQueryRepository.GetByIdAsync(userDataProtector.Unprotect(userId));
 
             if (user.NickName != nickname)
             {
-                await IsNicNamekExists(nickname);
+                await IsNicNamekExistsAsync(nickname);
             }
         }
-        public async Task IsPhoneNumbersOwnerCorrect(string phoneNumber, string userId)
+        public async Task IsPhoneNumbersOwnerCorrectAsync(string phoneNumber, string userId)
         {
             User? user = await _userQueryRepository.GetByIdAsync(userDataProtector.Unprotect(userId));
 
             if (user.PhoneNumber != phoneNumber)
             {
-                await IsPhoneNumberExist(phoneNumber);
+                await IsPhoneNumberExistAsync(phoneNumber);
             }
         }
 

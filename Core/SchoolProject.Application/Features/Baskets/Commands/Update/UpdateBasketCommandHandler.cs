@@ -25,11 +25,11 @@ namespace SchoolProject.Application.Features.Baskets.Commands.Update
         public async Task<IDataResult<BasketDTO>> Handle(UpdateBasketCommandRequest request, CancellationToken cancellationToken)
         {
 
-            await _userBusinessRules.IsUserExist(request.UserId);
-            await _userBusinessRules.IsUserActive(request.UserId);
-            await _basketBusinessRules.IsBasketExist(request.Id);
-            await _basketBusinessRules.IsBasketActive(request.Id);
-            await _basketBusinessRules.IsOwnerCorrect(request.Id, request.UserId);
+            await _userBusinessRules.IsUserExistAsync(request.UserId);
+            await _userBusinessRules.IsUserActiveAsync(request.UserId);
+            await _basketBusinessRules.IsBasketExistAsync(request.Id);
+            await _basketBusinessRules.IsBasketActiveAsync(request.Id);
+            await _basketBusinessRules.IsOwnerCorrectAsync(request.Id, request.UserId);
             BasketDTO basketDTO = await _service.UpdateAsync(request.Adapt<UpdateBasketDTO>());
             return new SuccessDataResult<BasketDTO>("Sepet Başarıyla Güncellendi", basketDTO);
         }

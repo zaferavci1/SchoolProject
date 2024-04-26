@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Baskets.Commands.Add;
+using SchoolProject.Application.Features.Baskets.Commands.AddCrypto;
 using SchoolProject.Application.Features.Baskets.Commands.Delete;
 using SchoolProject.Application.Features.Baskets.Commands.Like;
 using SchoolProject.Application.Features.Baskets.Commands.UnLike;
@@ -28,6 +29,12 @@ namespace SchoolProject.API.Controllers
         public async Task<IActionResult> Add(AddBasketCommandRequest addBasketCommandRequest)
         {
             IDataResult<BasketDTO> response = await _mediator.Send(addBasketCommandRequest);
+            return Ok(response);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddCrypto(AddCryptoCommandRequest addCryptoCommandRequest)
+        {
+            IDataResult<CryptoDTO> response = await _mediator.Send(addCryptoCommandRequest);
             return Ok(response);
         }
         [HttpPut]

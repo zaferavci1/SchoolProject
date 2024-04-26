@@ -20,11 +20,11 @@ namespace SchoolProject.Application.Features.Users.Commands.Follow
         }
         public async Task<IDataResult<UserDTO>> Handle(FollowUserCommandRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.user1);
-            await _userBusinessRules.IsUserExist(request.user2);
-            await _userBusinessRules.IsUserActive(request.user1);
-            await _userBusinessRules.IsUserActive(request.user2);
-            await _userBusinessRules.UserAllReadyFollowed(request.user1, request.user2);
+            await _userBusinessRules.IsUserExistAsync(request.user1);
+            await _userBusinessRules.IsUserExistAsync(request.user2);
+            await _userBusinessRules.IsUserActiveAsync(request.user1);
+            await _userBusinessRules.IsUserActiveAsync(request.user2);
+            await _userBusinessRules.UserAllReadyFollowedAsync(request.user1, request.user2);
 
             (UserDTO userDTO, UserDTO userDTO2) = await _userService.FollowAsync(request.user1, request.user2);
             var data = new SuccessDataResult<UserDTO>(userDTO.Name + " "+ userDTO2.Name  +"'i takip etti", userDTO);

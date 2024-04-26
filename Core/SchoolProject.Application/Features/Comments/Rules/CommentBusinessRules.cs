@@ -26,28 +26,28 @@ namespace SchoolProject.Application.Features.Comments.Rules
             _postDataProtector = dataProtectionProvider.CreateProtector("Posts");
             _commentDataProtector = dataProtectionProvider.CreateProtector("Comments");
         }
-        public async Task IsCommentExist(string id)
+        public async Task IsCommentExistAsync(string id)
         {
             Comment? comment = await _commentQueryRepository.GetByIdAsync(_commentDataProtector.Unprotect(id));
             if (comment == null) throw new CustomException<CommentDTO>("Comment Not Exist");
         }
-        public async Task IsCommentActive(string id)
+        public async Task IsCommentActiveAsync(string id)
         {
             Comment? comment = await _commentQueryRepository.GetByIdAsync(_commentDataProtector.Unprotect(id));
             if (!comment.IsActive) throw new CustomException<CommentDTO>("Comment Not Active");
         }
-        public async Task IsCommentLiked(string commentId, string userId)
+        public async Task IsCommentLikedAsync(string commentId, string userId)
         {
             bool check = await _userQueryRepository.Table.AnyAsync(u => u.CommentLikes.Any(cl => cl.UserId == Guid.Parse(_userDataProtector.Unprotect(userId)) && cl.CommentId == Guid.Parse(_commentDataProtector.Unprotect(commentId))));
             if (!check) throw new CustomException<CommentDTO>("Comment Not Liked");
 
         }
-        public async Task IsCommentAllreadyLiked(string commentId, string userId)
+        public async Task IsCommentAllreadyLikedAsync(string commentId, string userId)
         {
             bool check = await _userQueryRepository.Table.AnyAsync(u => u.CommentLikes.Any(cl => cl.UserId == Guid.Parse(_userDataProtector.Unprotect(userId)) && cl.CommentId == Guid.Parse(_commentDataProtector.Unprotect(commentId))));
             if (check) throw new CustomException<CommentDTO>("Comment Allready Liked");
         }
-        public async Task IsOwnerCorrect(string commentId, string userId)
+        public async Task IsOwnerCorrectAsync(string commentId, string userId)
         {
             Comment? comment = await _commentQueryRepository.GetByIdAsync(_postDataProtector.Unprotect(commentId));
             if (comment.UserId != Guid.Parse(_userDataProtector.Unprotect(userId))) throw new CustomException<CommentDTO>("Owner Not Correct");

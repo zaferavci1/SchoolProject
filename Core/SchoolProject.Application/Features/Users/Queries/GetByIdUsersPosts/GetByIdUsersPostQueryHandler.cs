@@ -22,8 +22,8 @@ namespace SchoolProject.Application.Features.Users.Queries.GetByIdUsersPosts
 
         public async Task<IDataResult<GetByIdUsersPostsQueryResponse>> Handle(GetByIdUsersPostsQueryRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.userId);
-            await _userBusinessRules.IsUserActive(request.userId);
+            await _userBusinessRules.IsUserExistAsync(request.userId);
+            await _userBusinessRules.IsUserActiveAsync(request.userId);
             (List<GetAllPostsDTO> posts, int totalCount) data = await _userService.GetUsersPostsAsync(request.userId);
             return new SuccessDataResult<GetByIdUsersPostsQueryResponse>("Veriler Listelendi.", new GetByIdUsersPostsQueryResponse()
             {

@@ -20,8 +20,8 @@ namespace SchoolProject.Application.Features.PublicProfiles.Queries.GetById
 
         public async Task<IDataResult<GetByIdPublicProfileDTO>> Handle(GetByIdPublicProfileRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.Id);
-            await _userBusinessRules.IsUserActive(request.Id);
+            await _userBusinessRules.IsUserExistAsync(request.Id);
+            await _userBusinessRules.IsUserActiveAsync(request.Id);
             GetByIdPublicProfileDTO getByIdPublicProfileDTO = await _publicProfileService.GetByIdAsync(request.Id);
             return new SuccessDataResult<GetByIdPublicProfileDTO>("Public Profiles getirildi. ", getByIdPublicProfileDTO);
         }

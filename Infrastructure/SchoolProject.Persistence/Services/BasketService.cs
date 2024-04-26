@@ -1,5 +1,6 @@
 ﻿ using System;
 using System.Security.Cryptography;
+using Mapster;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Application.Abstraction.Repository.Baskets;
@@ -57,10 +58,11 @@ namespace SchoolProject.Persistence.Services
         public async Task<(List<GetAllBasketsDTO>, int totalCount)> GetAllAsync(int page, int size)
         => (await basketQueryRepository.GetAll().Where(b => b.IsActive == true).Include(b => b.Cryptos).Skip(page * size).Take(size).Select(b => new GetAllBasketsDTO()
         {
-              Id = basketDataProtector.Protect(b.Id.ToString()),
-              BasketName = b.BasketName,
-              Cryptos = b.Cryptos,
-              LikeCount = b.LikeCount
+            UserId = userDataProtector.Protect(b.UserId.ToString()),
+            Id = basketDataProtector.Protect(b.Id.ToString()),
+            BasketName = b.BasketName,
+            Cryptos = b.Cryptos.Select(c => c.Adapt<CryptoDTO>()).ToList() ?? new List<CryptoDTO>(),
+            LikeCount = b.LikeCount
         }).ToListAsync() ,await  basketQueryRepository.GetAll().CountAsync());
 
         public async Task<GetByIdBasketDTO> GetByIdAsync(string id)
@@ -69,10 +71,12 @@ namespace SchoolProject.Persistence.Services
 
             return new()
             {
+                UserId = userDataProtector.Protect(basket.UserId.ToString()),
                 Id = basketDataProtector.Protect(id),
                 BasketName = basket.BasketName,
-                Cryptos = basket.Cryptos,
+                Cryptos = basket.Cryptos.Select(c=>c.Adapt<CryptoDTO>()).ToList()?? new List<CryptoDTO>(),
                 LikeCount = basket.LikeCount
+                
             };
         }
 

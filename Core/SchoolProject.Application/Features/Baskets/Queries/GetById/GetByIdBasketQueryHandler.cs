@@ -20,8 +20,8 @@ namespace SchoolProject.Application.Features.Baskets.Queries.GetById
         public async Task<IDataResult<GetByIdBasketDTO>> Handle(GetByIdBasketQueryRequest request, CancellationToken cancellationToken)
         {
 
-            await _basketBusinessRules.IsBasketExist(request.Id);
-            await _basketBusinessRules.IsBasketActive(request.Id);
+            await _basketBusinessRules.IsBasketExistAsync(request.Id);
+            await _basketBusinessRules.IsBasketActiveAsync(request.Id);
             GetByIdBasketDTO getByIdBasketDTO = await _service.GetByIdAsync(request.Id);
             return new SuccessDataResult<GetByIdBasketDTO>("Sipariş Getirildi", getByIdBasketDTO);
         }

@@ -14,16 +14,14 @@ namespace SchoolProject.Persistence.Services
 {
     public class PublicProfileService : IPublicProfileService
     {
-        private readonly IUserCommandRepository _userCommandRepository;
         private readonly IUserQueryRepository _userQueryRepository;
         private readonly IDataProtector userDataProtector;
         private readonly IDataProtector postDataProtector;
         private readonly IDataProtector commentDataProtector;
 
-        public PublicProfileService(IUserQueryRepository userQueryRepository, IUserCommandRepository userCommandRepository, IDataProtectionProvider dataProtectionProvider)
+        public PublicProfileService(IUserQueryRepository userQueryRepository,IDataProtectionProvider dataProtectionProvider)
         {
             _userQueryRepository = userQueryRepository;
-            _userCommandRepository = userCommandRepository;
             userDataProtector = dataProtectionProvider.CreateProtector("Users");
             postDataProtector = dataProtectionProvider.CreateProtector("Posts");
             commentDataProtector = dataProtectionProvider.CreateProtector("Comments");

@@ -108,7 +108,7 @@ namespace SchoolProject.Persistence.Services
                 CommentId = Guid.Parse(commentdataProtector.Unprotect(id)),
                 UserId = Guid.Parse(userDataProtector.Unprotect(userId))
             };
-            comment.LikeCount -= 1;
+            comment.LikeCount += 1;
             _context.CommentLikes.Add(cl);
             _commentCommandRepository.Update(comment);
             await _commentCommandRepository.SaveAsync();

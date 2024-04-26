@@ -24,11 +24,11 @@ namespace SchoolProject.Application.Features.Comments.Commands.Update
 
         public async Task<IDataResult<CommentDTO>> Handle(UpdateCommentCommandRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.UserId);
-            await _userBusinessRules.IsUserActive(request.UserId);
-            await _commentBusinessRules.IsCommentExist(request.Id);
-            await _commentBusinessRules.IsCommentActive(request.Id);
-            await _commentBusinessRules.IsOwnerCorrect(request.Id, request.UserId);
+            await _userBusinessRules.IsUserExistAsync(request.UserId);
+            await _userBusinessRules.IsUserActiveAsync(request.UserId);
+            await _commentBusinessRules.IsCommentExistAsync(request.Id);
+            await _commentBusinessRules.IsCommentActiveAsync(request.Id);
+            await _commentBusinessRules.IsOwnerCorrectAsync(request.Id, request.UserId);
             CommentDTO commentDTO = await _commentService.UpdateAsync(request.Adapt<UpdateCommentDTO>());
             return new SuccessDataResult<CommentDTO>(request.Id + " Yorum Güncellendi", commentDTO);
         }

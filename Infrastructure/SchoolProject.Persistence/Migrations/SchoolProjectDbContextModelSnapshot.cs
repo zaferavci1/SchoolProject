@@ -141,7 +141,7 @@ namespace SchoolProject.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BasketId")
+                    b.Property<Guid?>("BasketId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("BasketId1")
@@ -195,20 +195,19 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("FirstUserId")
+                    b.Property<Guid?>("FirstUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Message")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("PostId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("SecondUserId")
+                    b.Property<Guid?>("SecondUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Type")
@@ -424,8 +423,7 @@ namespace SchoolProject.Persistence.Migrations
                     b.HasOne("SchoolProject.Domain.Entities.Basket", null)
                         .WithMany()
                         .HasForeignKey("BasketId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("SchoolProject.Domain.Entities.Basket", "Basket")
                         .WithMany("Cryptos")
@@ -439,24 +437,22 @@ namespace SchoolProject.Persistence.Migrations
                     b.HasOne("SchoolProject.Domain.Entities.Comment", "Comment")
                         .WithMany()
                         .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SchoolProject.Domain.Entities.User", "FirstUser")
                         .WithMany()
                         .HasForeignKey("FirstUserId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SchoolProject.Domain.Entities.Post", "Post")
                         .WithMany()
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SchoolProject.Domain.Entities.User", "SecondUser")
                         .WithMany()
                         .HasForeignKey("SecondUserId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Comment");
 

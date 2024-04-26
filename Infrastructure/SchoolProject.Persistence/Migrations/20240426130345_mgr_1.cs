@@ -131,15 +131,14 @@ namespace SchoolProject.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CurrencyId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Symbol = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CurrencyId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Symbol = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cost = table.Column<float>(type: "real", nullable: false),
+                    Profit = table.Column<float>(type: "real", nullable: false),
                     CurrentPrice = table.Column<float>(type: "real", nullable: false),
-                    MarketCap = table.Column<float>(type: "real", nullable: false),
-                    CirculatingSupply = table.Column<float>(type: "real", nullable: false),
-                    Volume24h = table.Column<float>(type: "real", nullable: false),
-                    PercentChange24h = table.Column<float>(type: "real", nullable: false),
                     BasketId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    BasketId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
@@ -150,6 +149,12 @@ namespace SchoolProject.Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_Cryptos_Baskets_BasketId",
                         column: x => x.BasketId,
+                        principalTable: "Baskets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                    table.ForeignKey(
+                        name: "FK_Cryptos_Baskets_BasketId1",
+                        column: x => x.BasketId1,
                         principalTable: "Baskets",
                         principalColumn: "Id");
                 });
@@ -238,11 +243,11 @@ namespace SchoolProject.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SecondUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PostId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CommentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    SecondUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    PostId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CommentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Type = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -307,6 +312,11 @@ namespace SchoolProject.Persistence.Migrations
                 name: "IX_Cryptos_BasketId",
                 table: "Cryptos",
                 column: "BasketId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cryptos_BasketId1",
+                table: "Cryptos",
+                column: "BasketId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Notifications_CommentId",

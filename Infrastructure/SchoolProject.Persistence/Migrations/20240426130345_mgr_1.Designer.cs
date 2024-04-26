@@ -12,7 +12,7 @@ using SchoolProject.Persistence.Context;
 namespace SchoolProject.Persistence.Migrations
 {
     [DbContext(typeof(SchoolProjectDbContext))]
-    [Migration("20240421134800_mgr_1")]
+    [Migration("20240426130345_mgr_1")]
     partial class mgr1
     {
         /// <inheritdoc />
@@ -147,14 +147,16 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<Guid?>("BasketId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float>("CirculatingSupply")
+                    b.Property<Guid?>("BasketId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<float>("Cost")
                         .HasColumnType("real");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CurrencyId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("CurrentPrice")
@@ -163,29 +165,23 @@ namespace SchoolProject.Persistence.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<float>("MarketCap")
-                        .HasColumnType("real");
-
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("PercentChange24h")
+                    b.Property<float>("Profit")
                         .HasColumnType("real");
 
                     b.Property<string>("Symbol")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("Volume24h")
-                        .HasColumnType("real");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BasketId");
+
+                    b.HasIndex("BasketId1");
 
                     b.ToTable("Cryptos");
                 });
@@ -196,26 +192,25 @@ namespace SchoolProject.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CommentId")
+                    b.Property<Guid?>("CommentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("FirstUserId")
+                    b.Property<Guid?>("FirstUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Message")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PostId")
+                    b.Property<Guid?>("PostId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("SecondUserId")
+                    b.Property<Guid?>("SecondUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Type")
@@ -429,8 +424,15 @@ namespace SchoolProject.Persistence.Migrations
             modelBuilder.Entity("SchoolProject.Domain.Entities.Crypto", b =>
                 {
                     b.HasOne("SchoolProject.Domain.Entities.Basket", null)
+                        .WithMany()
+                        .HasForeignKey("BasketId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("SchoolProject.Domain.Entities.Basket", "Basket")
                         .WithMany("Cryptos")
-                        .HasForeignKey("BasketId");
+                        .HasForeignKey("BasketId1");
+
+                    b.Navigation("Basket");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Notification", b =>
@@ -443,8 +445,7 @@ namespace SchoolProject.Persistence.Migrations
                     b.HasOne("SchoolProject.Domain.Entities.User", "FirstUser")
                         .WithMany()
                         .HasForeignKey("FirstUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SchoolProject.Domain.Entities.Post", "Post")
                         .WithMany()
@@ -454,8 +455,7 @@ namespace SchoolProject.Persistence.Migrations
                     b.HasOne("SchoolProject.Domain.Entities.User", "SecondUser")
                         .WithMany()
                         .HasForeignKey("SecondUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Comment");
 

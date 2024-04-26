@@ -14,7 +14,6 @@
     <None Remove="Configurations\" />
     <None Remove="Repositories\Baskets\" />
     <None Remove="Repositories\Notificationss\" />
-    <None Remove="Migrations\" />
     <None Remove="Services\Mappings\" />
   </ItemGroup>
   <ItemGroup>
@@ -25,7 +24,6 @@
     <Folder Include="Configurations\" />
     <Folder Include="Repositories\Baskets\" />
     <Folder Include="Repositories\Notificationss\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Services\Mappings\" />
   </ItemGroup>
   <ItemGroup>

@@ -16,7 +16,7 @@ namespace SchoolProject.Domain.Entities
 
         public float CurrentPrice { get; set; }
 
-        public Guid BasketId { get; set; }
+        public Guid? BasketId { get; set; }
         public Basket? Basket { get; set; }
     }
 }

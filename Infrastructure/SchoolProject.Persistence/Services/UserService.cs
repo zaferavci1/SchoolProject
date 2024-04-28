@@ -201,15 +201,15 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<(List<GetAllPostsDTO>,  int totalCount)> GetUsersPostsAsync(string id)
         {
-            User? user = await _userQueryRepository.Table.Include(u => u.Posts).ThenInclude(c => c.Comments).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
-            return new(user?.Posts.Select(p => new GetAllPostsDTO()
+            User? user = await _userQueryRepository.Table.Include(u => u.Posts).ThenInclude(c => c.Comments).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)) || u.IsActive == true);
+            return new(user?.Posts.Where(p => p.IsActive == true).Select(p => new GetAllPostsDTO()
             {
                 UserId = userDataProtector.Protect(p.UserId.ToString()),
                 Id = postDataProtector.Protect(p.Id.ToString()),
                 Content = p.Content,
                 Title = p.Title,
                 LikeCount = p.LikeCount,
-                Comments = p.Comments.Select(c => new CommentDTO()
+                Comments = p.Comments.Where(c => c.IsActive == true).Select(c => new CommentDTO()
                 {
                     UserId = userDataProtector.Protect(c.UserId.ToString()),
                     PostId = postDataProtector.Protect(c.PostId.ToString()),
@@ -223,7 +223,7 @@ namespace SchoolProject.Persistence.Services
         public async Task<(List<GetAllCommentsDTO>, int totalCount)> GetUsersCommentsAsync(string id)
         {
             User? user = await _userQueryRepository.Table.Include(c => c.Comments).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
-            return new(user.Comments.Select(c=>new GetAllCommentsDTO()
+            return new(user.Comments.Where( c=>c.IsActive == true).Select(c=>new GetAllCommentsDTO()
             {
                 UserId = userDataProtector.Protect(c.UserId.ToString()),
                 PostId = postDataProtector.Protect(c.PostId.ToString()), 

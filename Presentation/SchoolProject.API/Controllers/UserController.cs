@@ -17,6 +17,7 @@ namespace SchoolProject.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
+    [Authorize(AuthenticationSchemes = "User")]
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -26,12 +27,12 @@ namespace SchoolProject.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Add(AddUserCommandRequest addUserCommandRequest)
-        {
-            IDataResult<UserDTO> response = await _mediator.Send(addUserCommandRequest);
-            return Ok(response);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Add(AddUserCommandRequest addUserCommandRequest)
+        //{
+        //    IDataResult<UserDTO> response = await _mediator.Send(addUserCommandRequest);
+        //    return Ok(response);
+        //}
         [HttpPut]
         public async Task<IActionResult> Update(UpdateUserCommandRequest updateUserCommandRequest)
         {

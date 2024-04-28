@@ -11,7 +11,6 @@ namespace SchoolProject.Application.Features.Posts.Commands.Update
         public string Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public bool IsActive { get; set; }
     }
 }
 

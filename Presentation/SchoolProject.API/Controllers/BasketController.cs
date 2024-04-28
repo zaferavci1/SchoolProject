@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Application.Features.Baskets.Commands.Add;
@@ -16,6 +17,7 @@ namespace SchoolProject.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
+    [Authorize(AuthenticationSchemes = "User")]
     public class BasketController : ControllerBase
     {
         private readonly IMediator _mediator;

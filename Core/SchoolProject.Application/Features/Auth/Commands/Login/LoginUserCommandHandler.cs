@@ -28,7 +28,7 @@ namespace SchoolProject.Application.Features.Auth.Commands.Login
 
         public async Task<IDataResult<LoginUserCommandResponse>> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
         {
-            (User user, Token token) data = await _authService.LoginAsync(request.userNameOrMail, request.password, 15);
+            (User user, Token token) data = await _authService.LoginAsync(request.UserNameOrMail, request.Password, 15);
             return new SuccessDataResult<LoginUserCommandResponse>("başarılı", new LoginUserCommandResponse(){
                 UserDTO = data.user.Adapt<UserDTO>(),
                 TokenDTO = data.token.Adapt<TokenDTO>()

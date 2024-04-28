@@ -1,11 +1,16 @@
 ﻿
 using Mapster;
 using MediatR;
+using Microsoft.AspNetCore.DataProtection;
+using SchoolProject.Application.Abstraction.DTOs;
 using SchoolProject.Application.Abstraction.Services;
+using SchoolProject.Application.Abstraction.Token;
 using SchoolProject.Application.Features.Auth.Commands.Login;
+using SchoolProject.Application.Features.Auth.DTOs;
 using SchoolProject.Application.Features.Users.DTOs;
 using SchoolProject.Application.Features.Users.Rules;
 using SchoolProject.Application.Utilities.Common;
+using SchoolProject.Domain.Entities;
 
 namespace SchoolProject.Application.Features.Users.Commands.Add
 {
@@ -13,10 +18,14 @@ namespace SchoolProject.Application.Features.Users.Commands.Add
 	{
         IAuthService _authService;
         UserBusinessRules _userBusinessRules;
-        public AddUserCommandHandler(IAuthService authService, IUserService userService, UserBusinessRules userBusinessRules)
+        readonly ITokenHandler _tokenHandler;
+        private readonly IDataProtector userDataProtector;
+        public AddUserCommandHandler(IAuthService authService, IDataProtectionProvider dataProtectionProvider, IUserService userService, UserBusinessRules userBusinessRules, ITokenHandler tokenHandler)
         {
             _authService = authService;
             _userBusinessRules = userBusinessRules;
+            _tokenHandler = tokenHandler;
+            userDataProtector = dataProtectionProvider.CreateProtector("Users");
         }
 
         public async Task<IDataResult<LoginUserCommandResponse>> Handle(AddUserCommandRequest request, CancellationToken cancellationToken)
@@ -26,8 +35,18 @@ namespace SchoolProject.Application.Features.Users.Commands.Add
             await _userBusinessRules.IsPhoneNumberExistAsync(request.PhoneNumber);
 
             UserDTO userDTO = await _authService.CreateAsync(request);
-            var data = new SuccessDataResult<UserDTO>(userDTO.Name + " Eklendi", userDTO);
-            return data;
+            userDTO.Id = userDataProtector.Unprotect(userDTO.Id);
+            User user = userDTO.Adapt<User>();
+            
+            Token token = _tokenHandler.CreateAccessToken(15, user);
+            userDTO.Id = userDataProtector.Protect(userDTO.Id);
+            return new SuccessDataResult<LoginUserCommandResponse>("başarılı", new LoginUserCommandResponse()
+            {
+                UserDTO = userDTO,
+                TokenDTO = token.Adapt<TokenDTO>()
+
+                
+            }) ;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace SchoolProject.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(AddUserCommandRequest addUserCommandRequest)
         {
-            IDataResult<UserDTO> response = await _mediator.Send(addUserCommandRequest);
+            IDataResult<LoginUserCommandResponse> response = await _mediator.Send(addUserCommandRequest);
             return Ok(response);
         }
     }

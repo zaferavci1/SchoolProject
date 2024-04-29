@@ -8,6 +8,7 @@ using SchoolProject.Application.Abstraction.Repository.Users;
 using SchoolProject.Application.Abstraction.Services;
 using SchoolProject.Application.Abstraction.Services.Authentications;
 using SchoolProject.Application.Abstraction.Token;
+using SchoolProject.Application.Exceptions;
 using SchoolProject.Application.Features.Users.Commands.Add;
 using SchoolProject.Application.Features.Users.DTOs;
 using SchoolProject.Domain.Entities;
@@ -47,13 +48,18 @@ namespace SchoolProject.Persistence.Services
         async Task<(User,Token)> IInternalAuthentication.LoginAsync(string usernameOrEmail, string password, int accessTokenLifeTime)
         {
             User? user = await _userQueryRepository.Table.FirstOrDefaultAsync(u=>u.NickName == usernameOrEmail || u.Mail == usernameOrEmail);
+            if (user is null)
+            {
+                throw new CustomException<UserDTO>("User Doesnt Not Found");
+            }
             bool result = user.Password == password;
             if (result)
             {
-                Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime, user);
-                return (user,token);
+                throw new CustomException<UserDTO>("Wrong Password");
             }
-            throw new Exception("hatalı şifre");
+            Token? token = _tokenHandler.CreateAccessToken(accessTokenLifeTime, user);
+            return (user,token);
+            
         }
 
         Task<Token> IInternalAuthentication.RefreshTokenLoginAsync(string refreshToken)

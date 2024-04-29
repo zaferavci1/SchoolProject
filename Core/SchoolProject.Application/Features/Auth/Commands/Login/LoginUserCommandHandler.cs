@@ -20,14 +20,14 @@ namespace SchoolProject.Application.Features.Auth.Commands.Login
         readonly ITokenHandler _tokenHandler;
         readonly IAuthService _authService;
         readonly IUserQueryRepository _userQueryRepository;
-        private readonly IDataProtector userDataProtector;
-        public LoginUserCommandHandler(IUserService userService, ITokenHandler tokenHandler, IAuthService authService, IDataProtectionProvider dataProtectionProvider, IUserQueryRepository userQueryRepository, IDataProtector userDataProtector)
+        private readonly IDataProtector _userDataProtector;
+        public LoginUserCommandHandler(IUserService userService, ITokenHandler tokenHandler, IAuthService authService, IDataProtectionProvider dataProtectionProvider, IUserQueryRepository userQueryRepository)
         {
             _userService = userService;
             _tokenHandler = tokenHandler;
             _authService = authService;
             _userQueryRepository = userQueryRepository;
-            userDataProtector = dataProtectionProvider.CreateProtector("Users");
+            _userDataProtector = dataProtectionProvider.CreateProtector("Users");
         }
 
         public async Task<IDataResult<LoginUserCommandResponse>> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
@@ -37,7 +37,7 @@ namespace SchoolProject.Application.Features.Auth.Commands.Login
             LoginUserCommandResponse loginUserCommandResponse = new();
             loginUserCommandResponse.UserDTO = data.user.Adapt<UserDTO>();
             loginUserCommandResponse.TokenDTO = data.token.Adapt<TokenDTO>();
-            loginUserCommandResponse.UserDTO.Id = userDataProtector.Protect(data.user.Id.ToString());
+            loginUserCommandResponse.UserDTO.Id = _userDataProtector.Protect(data.user.Id.ToString());
 
             return new SuccessDataResult<LoginUserCommandResponse>("başarılı", loginUserCommandResponse);
         }

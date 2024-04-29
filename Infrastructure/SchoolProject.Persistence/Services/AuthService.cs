@@ -53,7 +53,7 @@ namespace SchoolProject.Persistence.Services
                 throw new CustomException<UserDTO>("User Doesnt Not Found");
             }
             bool result = user.Password == password;
-            if (result)
+            if (!result)
             {
                 throw new CustomException<UserDTO>("Wrong Password");
             }

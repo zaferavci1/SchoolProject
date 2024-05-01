@@ -43,3 +43,4 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.genruntimeconfig.cache
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/ref/SchoolProject.Persistence.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Persistence/obj/Debug/net7.0/SchoolProject.Persistence.sourcelink.json

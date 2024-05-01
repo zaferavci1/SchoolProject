@@ -1,31 +1,32 @@
 ﻿<Properties StartupConfiguration="{C3121B99-5EE8-4404-BD10-69F4DB95ED23}|https">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/Features/Baskets/Commands/Delete/DeleteBasketCommandHandler.cs" relfile="Core/SchoolProject.Application/Features/Baskets/Commands/Delete/DeleteBasketCommandHandler.cs" line="32" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/SchoolProject.Persistence/Services/AuthService.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Core/SchoolProject.Application/Abstraction/Services/Authentications/IInternalAuthentication.cs">
     <Files>
       <File FileName="Core/SchoolProject.Application/Features/Auth/Commands/Login/LoginUserCommandHandler.cs" />
       <File FileName="Core/SchoolProject.Application/Features/Baskets/Commands/Update/UpdateBasketCommandHandler.cs" />
       <File FileName="Presentation/SchoolProject.API/Controllers/AuthController.cs" />
-      <File FileName="Infrastructure/SchoolProject.Persistence/Services/AuthService.cs" Line="54" Column="14" />
       <File FileName="Presentation/SchoolProject.API/Program.cs" />
-      <File FileName="Infrastructure/SchoolProject.Persistence/ServiceRegistration.cs" />
+      <File FileName="Core/SchoolProject.Application/Abstraction/Services/Authentications/IInternalAuthentication.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SchoolProject">
+          <Node name="SchoolProject" expanded="True">
             <Node name="Core" expanded="True">
               <Node name="SchoolProject.Application" expanded="True">
                 <Node name="Abstraction" expanded="True">
                   <Node name="Services" expanded="True">
-                    <Node name="Authentications" expanded="True" />
+                    <Node name="Authentications" expanded="True">
+                      <Node name="IInternalAuthentication.cs" selected="True" />
+                    </Node>
                   </Node>
                 </Node>
                 <Node name="Features" expanded="True">
@@ -54,6 +55,9 @@
                       <Node name="Update" expanded="True" />
                     </Node>
                     <Node name="DTOs" expanded="True" />
+                    <Node name="Queries" expanded="True">
+                      <Node name="GetById" expanded="True" />
+                    </Node>
                     <Node name="Rules" expanded="True" />
                   </Node>
                 </Node>
@@ -67,7 +71,6 @@
                 <Node name="Context" expanded="True" />
                 <Node name="Services" expanded="True">
                   <Node name="Mappings" expanded="True" />
-                  <Node name="AuthService.cs" selected="True" />
                 </Node>
               </Node>
             </Node>

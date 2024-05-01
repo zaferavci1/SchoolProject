@@ -8,6 +8,7 @@ using SchoolProject.Application.Features.Users.Commands.UnFollow;
 using SchoolProject.Application.Features.Users.Commands.Update;
 using SchoolProject.Application.Features.Users.DTOs;
 using SchoolProject.Application.Features.Users.Queries.GetAll;
+using SchoolProject.Application.Features.Users.Queries.GetAllUserExceptUsersFollowees;
 using SchoolProject.Application.Features.Users.Queries.GetById;
 using SchoolProject.Application.Features.Users.Queries.GetByIdUsersComments;
 using SchoolProject.Application.Features.Users.Queries.GetByIdUsersPosts;
@@ -81,6 +82,12 @@ namespace SchoolProject.API.Controllers
         public async Task<IActionResult> GetByIdUsersComments([FromRoute] GetByIdUsersCommentsQueryRequest getByIdUsersCommentsQueryRequest)
         {
             IDataResult<GetByIdUsersCommentsQueryResponse> response = await _mediator.Send(getByIdUsersCommentsQueryRequest);
+            return Ok(response);
+        }
+        [HttpPut]
+        public async Task<IActionResult> GetAllUserExceptUsersFollowees(GetAllUserExceptUsersFolloweesRequest exceptUsersFolloweesRequest )
+        {
+            IDataResult<GetAllUserExceptUsersFolloweesDTO> response = await _mediator.Send(exceptUsersFolloweesRequest);
             return Ok(response);
         }
 

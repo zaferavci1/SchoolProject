@@ -47,6 +47,6 @@ public class GetAllUserExceptUsersFolloweesHandler :IRequestHandler<GetAllUserEx
             user.Id = userDataProtector.Protect(user.Id);
         }
         
-        return new SuccessDataResult<GetAllUserExceptUsersFolloweesDTO>(data);
+        return new SuccessDataResult<GetAllUserExceptUsersFolloweesDTO>("Veriler listelendi",data);
     }
 }

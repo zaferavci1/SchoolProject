@@ -18,7 +18,7 @@ builder.Services.AddControllers();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 
-builder.Services.AddCors(op => op.AddPolicy(name:"mycors", policy => policy.WithOrigins("https://localhost:7274", "http://localhost:5122").AllowAnyHeader().AllowAnyMethod().AllowCredentials()));
+builder.Services.AddCors(op => op.AddPolicy(name:"mycors", policy => policy.WithOrigins("https://localhost:7274", "http://localhost:5122", "http://localhost:5244").AllowAnyHeader().AllowAnyMethod().AllowCredentials()));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

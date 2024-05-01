@@ -35,4 +35,3 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/refint/SchoolProject.Infrastructure.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/SchoolProject.Infrastructure.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/ref/SchoolProject.Infrastructure.dll
-/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Infrastructure/SchoolProject.Infrastructure/obj/Debug/net7.0/SchoolProject.Infrastructure.sourcelink.json

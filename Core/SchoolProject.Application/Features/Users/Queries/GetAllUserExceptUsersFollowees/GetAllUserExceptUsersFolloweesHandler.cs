@@ -32,16 +32,21 @@ public class GetAllUserExceptUsersFolloweesHandler :IRequestHandler<GetAllUserEx
     {
         await _userBusinessRules.IsUserExistAsync(request.Id);
         await _userBusinessRules.IsUserActiveAsync(request.Id);
-        
+        GetAllUserExceptUsersFolloweesDTO data = new();
+        data.UserDtos = new List<UserDTO>();
+
         var currentUser = await _queryRepository.GetAll()
             .Include(u => u.Followees)
             .FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(request.Id)) && u.IsActive == true);
 
             List<User> users = await _queryRepository.GetAll().Where(u => u.IsActive).ToListAsync();
-            users = users.Where(u => !currentUser.Followees.Any(f => f.FolloweeId == u.Id)).ToList();
-
-        GetAllUserExceptUsersFolloweesDTO data = new();
-        data.UserDtos = users.Select(u => u.Adapt<UserDTO>()).ToList();
+        foreach (var user in users)
+            {
+                if (!currentUser.Followees.Any(uf=>uf.FollowerId == user.Id))
+                {
+                    data.UserDtos.Add(user.Adapt<UserDTO>());
+                }
+            }
         foreach (var user in data.UserDtos)
         {
             user.Id = userDataProtector.Protect(user.Id);

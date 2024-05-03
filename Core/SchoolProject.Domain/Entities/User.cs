@@ -13,7 +13,7 @@ namespace SchoolProject.Domain.Entities
 		public string PhoneNumber { get; set; }
 		public string Password { get; set; }
 
-
+		public byte ProfilePictureId { get; set; }
         public List<UserFollower> Followers { get; set; }
 		public List<UserFollower> Followees { get; set; }
 

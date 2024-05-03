@@ -52,7 +52,8 @@ namespace SchoolProject.Persistence.Services
                     Name = user.Name,
                     NickName = user.NickName,
                     PhoneNumber = user.PhoneNumber,
-                    Surname = user.Surname
+                    Surname = user.Surname,
+                    ProfilePictureId = user.ProfilePictureId
                 };
             
         }
@@ -69,7 +70,8 @@ namespace SchoolProject.Persistence.Services
                 Name = user.Name,
                 Surname = user.Surname,
                 NickName = user.NickName,
-                PhoneNumber = user.PhoneNumber
+                PhoneNumber = user.PhoneNumber,
+                ProfilePictureId = user.ProfilePictureId
             };
         }
 
@@ -81,7 +83,8 @@ namespace SchoolProject.Persistence.Services
                 Name = u.Name,
                 Surname = u.Surname,
                 NickName = u.NickName,
-                PhoneNumber = u.PhoneNumber
+                PhoneNumber = u.PhoneNumber,
+                ProfilePictureId = u.ProfilePictureId
             }).ToListAsync(), await _userQueryRepository.GetAll().CountAsync());
 
         public async Task<GetByIdUserDTO> GetByIdAsync(string id)
@@ -101,7 +104,8 @@ namespace SchoolProject.Persistence.Services
                     Id = userDataProtector.Protect(user.Id.ToString()),
                     Name = user.Name,
                     Surname = user.Surname,
-                    NickName = user.NickName
+                    NickName = user.NickName,
+                    ProfilePictureId = user.ProfilePictureId
                 }).ToList();
             List<PublicProfilesDTO> followees = user.Followees.Join(
                 _userQueryRepository.GetAll(),
@@ -112,7 +116,8 @@ namespace SchoolProject.Persistence.Services
                     Id = userDataProtector.Protect(user.Id.ToString()),
                     Name = user.Name,
                     Surname = user.Surname,
-                    NickName = user.NickName
+                    NickName = user.NickName,
+                    ProfilePictureId = user.ProfilePictureId
                 }).ToList();
             return new()
             {
@@ -124,6 +129,7 @@ namespace SchoolProject.Persistence.Services
                 PhoneNumber = user.PhoneNumber,
                 Followers = followers,
                 Follows = followees,
+                ProfilePictureId = user.ProfilePictureId,
                 Posts = user.Posts?.Select(p => new GetAllPostsDTO()
                 {
                     UserId = userDataProtector.Protect(p.UserId.ToString()),
@@ -167,8 +173,8 @@ namespace SchoolProject.Persistence.Services
                 Surname = user.Surname,
                 NickName = user.NickName,
                 Mail = user.Mail,
-                PhoneNumber = user.PhoneNumber
-
+                PhoneNumber = user.PhoneNumber,
+                ProfilePictureId = user.ProfilePictureId
             };
         }
         public async Task<(UserDTO,UserDTO)> FollowAsync(string user1Id, string user2Id)
@@ -188,6 +194,7 @@ namespace SchoolProject.Persistence.Services
                 Name = user1.Name,
                 Surname = user1.Surname,
                 NickName = user1.NickName,
+                ProfilePictureId = user1.ProfilePictureId
             },
             new()
             {
@@ -195,6 +202,7 @@ namespace SchoolProject.Persistence.Services
                 Name = user2.Name,
                 Surname = user2.Surname,
                 NickName = user2.NickName,
+                ProfilePictureId = user2.ProfilePictureId
             }
             );
         }
@@ -249,6 +257,7 @@ namespace SchoolProject.Persistence.Services
                 Name = user1.Name,
                 Surname = user1.Surname,
                 NickName = user1.NickName,
+                ProfilePictureId = user1.ProfilePictureId
             },
             new()
             {
@@ -256,6 +265,7 @@ namespace SchoolProject.Persistence.Services
                 Name = user2.Name,
                 Surname = user2.Surname,
                 NickName = user2.NickName,
+                ProfilePictureId = user2.ProfilePictureId
             }
             );
         }

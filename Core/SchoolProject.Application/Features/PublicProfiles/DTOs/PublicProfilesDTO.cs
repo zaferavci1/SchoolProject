@@ -11,6 +11,8 @@ namespace SchoolProject.Application.Features.PublicProfiles.DTOs
         public string NickName { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        
+        public byte ProfilePictureId { get; set; }
     }
 }
 

@@ -57,24 +57,29 @@ namespace SchoolProject.Persistence.Services
                user => user.Id,
                (uf, user) => new PublicProfilesDTO
                {
+                   ProfilePictureId = user.ProfilePictureId, // Assuming ProfilePictureId exists on your 'User' domain entity
                    Id = user.Id.ToString(),
                    Name = user.Name,
                    Surname = user.Surname,
                    NickName = user.NickName
                }).ToList() ?? new List<PublicProfilesDTO>();
+
             List<PublicProfilesDTO> followees = user.Followees.Join(
                 _userQueryRepository.GetAll(),
                 uf => uf.FollowerId,
                 user => user.Id,
                 (uf, user) => new PublicProfilesDTO
                 {
+                    ProfilePictureId = user.ProfilePictureId, // Assuming ProfilePictureId exists on your 'User' domain entity
                     Id = user.Id.ToString(),
                     Name = user.Name,
                     Surname = user.Surname,
                     NickName = user.NickName
                 }).ToList() ?? new List<PublicProfilesDTO>();
+
             var a = new GetByIdPublicProfileDTO()
             {
+                ProfilePictureId = user.ProfilePictureId,
                 Id = userDataProtector.Protect(user.Id.ToString()),
                 Name = user.Name,
                 Surname = user.Surname,

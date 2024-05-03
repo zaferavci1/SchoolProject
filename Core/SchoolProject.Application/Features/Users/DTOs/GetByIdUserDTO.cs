@@ -14,6 +14,8 @@ namespace SchoolProject.Application.Features.Users.DTOs
         public string Surname { get; set; }
         public string Mail { get; set; }
         public string PhoneNumber { get; set; }
+        
+        public byte ProfilePictureId { get; set; }
         public List<PublicProfilesDTO> Followers { get; set; }
         public List<PublicProfilesDTO> Follows { get; set; }
         public List<GetAllPostsDTO> Posts { get; set; }

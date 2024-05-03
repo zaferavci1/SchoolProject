@@ -55,7 +55,7 @@ namespace SchoolProject.Persistence.Services
             bool result = user.Password == password;
             if (!result)
             {
-                throw new CustomException<UserDTO>("Wrong Password");
+                throw new CustomException<UserDTO>("Wrong Password Or Nickname");
             }
             Token? token = _tokenHandler.CreateAccessToken(accessTokenLifeTime, user);
             return (user,token);

@@ -16,6 +16,7 @@ namespace SchoolProject.Application.Features.Baskets.DTOs
         public float Profit { get; set; }
 
         public float CurrentPrice { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }
 

@@ -11,6 +11,7 @@ namespace SchoolProject.Application.Features.Comments.DTOs
         public string Id { get; set; }
         public int LikeCount { get; set; }
         public string Content { get; set; }
+        public DateTime CreatedDate { get; set; }
         public List<CommentDTO> ReplyComments { get; set; }
     }
 }

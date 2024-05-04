@@ -44,6 +44,12 @@ namespace SchoolProject.Application.Features.Users.Rules
             User? user = await _userQueryRepository.Table.FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
             if (user != null) throw new CustomException<UserDTO>("PhoneNumber Exists");
         }
+        public async Task IsOldPasswordCorrect(string userId, string password)
+        {           
+            User? user = await _userQueryRepository.GetByIdAsync(userDataProtector.Unprotect(userId));
+
+            if (user.Password != password) throw new CustomException<UserDTO>("Old Password Is Not Correct");
+        }
         public async Task UserAllReadyFollowedAsync(string firstUser, string secondUser)
         {
             bool check = await _userQueryRepository.Table.Include(u => u.Followees).AnyAsync(u => u.Followees.Any(f => f.FolloweeId == Guid.Parse(userDataProtector.Unprotect(firstUser)) && f.FollowerId == Guid.Parse(userDataProtector.Unprotect(secondUser))));

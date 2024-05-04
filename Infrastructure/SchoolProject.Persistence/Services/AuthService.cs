@@ -52,6 +52,10 @@ namespace SchoolProject.Persistence.Services
             {
                 throw new CustomException<UserDTO>("User Doesnt Not Found");
             }
+            if (user.IsActive is false)
+            {
+                throw new CustomException<UserDTO>("User Is Not Active");
+            }
             bool result = user.Password == password;
             if (!result)
             {

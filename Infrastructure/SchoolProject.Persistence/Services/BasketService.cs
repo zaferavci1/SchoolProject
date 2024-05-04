@@ -38,7 +38,8 @@ namespace SchoolProject.Persistence.Services
             {
                 Id = basketDataProtector.Protect(basket.Id.ToString()),
                 BasketName = basket.BasketName,
-                LikeCount = basket.LikeCount
+                LikeCount = basket.LikeCount,
+                CreatedDate = basket.CreatedDate
             };
         }
 
@@ -50,7 +51,8 @@ namespace SchoolProject.Persistence.Services
             {
                 Id = basketDataProtector.Protect(id),
                 BasketName = basket.BasketName,
-                LikeCount = basket.LikeCount
+                LikeCount = basket.LikeCount,
+                CreatedDate = basket.CreatedDate
             };
 
         }
@@ -62,7 +64,8 @@ namespace SchoolProject.Persistence.Services
             Id = basketDataProtector.Protect(b.Id.ToString()),
             BasketName = b.BasketName,
             Cryptos = b.Cryptos.Select(c => c.Adapt<CryptoDTO>()).ToList() ?? new List<CryptoDTO>(),
-            LikeCount = b.LikeCount
+            LikeCount = b.LikeCount,
+            CreatedDate = b.CreatedDate
         }).ToListAsync() ,await  basketQueryRepository.GetAll().CountAsync());
 
         public async Task<GetByIdBasketDTO> GetByIdAsync(string id)
@@ -75,7 +78,8 @@ namespace SchoolProject.Persistence.Services
                 Id = basketDataProtector.Protect(id),
                 BasketName = basket.BasketName,
                 Cryptos = basket.Cryptos.Select(c=>c.Adapt<CryptoDTO>()).ToList()?? new List<CryptoDTO>(),
-                LikeCount = basket.LikeCount
+                LikeCount = basket.LikeCount,
+                CreatedDate = basket.CreatedDate
                 
             };
         }
@@ -96,7 +100,8 @@ namespace SchoolProject.Persistence.Services
             {
                 Id = basketDataProtector.Protect(basket.Id.ToString()),
                 BasketName = basket.BasketName,
-                LikeCount = basket.LikeCount
+                LikeCount = basket.LikeCount,
+                CreatedDate = basket.CreatedDate
             };
 
         }
@@ -117,7 +122,8 @@ namespace SchoolProject.Persistence.Services
             {
                 Id = basketDataProtector.Protect(basket.Id.ToString()),
                 BasketName = basket.BasketName,
-                LikeCount = basket.LikeCount
+                LikeCount = basket.LikeCount,
+                CreatedDate = basket.CreatedDate
             };
         }
 
@@ -131,7 +137,8 @@ namespace SchoolProject.Persistence.Services
             {
                 Id = basketDataProtector.Protect(basket.Id.ToString()),
                 BasketName = basket.BasketName,
-                LikeCount = basket.LikeCount
+                LikeCount = basket.LikeCount,
+                CreatedDate = basket.CreatedDate
             };
         }
     }

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SchoolProject.Application.Features.Users.Commands.ChangePassword;
 using SchoolProject.Application.Features.Users.Commands.Add;
 using SchoolProject.Application.Features.Users.Commands.Delete;
 using SchoolProject.Application.Features.Users.Commands.Follow;
@@ -13,12 +14,12 @@ using SchoolProject.Application.Features.Users.Queries.GetById;
 using SchoolProject.Application.Features.Users.Queries.GetByIdUsersComments;
 using SchoolProject.Application.Features.Users.Queries.GetByIdUsersPosts;
 using SchoolProject.Application.Utilities.Common;
+using SchoolProject.Infrastructure.Services;
 
 namespace SchoolProject.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [Authorize(AuthenticationSchemes = "User")]
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -88,6 +89,12 @@ namespace SchoolProject.API.Controllers
         public async Task<IActionResult> GetAllUserExceptUsersFollowees(GetAllUserExceptUsersFolloweesRequest exceptUsersFolloweesRequest )
         {
             IDataResult<GetAllUserExceptUsersFolloweesDTO> response = await _mediator.Send(exceptUsersFolloweesRequest);
+            return Ok(response);
+        }
+        [HttpPut]
+        public async Task<IActionResult> UpdateUsersPassword(ChangePasswordCommandRequest changePasswordCommandRequest )
+        {
+            IDataResult<UserDTO> response = await _mediator.Send(changePasswordCommandRequest);
             return Ok(response);
         }
 

@@ -45,7 +45,8 @@ namespace SchoolProject.Persistence.Services
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
                 Title = post.Title,
-                LikeCount = post.LikeCount
+                LikeCount = post.LikeCount,
+                CreatedDate = post.CreatedDate
             };
         }
 
@@ -59,7 +60,8 @@ namespace SchoolProject.Persistence.Services
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
                 Title = post.Title,
-                LikeCount = post.LikeCount
+                LikeCount = post.LikeCount,
+                CreatedDate = post.CreatedDate
             };
         }
 
@@ -75,11 +77,13 @@ namespace SchoolProject.Persistence.Services
                 PostId = postDataProtector.Protect(c.PostId.ToString()),
                 Id = commentDataProtector.Protect(c.Id.ToString()),
                 Content = c.Content,
-                LikeCount = c.LikeCount
+                LikeCount = c.LikeCount,
+                CreatedDate = c.CreatedDate
             }).ToList(),
             Title = p.Title,
             Content = p.Content,
-            LikeCount = p.LikeCount
+            LikeCount = p.LikeCount,
+            CreatedDate = p.CreatedDate
         }).ToListAsync(), await _postQueryRepository.GetAll().CountAsync());
 
         public async Task<GetByIdPostDTO> GetByIdAsync(string id)
@@ -95,11 +99,13 @@ namespace SchoolProject.Persistence.Services
                     PostId = postDataProtector.Protect(c.PostId.ToString()),
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
-                    LikeCount = c.LikeCount
+                    LikeCount = c.LikeCount,
+                    CreatedDate = c.CreatedDate
                 }).ToList() ?? new List<CommentDTO>(),
                 Content = post.Content,
                 Title = post.Title,
-                likeCount = post.LikeCount
+                likeCount = post.LikeCount,
+                CreatedDate = post.CreatedDate
             };
         }
 
@@ -123,7 +129,8 @@ namespace SchoolProject.Persistence.Services
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
                 Title = post.Content,
-                LikeCount = post.LikeCount
+                LikeCount = post.LikeCount,
+                CreatedDate = post.CreatedDate
             };
         }
 
@@ -147,7 +154,8 @@ namespace SchoolProject.Persistence.Services
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
                 Title = post.Content,
-                LikeCount = post.LikeCount
+                LikeCount = post.LikeCount,
+                CreatedDate = post.CreatedDate
             };
         }
 
@@ -165,7 +173,8 @@ namespace SchoolProject.Persistence.Services
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
                 Title = post.Content,
-                LikeCount = post.LikeCount
+                LikeCount = post.LikeCount,
+                CreatedDate = post.CreatedDate
             };
         }
     }

@@ -39,7 +39,8 @@ namespace SchoolProject.Persistence.Services
                 PostId = postDataProtector.Protect(comment.PostId.ToString()),
                 Id = commentdataProtector.Protect(comment.Id.ToString()),
                 Content = comment.Content,
-                LikeCount = comment.LikeCount
+                LikeCount = comment.LikeCount,
+                CreatedDate = comment.CreatedDate
             };
 
         }
@@ -54,7 +55,8 @@ namespace SchoolProject.Persistence.Services
                 PostId = postDataProtector.Protect(comment.PostId.ToString()),
                 Id = commentdataProtector.Protect(comment.Id.ToString()),
                 Content = comment.Content,
-                LikeCount = comment.LikeCount
+                LikeCount = comment.LikeCount,
+                CreatedDate = comment.CreatedDate
             };
         }
 
@@ -67,12 +69,14 @@ namespace SchoolProject.Persistence.Services
                 LikeCount = c.LikeCount,
                 UserId = userDataProtector.Protect(c.UserId.ToString()),
                 PostId = postDataProtector.Protect(c.PostId.ToString()),
+                CreatedDate = c.CreatedDate,
             ReplyComments = c.ReplyComments.Select(x => new CommentDTO()
                 {
                     PostId = postDataProtector.Protect(x.PostId.ToString()),
                     Id = commentdataProtector.Protect(x.Id.ToString()),
                     Content = x.Content,
-                    LikeCount = x.LikeCount
+                    LikeCount = x.LikeCount,
+                    CreatedDate = x.CreatedDate
                 }).ToList()
             }).ToListAsync(), _commentQueryRepository.GetAll().Count() );
 
@@ -89,13 +93,15 @@ namespace SchoolProject.Persistence.Services
                 PostId = postDataProtector.Protect(comment.PostId.ToString()),
                 Content = comment.Content,
                 LikeCount = comment.LikeCount,
+                CreatedDate = comment.CreatedDate,
                 ReplyComments = comment.ReplyComments.Select(x => new CommentDTO()
                 {
                     UserId = userDataProtector.Protect(x.UserId.ToString()),
                     PostId = postDataProtector.Protect(x.PostId.ToString()),
                     Id = commentdataProtector.Protect(x.Id.ToString()),
                     Content = x.Content,
-                    LikeCount = x.LikeCount
+                    LikeCount = x.LikeCount,
+                    CreatedDate = x.CreatedDate
                 }).ToList() ?? new List<CommentDTO>()
             };
         }
@@ -118,7 +124,8 @@ namespace SchoolProject.Persistence.Services
                 PostId = postDataProtector.Protect(comment.PostId.ToString()),
                 Id = commentdataProtector.Protect(comment.Id.ToString()),
                 Content = comment.Content,
-                LikeCount = comment.LikeCount
+                LikeCount = comment.LikeCount,
+                CreatedDate = comment.CreatedDate
             };
         }
 
@@ -140,7 +147,8 @@ namespace SchoolProject.Persistence.Services
                 PostId = postDataProtector.Protect(comment.PostId.ToString()),
                 Id = commentdataProtector.Protect(comment.Id.ToString()),
                 Content = comment.Content,
-                LikeCount = comment.LikeCount
+                LikeCount = comment.LikeCount,
+                CreatedDate = comment.CreatedDate
             };
         }
 
@@ -158,7 +166,8 @@ namespace SchoolProject.Persistence.Services
                 PostId = postDataProtector.Protect(comment.PostId.ToString()),
                 Id = commentdataProtector.Protect(comment.Id.ToString()),
                 Content = comment.Content,
-                LikeCount = comment.LikeCount
+                LikeCount = comment.LikeCount,
+                CreatedDate = comment.CreatedDate
             };
         }
     }

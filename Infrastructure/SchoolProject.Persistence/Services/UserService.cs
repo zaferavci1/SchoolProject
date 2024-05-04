@@ -137,13 +137,15 @@ namespace SchoolProject.Persistence.Services
                     Content = p.Content,
                     Title = p.Title,
                     LikeCount = p.LikeCount,
+                    CreatedDate = p.CreatedDate,
                     Comments = p.Comments?.Select(c => new CommentDTO()
                     {
                         UserId = userDataProtector.Protect(c.UserId.ToString()),
                         PostId = postDataProtector.Protect(c.PostId.ToString()),
                         Id = commentDataProtector.Protect(c.Id.ToString()),
                         Content = c.Content,
-                        LikeCount = c.LikeCount
+                        LikeCount = c.LikeCount,
+                        CreatedDate = c.CreatedDate
                     }).ToList() ?? new List<CommentDTO>()
                 }
                 ).ToList() ?? new List<GetAllPostsDTO>(),
@@ -153,7 +155,8 @@ namespace SchoolProject.Persistence.Services
                     UserId = userDataProtector.Protect(c.UserId.ToString()),
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
-                    LikeCount = c.LikeCount
+                    LikeCount = c.LikeCount,
+                    CreatedDate = c.CreatedDate
                 }).ToList() ?? new List<GetAllCommentsDTO>()
             };
         }
@@ -217,13 +220,15 @@ namespace SchoolProject.Persistence.Services
                 Content = p.Content,
                 Title = p.Title,
                 LikeCount = p.LikeCount,
+                CreatedDate = p.CreatedDate,
                 Comments = p.Comments.Where(c => c.IsActive == true).Select(c => new CommentDTO()
                 {
                     UserId = userDataProtector.Protect(c.UserId.ToString()),
                     PostId = postDataProtector.Protect(c.PostId.ToString()),
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
-                    LikeCount=c.LikeCount
+                    LikeCount=c.LikeCount,
+                    CreatedDate = c.CreatedDate
                 }).ToList() ?? new List<CommentDTO>()
             }).ToList() ?? new List<GetAllPostsDTO>(),user.Posts.Count());
         }
@@ -237,7 +242,8 @@ namespace SchoolProject.Persistence.Services
                 PostId = postDataProtector.Protect(c.PostId.ToString()), 
                 Id = commentDataProtector.Protect(c.Id.ToString()),
                 Content = c.Content,
-                LikeCount = c.LikeCount
+                LikeCount = c.LikeCount,
+                CreatedDate = c.CreatedDate
             }).ToList() ?? new List<GetAllCommentsDTO>(), user.Comments.Count());
         }
         public async Task<(UserDTO, UserDTO)> UnFollowAsync(string user1Id, string user2Id)

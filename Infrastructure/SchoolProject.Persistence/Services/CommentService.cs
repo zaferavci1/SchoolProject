@@ -32,6 +32,7 @@ namespace SchoolProject.Persistence.Services
         {
             Comment comment = await _commentCommandRepository.AddAsync(new() {UserId = Guid.Parse(userDataProtector.Unprotect(addCommentDTO.UserId)),
                 PostId = Guid.Parse(postDataProtector.Unprotect(addCommentDTO.PostId)), Content = addCommentDTO.Content });
+            
             await _commentCommandRepository.SaveAsync();
             return new()
             {
@@ -40,7 +41,8 @@ namespace SchoolProject.Persistence.Services
                 Id = commentdataProtector.Protect(comment.Id.ToString()),
                 Content = comment.Content,
                 LikeCount = comment.LikeCount,
-                CreatedDate = comment.CreatedDate
+                CreatedDate = comment.CreatedDate,
+                OwnersName = comment.User.NickName
             };
 
         }
@@ -56,12 +58,12 @@ namespace SchoolProject.Persistence.Services
                 Id = commentdataProtector.Protect(comment.Id.ToString()),
                 Content = comment.Content,
                 LikeCount = comment.LikeCount,
-                CreatedDate = comment.CreatedDate
+                CreatedDate = comment.CreatedDate,
             };
         }
 
         public async Task<(List<GetAllCommentsDTO>, int totalCount)> GetAllAsync(int page, int size)
-        => (await _commentQueryRepository.GetAll().Where(c => c.IsActive == true).Include(c => c.ReplyComments).Skip(page * size).Take(size).Select(c => new GetAllCommentsDTO()
+        => (await _commentQueryRepository.GetAll().Where(c => c.IsActive == true).Include(c=>c.User).Include(c => c.ReplyComments).ThenInclude(c=>c.User).Skip(page * size).Take(size).Select(c => new GetAllCommentsDTO()
             {
 
                 Id =commentdataProtector.Protect(c.Id.ToString()),
@@ -70,13 +72,14 @@ namespace SchoolProject.Persistence.Services
                 UserId = userDataProtector.Protect(c.UserId.ToString()),
                 PostId = postDataProtector.Protect(c.PostId.ToString()),
                 CreatedDate = c.CreatedDate,
-            ReplyComments = c.ReplyComments.Select(x => new CommentDTO()
+                ReplyComments = c.ReplyComments.Select(x => new CommentDTO()
                 {
                     PostId = postDataProtector.Protect(x.PostId.ToString()),
                     Id = commentdataProtector.Protect(x.Id.ToString()),
                     Content = x.Content,
                     LikeCount = x.LikeCount,
-                    CreatedDate = x.CreatedDate
+                    CreatedDate = x.CreatedDate,
+                    OwnersName = x.User.NickName 
                 }).ToList()
             }).ToListAsync(), _commentQueryRepository.GetAll().Count() );
 
@@ -84,7 +87,7 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<GetByIdCommentDTO> GetByIdAsync(string id)
         {
-            Comment comment = await _commentQueryRepository.Table.Include(c =>c.ReplyComments).FirstOrDefaultAsync(c=>c.Id == Guid.Parse(commentdataProtector.Unprotect(id)));
+            Comment comment = await _commentQueryRepository.Table.Include(c=>c.User).Include(c =>c.ReplyComments).ThenInclude(c=>c.User).FirstOrDefaultAsync(c=>c.Id == Guid.Parse(commentdataProtector.Unprotect(id)));
 
             return new()
             {
@@ -94,6 +97,7 @@ namespace SchoolProject.Persistence.Services
                 Content = comment.Content,
                 LikeCount = comment.LikeCount,
                 CreatedDate = comment.CreatedDate,
+                OwnersName = comment.User.NickName,
                 ReplyComments = comment.ReplyComments.Select(x => new CommentDTO()
                 {
                     UserId = userDataProtector.Protect(x.UserId.ToString()),
@@ -101,7 +105,8 @@ namespace SchoolProject.Persistence.Services
                     Id = commentdataProtector.Protect(x.Id.ToString()),
                     Content = x.Content,
                     LikeCount = x.LikeCount,
-                    CreatedDate = x.CreatedDate
+                    CreatedDate = x.CreatedDate,
+                    OwnersName = x.User.NickName
                 }).ToList() ?? new List<CommentDTO>()
             };
         }

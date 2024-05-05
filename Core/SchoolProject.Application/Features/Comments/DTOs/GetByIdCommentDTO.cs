@@ -7,6 +7,7 @@ namespace SchoolProject.Application.Features.Comments.DTOs
 	public class GetByIdCommentDTO : IDTO
     {
         public string UserId { get; set; }
+        public string OwnersName { get; set; }
         public string PostId { get; set; }
         public string Id { get; set; }
         public int LikeCount { get; set; }

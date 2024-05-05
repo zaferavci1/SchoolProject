@@ -90,8 +90,10 @@ namespace SchoolProject.Persistence.Services
         public async Task<GetByIdUserDTO> GetByIdAsync(string id)
         {
             User?  user = await _userQueryRepository
-                .Table.Include(u => u.Posts)
+                .Table
+                .Include(c=>c.Posts)
                 .ThenInclude(c => c.Comments)
+                .ThenInclude(c => c.User)
                 .Include(u=>u.Followees)
                 .Include(u=>u.Followers)
                 .FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
@@ -138,6 +140,7 @@ namespace SchoolProject.Persistence.Services
                     Title = p.Title,
                     LikeCount = p.LikeCount,
                     CreatedDate = p.CreatedDate,
+                    OwnersName = user.NickName,
                     Comments = p.Comments?.Select(c => new CommentDTO()
                     {
                         UserId = userDataProtector.Protect(c.UserId.ToString()),
@@ -145,7 +148,8 @@ namespace SchoolProject.Persistence.Services
                         Id = commentDataProtector.Protect(c.Id.ToString()),
                         Content = c.Content,
                         LikeCount = c.LikeCount,
-                        CreatedDate = c.CreatedDate
+                        CreatedDate = c.CreatedDate,
+                        OwnersName = c.User.NickName
                     }).ToList() ?? new List<CommentDTO>()
                 }
                 ).ToList() ?? new List<GetAllPostsDTO>(),
@@ -156,7 +160,8 @@ namespace SchoolProject.Persistence.Services
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
                     LikeCount = c.LikeCount,
-                    CreatedDate = c.CreatedDate
+                    CreatedDate = c.CreatedDate,
+                    OwnersName = c.User.NickName
                 }).ToList() ?? new List<GetAllCommentsDTO>()
             };
         }

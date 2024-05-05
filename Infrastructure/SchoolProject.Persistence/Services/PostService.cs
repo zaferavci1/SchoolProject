@@ -67,10 +67,11 @@ namespace SchoolProject.Persistence.Services
 
 
         public async Task<(List<GetAllPostsDTO>, int totalCount)> GetAllAsync(int page, int size)
-        => (await _postQueryRepository.GetAll().Where(p => p.IsActive == true).Include(p => p.Comments).Skip(page * size).Take(size).Select(p => new GetAllPostsDTO
+        => (await _postQueryRepository.GetAll().Where(p => p.IsActive == true).Include(p=>p.User).Include(p => p.Comments).ThenInclude(c=>c.User).Skip(page * size).Take(size).Select(p => new GetAllPostsDTO
         {
             UserId = userDataProtector.Protect(p.UserId.ToString()),
             Id = postDataProtector.Protect(p.Id.ToString()),
+            OwnersName = p.User.NickName,
             Comments = p.Comments.Select(c => new CommentDTO
             {
                 UserId =userDataProtector.Protect(c.UserId.ToString()),
@@ -78,17 +79,18 @@ namespace SchoolProject.Persistence.Services
                 Id = commentDataProtector.Protect(c.Id.ToString()),
                 Content = c.Content,
                 LikeCount = c.LikeCount,
-                CreatedDate = c.CreatedDate
+                CreatedDate = c.CreatedDate,
+                OwnersName = c.User.NickName
             }).ToList(),
             Title = p.Title,
             Content = p.Content,
             LikeCount = p.LikeCount,
-            CreatedDate = p.CreatedDate
+            CreatedDate = p.CreatedDate,
         }).ToListAsync(), await _postQueryRepository.GetAll().CountAsync());
 
         public async Task<GetByIdPostDTO> GetByIdAsync(string id)
         {
-            Post post = await _postQueryRepository.Table.Include(p => p.Comments).FirstOrDefaultAsync(p => p.Id == Guid.Parse(postDataProtector.Unprotect(id)));
+            Post post = await _postQueryRepository.Table.Include(p=>p.User).Include(p => p.Comments).ThenInclude(c=>c.User).FirstOrDefaultAsync(p => p.Id == Guid.Parse(postDataProtector.Unprotect(id)));
             return new()
             {
                 UserId = userDataProtector.Protect(post.UserId.ToString()),
@@ -100,12 +102,14 @@ namespace SchoolProject.Persistence.Services
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
                     LikeCount = c.LikeCount,
-                    CreatedDate = c.CreatedDate
+                    CreatedDate = c.CreatedDate,
+                    OwnersName = c.User.NickName
                 }).ToList() ?? new List<CommentDTO>(),
                 Content = post.Content,
                 Title = post.Title,
                 likeCount = post.LikeCount,
-                CreatedDate = post.CreatedDate
+                CreatedDate = post.CreatedDate,
+                OwnersName = post.User.NickName
             };
         }
 

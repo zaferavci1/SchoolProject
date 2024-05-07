@@ -42,7 +42,6 @@ namespace SchoolProject.Persistence.Services
                 Content = comment.Content,
                 LikeCount = comment.LikeCount,
                 CreatedDate = comment.CreatedDate,
-                OwnersName = comment.User.NickName
             };
 
         }
@@ -71,16 +70,7 @@ namespace SchoolProject.Persistence.Services
                 LikeCount = c.LikeCount,
                 UserId = userDataProtector.Protect(c.UserId.ToString()),
                 PostId = postDataProtector.Protect(c.PostId.ToString()),
-                CreatedDate = c.CreatedDate,
-                ReplyComments = c.ReplyComments.Select(x => new CommentDTO()
-                {
-                    PostId = postDataProtector.Protect(x.PostId.ToString()),
-                    Id = commentdataProtector.Protect(x.Id.ToString()),
-                    Content = x.Content,
-                    LikeCount = x.LikeCount,
-                    CreatedDate = x.CreatedDate,
-                    OwnersName = x.User.NickName 
-                }).ToList()
+                CreatedDate = c.CreatedDate
             }).ToListAsync(), _commentQueryRepository.GetAll().Count() );
 
         

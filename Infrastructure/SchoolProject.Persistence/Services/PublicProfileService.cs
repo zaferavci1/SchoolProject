@@ -47,7 +47,9 @@ namespace SchoolProject.Persistence.Services
             User? user = await _userQueryRepository.Table
                 .Include(u => u.Posts)
                 .ThenInclude(c => c.Comments)
+                .ThenInclude(u=>u.User)
                 .Include(c=>c.Comments)
+                .ThenInclude(c=>c.ReplyComments)
                 .Include(u => u.Followees)
                 .Include(u => u.Followers)
                 .FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
@@ -57,7 +59,7 @@ namespace SchoolProject.Persistence.Services
                user => user.Id,
                (uf, user) => new PublicProfilesDTO
                {
-                   ProfilePictureId = user.ProfilePictureId, // Assuming ProfilePictureId exists on your 'User' domain entity
+                   ProfilePictureId = user.ProfilePictureId,
                    Id = user.Id.ToString(),
                    Name = user.Name,
                    Surname = user.Surname,
@@ -70,7 +72,7 @@ namespace SchoolProject.Persistence.Services
                 user => user.Id,
                 (uf, user) => new PublicProfilesDTO
                 {
-                    ProfilePictureId = user.ProfilePictureId, // Assuming ProfilePictureId exists on your 'User' domain entity
+                    ProfilePictureId = user.ProfilePictureId,
                     Id = user.Id.ToString(),
                     Name = user.Name,
                     Surname = user.Surname,
@@ -93,13 +95,19 @@ namespace SchoolProject.Persistence.Services
                     Content = p.Content,
                     Title = p.Title,
                     LikeCount = p.LikeCount,
+                    CreatedDate = p.CreatedDate,
+                    OwnersName= p.User.NickName,
+                    ProfilePictureId = p.User.ProfilePictureId,
                     Comments = p.Comments.Select(c => new CommentDTO()
                     {
                         UserId = userDataProtector.Protect(c.UserId.ToString()),
                         PostId = postDataProtector.Protect(c.PostId.ToString()),
                         Id = commentDataProtector.Protect(c.Id.ToString()),
                         Content = c.Content,
-                        LikeCount = c.LikeCount
+                        LikeCount = c.LikeCount,
+                        CreatedDate = c.CreatedDate,
+                        OwnersName = c.User.NickName,
+                        ProfilePictureId = c.User.ProfilePictureId
                     }).ToList() ?? new List<CommentDTO>()
                 }).ToList() ?? new List<GetAllPostsDTO>(),
                 Comments = user.Comments.Select(c => new GetAllCommentsDTO()
@@ -110,7 +118,9 @@ namespace SchoolProject.Persistence.Services
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
                     LikeCount = c.LikeCount,
-                    ReplyComments = c.ReplyComments.Select(rc=> rc.Adapt<CommentDTO>()).ToList() ?? new List<CommentDTO>(),
+                    CreatedDate = c.CreatedDate,
+                    OwnersName = user.NickName,
+                    ProfilePictureId= user.ProfilePictureId
                 }).ToList() ?? new List<GetAllCommentsDTO>()
             };
             Console.WriteLine();

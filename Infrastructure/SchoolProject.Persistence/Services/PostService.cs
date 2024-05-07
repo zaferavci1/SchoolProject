@@ -72,6 +72,7 @@ namespace SchoolProject.Persistence.Services
             UserId = userDataProtector.Protect(p.UserId.ToString()),
             Id = postDataProtector.Protect(p.Id.ToString()),
             OwnersName = p.User.NickName,
+            ProfilePictureId = p.User.ProfilePictureId,
             Comments = p.Comments.Select(c => new CommentDTO
             {
                 UserId =userDataProtector.Protect(c.UserId.ToString()),
@@ -80,7 +81,8 @@ namespace SchoolProject.Persistence.Services
                 Content = c.Content,
                 LikeCount = c.LikeCount,
                 CreatedDate = c.CreatedDate,
-                OwnersName = c.User.NickName
+                OwnersName = c.User.NickName,
+                ProfilePictureId = c.User.ProfilePictureId
             }).ToList(),
             Title = p.Title,
             Content = p.Content,
@@ -103,13 +105,15 @@ namespace SchoolProject.Persistence.Services
                     Content = c.Content,
                     LikeCount = c.LikeCount,
                     CreatedDate = c.CreatedDate,
-                    OwnersName = c.User.NickName
+                    OwnersName = c.User.NickName,
+                    ProfilePictureId = c.User.ProfilePictureId
                 }).ToList() ?? new List<CommentDTO>(),
                 Content = post.Content,
                 Title = post.Title,
                 likeCount = post.LikeCount,
                 CreatedDate = post.CreatedDate,
-                OwnersName = post.User.NickName
+                OwnersName = post.User.NickName,
+                ProfilePictureId = post.User.ProfilePictureId,
             };
         }
 

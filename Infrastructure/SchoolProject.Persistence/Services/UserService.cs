@@ -217,7 +217,7 @@ namespace SchoolProject.Persistence.Services
 
         public async Task<(List<GetAllPostsDTO>,  int totalCount)> GetUsersPostsAsync(string id)
         {
-            User? user = await _userQueryRepository.Table.Include(u => u.Posts).ThenInclude(c => c.Comments).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)) || u.IsActive == true);
+            User? user = await _userQueryRepository.Table.Include(u => u.Posts).ThenInclude(c => c.Comments).ThenInclude(c=>c.User).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)) || u.IsActive == true);
             return new(user?.Posts.Where(p => p.IsActive == true).Select(p => new GetAllPostsDTO()
             {
                 UserId = userDataProtector.Protect(p.UserId.ToString()),
@@ -226,6 +226,8 @@ namespace SchoolProject.Persistence.Services
                 Title = p.Title,
                 LikeCount = p.LikeCount,
                 CreatedDate = p.CreatedDate,
+                OwnersName = p.User.NickName,
+                ProfilePictureId = p.User.ProfilePictureId,
                 Comments = p.Comments.Where(c => c.IsActive == true).Select(c => new CommentDTO()
                 {
                     UserId = userDataProtector.Protect(c.UserId.ToString()),
@@ -233,7 +235,9 @@ namespace SchoolProject.Persistence.Services
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
                     LikeCount=c.LikeCount,
-                    CreatedDate = c.CreatedDate
+                    CreatedDate = c.CreatedDate,
+                    OwnersName = c.User.NickName,
+                    ProfilePictureId = c.User.ProfilePictureId
                 }).ToList() ?? new List<CommentDTO>()
             }).ToList() ?? new List<GetAllPostsDTO>(),user.Posts.Count());
         }

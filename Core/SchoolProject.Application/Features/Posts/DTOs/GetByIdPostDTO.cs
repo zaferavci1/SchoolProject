@@ -14,6 +14,7 @@ namespace SchoolProject.Application.Features.Posts.DTOs
         public string Content { get; set; }
         public int likeCount { get; set; }
         public DateTime CreatedDate { get; set; }
+        public byte ProfilePictureId { get; set; }
         public List<CommentDTO> Comments { get; set; }
     }
 }

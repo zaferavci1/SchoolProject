@@ -13,7 +13,7 @@ namespace SchoolProject.Application.Features.PublicProfiles.DTOs
         public string? NickName { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; } 
-        public byte ProfilePictureId { get; set; }
+        public byte? ProfilePictureId { get; set; }
         public List<PublicProfilesDTO>? Followers { get; set; }
         public List<PublicProfilesDTO>? Follows { get; set; }
         public List<GetAllPostsDTO>? Posts { get; set; }

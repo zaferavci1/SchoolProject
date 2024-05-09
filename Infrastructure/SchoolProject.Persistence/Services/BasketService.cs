@@ -63,7 +63,15 @@ namespace SchoolProject.Persistence.Services
             UserId = userDataProtector.Protect(b.UserId.ToString()),
             Id = basketDataProtector.Protect(b.Id.ToString()),
             BasketName = b.BasketName,
-            Cryptos = b.Cryptos.Select(c => c.Adapt<CryptoDTO>()).ToList() ?? new List<CryptoDTO>(),
+            Cryptos = b.Cryptos
+            .GroupBy(c => c.Symbol)
+            .Select(g => new CryptoDTO
+            {
+                Symbol = g.Key,
+                Cost = g.Sum(p=>p.Cost * p.Amount),
+                Amount = g.Sum(c => c.Amount),
+                CreatedDate = g.Min(c => c.CreatedDate)  // First created date
+            }).ToList() ?? new List<CryptoDTO>(),
             LikeCount = b.LikeCount,
             CreatedDate = b.CreatedDate
         }).ToListAsync() ,await  basketQueryRepository.GetAll().CountAsync());

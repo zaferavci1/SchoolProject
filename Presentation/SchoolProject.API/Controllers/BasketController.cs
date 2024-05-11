@@ -17,7 +17,6 @@ namespace SchoolProject.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [Authorize(AuthenticationSchemes = "User")]
     public class BasketController : ControllerBase
     {
         private readonly IMediator _mediator;

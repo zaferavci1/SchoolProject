@@ -208,3 +208,4 @@
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/obj/Debug/net7.0/SchoolProject.API.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/obj/Debug/net7.0/SchoolProject.API.genruntimeconfig.cache
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/obj/Debug/net7.0/ref/SchoolProject.API.dll
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Presentation/SchoolProject.API/obj/Debug/net7.0/SchoolProject.API.sourcelink.json

@@ -58,6 +58,7 @@
     <None Remove="Features\Baskets\Rules\" />
     <None Remove="Exceptions\" />
     <None Remove="Features\Baskets\Commands\AddCrypto\" />
+    <None Remove="Features\PublicProfiles\Queries\GetUserByNickName\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -113,6 +114,7 @@
     <Folder Include="Features\Baskets\Rules\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Features\Baskets\Commands\AddCrypto\" />
+    <Folder Include="Features\PublicProfiles\Queries\GetUserByNickName\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolProject.Domain\SchoolProject.Domain.csproj" />

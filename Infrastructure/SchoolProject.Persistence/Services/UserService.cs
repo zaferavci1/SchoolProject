@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Application.Abstraction.Repository.Users;
 using SchoolProject.Application.Abstraction.Services;
+using SchoolProject.Application.Features.Baskets.DTOs;
 using SchoolProject.Application.Features.Comments.DTOs;
 using SchoolProject.Application.Features.Posts.DTOs;
 using SchoolProject.Application.Features.PublicProfiles.DTOs;
@@ -21,6 +22,7 @@ namespace SchoolProject.Persistence.Services
         private readonly IDataProtector userDataProtector;
         private readonly IDataProtector postDataProtector;
         private readonly IDataProtector commentDataProtector;
+        private readonly IDataProtector basketDataProtector;
         SchoolProjectDbContext context;
 
         public UserService(IUserQueryRepository userQueryRepository, IUserCommandRepository userCommandRepository, IDataProtectionProvider dataProtectionProvider, SchoolProjectDbContext context)
@@ -30,6 +32,7 @@ namespace SchoolProject.Persistence.Services
             userDataProtector = dataProtectionProvider.CreateProtector("Users");
             postDataProtector = dataProtectionProvider.CreateProtector("Posts");
             commentDataProtector = dataProtectionProvider.CreateProtector("Comments");
+            basketDataProtector = dataProtectionProvider.CreateProtector("Baskets");
             this.context = context;
         }
 
@@ -96,6 +99,8 @@ namespace SchoolProject.Persistence.Services
                 .ThenInclude(c => c.User)
                 .Include(u=>u.Followees)
                 .Include(u=>u.Followers)
+                .Include(u=>u.Baskets)
+                .ThenInclude(b=> b.Cryptos)
                 .FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
             List<PublicProfilesDTO> followers = user.Followers.Join(
                 _userQueryRepository.GetAll(),
@@ -162,7 +167,26 @@ namespace SchoolProject.Persistence.Services
                     LikeCount = c.LikeCount,
                     CreatedDate = c.CreatedDate,
                     OwnersName = c.User.NickName
-                }).ToList() ?? new List<GetAllCommentsDTO>()
+                }).ToList() ?? new List<GetAllCommentsDTO>(),
+                Baskets = user.Baskets?.Select(b=> new GetAllBasketsDTO()
+                {
+                    UserId = userDataProtector.Protect(user.Id.ToString()),
+                    Id = basketDataProtector.Protect(b.Id.ToString()),
+                    OwnersName = user.NickName,
+                    BasketName = b.BasketName,
+                    LikeCount = b.LikeCount,
+                    CreatedDate = b.CreatedDate,
+                    Cryptos = b.Cryptos
+                        .GroupBy(c => c.Symbol)
+                        .Select(g => new CryptoDTO
+                        {
+                            Symbol = g.Key,
+                            Cost = g.Sum(p=>p.Cost * p.Amount),
+                            Amount = g.Sum(c => c.Amount),
+                            CreatedDate = g.Min(c => c.CreatedDate)
+                        }).ToList() ?? new List<CryptoDTO>(),   
+                }).ToList() ?? new List<GetAllBasketsDTO>()
+                
             };
         }
 

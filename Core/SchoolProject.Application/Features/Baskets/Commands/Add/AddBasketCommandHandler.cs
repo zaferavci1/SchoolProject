@@ -13,9 +13,11 @@ namespace SchoolProject.Application.Features.Baskets.Commands.Add
 	{
 		private IBasketService _basketService;
         UserBusinessRules _userBusinessRules;
+        BasketBusinessRules _basketBusinessRules;
         public AddBasketCommandHandler(IBasketService basketService, BasketBusinessRules basketBusinessRules, UserBusinessRules userBusinessRules)
         {
             _basketService = basketService;
+            _basketBusinessRules = basketBusinessRules;
             _userBusinessRules = userBusinessRules;
         }
 
@@ -23,6 +25,7 @@ namespace SchoolProject.Application.Features.Baskets.Commands.Add
         {
             await _userBusinessRules.IsUserExistAsync(request.UserId);
             await _userBusinessRules.IsUserActiveAsync(request.UserId);
+            await _basketBusinessRules.IsBasketNameExistInUsersBaskets(request.BasketName, request.UserId);
             BasketDTO basketDTO = await _basketService.AddAsync(request.Adapt<AddBasketDTO>());
             return new SuccessDataResult<BasketDTO>("Sepet Başarıyla Oluşturuldu", basketDTO);
 

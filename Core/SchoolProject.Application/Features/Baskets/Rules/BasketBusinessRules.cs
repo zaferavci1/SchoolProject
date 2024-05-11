@@ -58,5 +58,24 @@ namespace SchoolProject.Application.Features.Baskets.Rules
             Basket? basket = await _basketQueryRepository.GetByIdAsync(_basketDataProtector.Unprotect(basketId));
             if (basket.UserId != Guid.Parse(_userDataProtector.Unprotect(userId))) throw new CustomException<BasketDTO>("Owner Not Correct");
         }
+        public async Task IsBasketNameExistInUsersBaskets(string basketName, string userId)
+        {
+            User? user =await  _userQueryRepository.Table.Include(u => u.Baskets)
+                .FirstOrDefaultAsync(u => u.Id == Guid.Parse(_userDataProtector.Unprotect(userId)));
+            if (user.Baskets.Any(b=>b.BasketName == basketName))  throw new CustomException<BasketDTO>("Basket Name Allready Used By Current User");
+        }
+        public async Task IsNewBasketNameUsedBeforeForCurrentUser(string basketName, string userId,string basketId)
+        {
+            User? user =await  _userQueryRepository.Table.Include(u => u.Baskets)
+                .FirstOrDefaultAsync(u => u.Id == Guid.Parse(_userDataProtector.Unprotect(userId)));
+            Basket basket =await _basketQueryRepository.GetByIdAsync(_basketDataProtector.Unprotect(basketId));
+            if (basketName != basket.BasketName)
+            {
+                if (user.Baskets.Any(b=>b.BasketName == basketName))  throw new CustomException<BasketDTO>("Basket Name Allready Used By Current User");
+            }
+            
+            
+            
+        }
     }
 }

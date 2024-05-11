@@ -1,63 +1,47 @@
 ﻿<Properties StartupConfiguration="{C3121B99-5EE8-4404-BD10-69F4DB95ED23}|https">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/Features/Baskets/Commands/Delete/DeleteBasketCommandHandler.cs" relfile="Core/SchoolProject.Application/Features/Baskets/Commands/Delete/DeleteBasketCommandHandler.cs" line="32" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Core/SchoolProject.Application/Abstraction/Services/Authentications/IInternalAuthentication.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/SchoolProject.Persistence/Services/BasketService.cs">
     <Files>
-      <File FileName="Core/SchoolProject.Application/Features/Auth/Commands/Login/LoginUserCommandHandler.cs" />
-      <File FileName="Core/SchoolProject.Application/Features/Baskets/Commands/Update/UpdateBasketCommandHandler.cs" />
-      <File FileName="Presentation/SchoolProject.API/Controllers/AuthController.cs" />
-      <File FileName="Presentation/SchoolProject.API/Program.cs" />
-      <File FileName="Core/SchoolProject.Application/Abstraction/Services/Authentications/IInternalAuthentication.cs" Line="1" Column="1" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/QueryRepository.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Users/Queries/GetByIdUsersPosts/GetByIdUsersPostQueryHandler.cs" />
+      <File FileName="Core/SchoolProject.Application/Abstraction/Services/IUserService.cs" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/UserService.cs" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/CommentService.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Comments/Commands/Delete/DeleteCommentCommandHandler.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Baskets/Commands/Delete/DeleteBasketCommandHandler.cs" />
+      <File FileName="Core/SchoolProject.Domain/Entities/Basket.cs" />
+      <File FileName="Core/SchoolProject.Application/Abstraction/Services/IPostService.cs" />
+      <File FileName="Core/SchoolProject.Application/Abstraction/Services/ICommentService.cs" Line="1" Column="1" />
+      <File FileName="Core/SchoolProject.Application/Abstraction/Services/IBasketService.cs" Line="1" Column="1" />
+      <File FileName="Core/SchoolProject.Application/Abstraction/Services/INotificationService.cs" />
+      <File FileName="Core/SchoolProject.Application/Abstraction/Services/IAuthService.cs" />
+      <File FileName="Core/SchoolProject.Application/Abstraction/Services/IPublicProfileService.cs" />
+      <File FileName="Core/SchoolProject.Application/Abstraction/Services/ICryptoService.cs" Line="10" Column="25" />
+      <File FileName="Infrastructure/SchoolProject.Persistence/Services/BasketService.cs" Line="86" Column="54" />
+      <File FileName="Core/SchoolProject.Application/Features/Users/Rules/UserBusinessRules.cs" Line="1" Column="1" />
+      <File FileName="Presentation/SchoolProject.API/Controllers/UserController.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Users/Commands/Follow/FollowUserCommandRequest.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Users/Commands/Follow/FollowUserCommandHandler.cs" />
+      <File FileName="Core/SchoolProject.Application/Features/Baskets/Commands/AddCrypto/AddCryptoCommandHandler.cs" Line="34" Column="58" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SchoolProject" expanded="True">
+          <Node name="SchoolProject">
             <Node name="Core" expanded="True">
               <Node name="SchoolProject.Application" expanded="True">
                 <Node name="Abstraction" expanded="True">
-                  <Node name="Services" expanded="True">
-                    <Node name="Authentications" expanded="True">
-                      <Node name="IInternalAuthentication.cs" selected="True" />
-                    </Node>
-                  </Node>
+                  <Node name="Services" expanded="True" />
                 </Node>
                 <Node name="Features" expanded="True">
-                  <Node name="Auth" expanded="True">
-                    <Node name="Commands" expanded="True">
-                      <Node name="Login" expanded="True" />
-                    </Node>
-                    <Node name="DTOs" expanded="True" />
-                  </Node>
                   <Node name="Baskets" expanded="True">
                     <Node name="Commands" expanded="True">
-                      <Node name="Update" expanded="True" />
-                    </Node>
-                  </Node>
-                  <Node name="Posts" expanded="True">
-                    <Node name="Commands" expanded="True">
-                      <Node name="Like" expanded="True" />
-                      <Node name="Update" expanded="True" />
-                    </Node>
-                    <Node name="Rules" expanded="True" />
-                  </Node>
-                  <Node name="Users" expanded="True">
-                    <Node name="Commands" expanded="True">
-                      <Node name="Add" expanded="True" />
-                      <Node name="Delete" expanded="True" />
-                      <Node name="Update" expanded="True" />
+                      <Node name="AddCrypto" expanded="True" />
                     </Node>
                     <Node name="DTOs" expanded="True" />
-                    <Node name="Queries" expanded="True">
-                      <Node name="GetById" expanded="True" />
-                    </Node>
+                  </Node>
+                  <Node name="Users" expanded="True">
                     <Node name="Rules" expanded="True" />
                   </Node>
                 </Node>
@@ -68,10 +52,8 @@
             </Node>
             <Node name="Infrastructure" expanded="True">
               <Node name="SchoolProject.Persistence" expanded="True">
-                <Node name="Context" expanded="True" />
-                <Node name="Services" expanded="True">
-                  <Node name="Mappings" expanded="True" />
-                </Node>
+                <Node name="Migrations" expanded="True" />
+                <Node name="Services" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -79,4 +61,9 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Presentation.SchoolProject.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

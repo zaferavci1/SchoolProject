@@ -23,7 +23,7 @@ namespace SchoolProject.Domain.Entities
         public List<Comment> Comments { get; set; }
         public List<CommentLike> CommentLikes { get; set; }
 
-        public List<Basket> Basket { get; set; }
+        public List<Basket> Baskets { get; set; }
         public List<BasketLike> BasketLikes { get; set; }
 
         public bool IsProfilePrivate { get; set; } = false;

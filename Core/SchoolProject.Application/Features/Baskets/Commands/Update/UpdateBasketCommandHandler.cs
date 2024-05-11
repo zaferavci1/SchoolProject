@@ -30,6 +30,7 @@ namespace SchoolProject.Application.Features.Baskets.Commands.Update
             await _basketBusinessRules.IsBasketExistAsync(request.Id);
             await _basketBusinessRules.IsBasketActiveAsync(request.Id);
             await _basketBusinessRules.IsOwnerCorrectAsync(request.Id, request.UserId);
+            await _basketBusinessRules.IsNewBasketNameUsedBeforeForCurrentUser(request.BasketName, request.UserId,request.Id);
             BasketDTO basketDTO = await _service.UpdateAsync(request.Adapt<UpdateBasketDTO>());
             return new SuccessDataResult<BasketDTO>("Sepet Başarıyla Güncellendi", basketDTO);
         }

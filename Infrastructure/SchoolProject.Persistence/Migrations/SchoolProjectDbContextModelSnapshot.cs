@@ -347,11 +347,13 @@ namespace SchoolProject.Persistence.Migrations
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.Basket", b =>
                 {
-                    b.HasOne("SchoolProject.Domain.Entities.User", null)
-                        .WithMany("Basket")
+                    b.HasOne("SchoolProject.Domain.Entities.User", "User")
+                        .WithMany("Baskets")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.BasketLike", b =>
@@ -529,9 +531,9 @@ namespace SchoolProject.Persistence.Migrations
 
             modelBuilder.Entity("SchoolProject.Domain.Entities.User", b =>
                 {
-                    b.Navigation("Basket");
-
                     b.Navigation("BasketLikes");
+
+                    b.Navigation("Baskets");
 
                     b.Navigation("CommentLikes");
 

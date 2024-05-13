@@ -36,49 +36,47 @@ Make sure you have the following installed:
    cd SchoolProject
 
 2. Set up the database:
--Create a new database in your SQL Server or another compatible database.
--Update the connection string in ['appsettings.json'](https://github.com/zaferavci1/SchoolProject/blob/main/Presentation/SchoolProject.API/appsettings.json)
+- Create a new database in your SQL Server or another compatible database.
+- Update the connection string in ['appsettings.json'](https://github.com/zaferavci1/SchoolProject/blob/main/Presentation/SchoolProject.API/appsettings.json).
 
 3. Apply database migrations:
    ```bash
    cd SchoolProject/Infrastructure/SchoolProject.Persistence
    dotnet ef database update
 
-4. Install dependencies.
+4. Install dependencies:
    ```bash
    cd ../../Presentation/SchoolProject.API
    dotnet restore
    dotnet build 
 
-5. Run the application.
+5. Run the application:
    ```bash
    dotnet run
 
-Your CoinMarket API should now be running locally. You can access it at https://localhost:5001 (or the port specified in your launchSettings.json).:
+Your CoinMarket API should now be running locally. You can access it at https://localhost:5001 (or the port specified in your launchSettings.json).
 
-##Example Requests
-You can use tools like Postman or curl to test the API endpoints. Here’s an example using curl:
+## Example Requests
 
-Here is an Register request:
-    ```bash
-    
-    curl -X POST https://localhost:5001/api/Auth/Register -H "Content-Type: application/json" -d '{
-        "nickName": "myNickName",
-        "name": "MyName",
-        "surname": "MySurname",
-        "mail": "example@gmail.com",
-        "phoneNumber": "+30 380 4534342",
-        "password": "ReallyStrongPassword1.!"
-      }'
+You can use tools like Postman or curl to test the API endpoints.
 
-Here is an request for get your users:
+Here is an curl request for user registration:
 
-    ```bash
-  
-       curl -X 'GET' \
-      'https://localhost:7154/api/User/GetAll?Page=0&Size=10' \
-      -H 'accept: */*'  \
-      -H  "Authorization: Bearer your_jwt_token"
+      curl -X POST https://localhost:5001/api/Auth/Register -H "Content-Type: application/json" -d '{
+           "nickName": "myNickName",
+           "name": "MyName",
+           "surname": "MySurname",
+           "mail": "example@gmail.com",
+           "phoneNumber": "+30 380 4534342",
+           "password": "ReallyStrongPassword1.!"
+         }'
+
+Here is an curl request for get your users:
+
+      curl -X 'GET' \
+         'https://localhost:7154/api/User/GetAll?Page=0&Size=10' \
+         -H 'accept: */*'  \
+         -H  "Authorization: Bearer your_jwt_token"
 
 Make sure you Replace your_jwt_token with the actual JWT token you receive upon successful authentication.
 

@@ -74,7 +74,7 @@ Here is an curl request for user registration:
 Here is an curl request for get your users:
 
       curl -X 'GET' \
-         'https://localhost:7154/api/User/GetAll?Page=0&Size=10' \
+         'https://localhost:5001/api/User/GetAll?Page=0&Size=10' \
          -H 'accept: */*'  \
          -H  "Authorization: Bearer your_jwt_token"
 

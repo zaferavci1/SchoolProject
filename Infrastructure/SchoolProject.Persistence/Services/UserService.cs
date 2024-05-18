@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Application.Abstraction.Repository.Users;
 using SchoolProject.Application.Abstraction.Services;
+using SchoolProject.Application.Features.Baskets.DTOs;
 using SchoolProject.Application.Features.Comments.DTOs;
 using SchoolProject.Application.Features.Posts.DTOs;
 using SchoolProject.Application.Features.PublicProfiles.DTOs;
@@ -21,6 +22,7 @@ namespace SchoolProject.Persistence.Services
         private readonly IDataProtector userDataProtector;
         private readonly IDataProtector postDataProtector;
         private readonly IDataProtector commentDataProtector;
+        private readonly IDataProtector basketDataProtector;
         SchoolProjectDbContext context;
 
         public UserService(IUserQueryRepository userQueryRepository, IUserCommandRepository userCommandRepository, IDataProtectionProvider dataProtectionProvider, SchoolProjectDbContext context)
@@ -30,6 +32,7 @@ namespace SchoolProject.Persistence.Services
             userDataProtector = dataProtectionProvider.CreateProtector("Users");
             postDataProtector = dataProtectionProvider.CreateProtector("Posts");
             commentDataProtector = dataProtectionProvider.CreateProtector("Comments");
+            basketDataProtector = dataProtectionProvider.CreateProtector("Baskets");
             this.context = context;
         }
 
@@ -52,7 +55,8 @@ namespace SchoolProject.Persistence.Services
                     Name = user.Name,
                     NickName = user.NickName,
                     PhoneNumber = user.PhoneNumber,
-                    Surname = user.Surname
+                    Surname = user.Surname,
+                    ProfilePictureId = user.ProfilePictureId
                 };
             
         }
@@ -69,7 +73,8 @@ namespace SchoolProject.Persistence.Services
                 Name = user.Name,
                 Surname = user.Surname,
                 NickName = user.NickName,
-                PhoneNumber = user.PhoneNumber
+                PhoneNumber = user.PhoneNumber,
+                ProfilePictureId = user.ProfilePictureId
             };
         }
 
@@ -81,16 +86,21 @@ namespace SchoolProject.Persistence.Services
                 Name = u.Name,
                 Surname = u.Surname,
                 NickName = u.NickName,
-                PhoneNumber = u.PhoneNumber
+                PhoneNumber = u.PhoneNumber,
+                ProfilePictureId = u.ProfilePictureId
             }).ToListAsync(), await _userQueryRepository.GetAll().CountAsync());
 
         public async Task<GetByIdUserDTO> GetByIdAsync(string id)
         {
             User?  user = await _userQueryRepository
-                .Table.Include(u => u.Posts)
+                .Table
+                .Include(c=>c.Posts)
                 .ThenInclude(c => c.Comments)
+                .ThenInclude(c => c.User)
                 .Include(u=>u.Followees)
                 .Include(u=>u.Followers)
+                .Include(u=>u.Baskets)
+                .ThenInclude(b=> b.Cryptos)
                 .FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
             List<PublicProfilesDTO> followers = user.Followers.Join(
                 _userQueryRepository.GetAll(),
@@ -101,7 +111,8 @@ namespace SchoolProject.Persistence.Services
                     Id = userDataProtector.Protect(user.Id.ToString()),
                     Name = user.Name,
                     Surname = user.Surname,
-                    NickName = user.NickName
+                    NickName = user.NickName,
+                    ProfilePictureId = user.ProfilePictureId
                 }).ToList();
             List<PublicProfilesDTO> followees = user.Followees.Join(
                 _userQueryRepository.GetAll(),
@@ -112,7 +123,8 @@ namespace SchoolProject.Persistence.Services
                     Id = userDataProtector.Protect(user.Id.ToString()),
                     Name = user.Name,
                     Surname = user.Surname,
-                    NickName = user.NickName
+                    NickName = user.NickName,
+                    ProfilePictureId = user.ProfilePictureId
                 }).ToList();
             return new()
             {
@@ -124,6 +136,7 @@ namespace SchoolProject.Persistence.Services
                 PhoneNumber = user.PhoneNumber,
                 Followers = followers,
                 Follows = followees,
+                ProfilePictureId = user.ProfilePictureId,
                 Posts = user.Posts?.Select(p => new GetAllPostsDTO()
                 {
                     UserId = userDataProtector.Protect(p.UserId.ToString()),
@@ -131,13 +144,17 @@ namespace SchoolProject.Persistence.Services
                     Content = p.Content,
                     Title = p.Title,
                     LikeCount = p.LikeCount,
+                    CreatedDate = p.CreatedDate,
+                    OwnersName = user.NickName,
                     Comments = p.Comments?.Select(c => new CommentDTO()
                     {
                         UserId = userDataProtector.Protect(c.UserId.ToString()),
                         PostId = postDataProtector.Protect(c.PostId.ToString()),
                         Id = commentDataProtector.Protect(c.Id.ToString()),
                         Content = c.Content,
-                        LikeCount = c.LikeCount
+                        LikeCount = c.LikeCount,
+                        CreatedDate = c.CreatedDate,
+                        OwnersName = c.User.NickName
                     }).ToList() ?? new List<CommentDTO>()
                 }
                 ).ToList() ?? new List<GetAllPostsDTO>(),
@@ -147,8 +164,29 @@ namespace SchoolProject.Persistence.Services
                     UserId = userDataProtector.Protect(c.UserId.ToString()),
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
-                    LikeCount = c.LikeCount
-                }).ToList() ?? new List<GetAllCommentsDTO>()
+                    LikeCount = c.LikeCount,
+                    CreatedDate = c.CreatedDate,
+                    OwnersName = c.User.NickName
+                }).ToList() ?? new List<GetAllCommentsDTO>(),
+                Baskets = user.Baskets?.Select(b=> new GetAllBasketsDTO()
+                {
+                    UserId = userDataProtector.Protect(user.Id.ToString()),
+                    Id = basketDataProtector.Protect(b.Id.ToString()),
+                    OwnersName = user.NickName,
+                    BasketName = b.BasketName,
+                    LikeCount = b.LikeCount,
+                    CreatedDate = b.CreatedDate,
+                    Cryptos = b.Cryptos
+                        .GroupBy(c => c.Symbol)
+                        .Select(g => new CryptoDTO
+                        {
+                            Symbol = g.Key,
+                            Cost = g.Sum(p=>p.Cost * p.Amount),
+                            Amount = g.Sum(c => c.Amount),
+                            CreatedDate = g.Min(c => c.CreatedDate)
+                        }).ToList() ?? new List<CryptoDTO>(),   
+                }).ToList() ?? new List<GetAllBasketsDTO>()
+                
             };
         }
 
@@ -167,8 +205,8 @@ namespace SchoolProject.Persistence.Services
                 Surname = user.Surname,
                 NickName = user.NickName,
                 Mail = user.Mail,
-                PhoneNumber = user.PhoneNumber
-
+                PhoneNumber = user.PhoneNumber,
+                ProfilePictureId = user.ProfilePictureId
             };
         }
         public async Task<(UserDTO,UserDTO)> FollowAsync(string user1Id, string user2Id)
@@ -188,6 +226,7 @@ namespace SchoolProject.Persistence.Services
                 Name = user1.Name,
                 Surname = user1.Surname,
                 NickName = user1.NickName,
+                ProfilePictureId = user1.ProfilePictureId
             },
             new()
             {
@@ -195,27 +234,34 @@ namespace SchoolProject.Persistence.Services
                 Name = user2.Name,
                 Surname = user2.Surname,
                 NickName = user2.NickName,
+                ProfilePictureId = user2.ProfilePictureId
             }
             );
         }
 
         public async Task<(List<GetAllPostsDTO>,  int totalCount)> GetUsersPostsAsync(string id)
         {
-            User? user = await _userQueryRepository.Table.Include(u => u.Posts).ThenInclude(c => c.Comments).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
-            return new(user?.Posts.Select(p => new GetAllPostsDTO()
+            User? user = await _userQueryRepository.Table.Include(u => u.Posts).ThenInclude(c => c.Comments).ThenInclude(c=>c.User).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)) || u.IsActive == true);
+            return new(user?.Posts.Where(p => p.IsActive == true).Select(p => new GetAllPostsDTO()
             {
                 UserId = userDataProtector.Protect(p.UserId.ToString()),
                 Id = postDataProtector.Protect(p.Id.ToString()),
                 Content = p.Content,
                 Title = p.Title,
                 LikeCount = p.LikeCount,
-                Comments = p.Comments.Select(c => new CommentDTO()
+                CreatedDate = p.CreatedDate,
+                OwnersName = p.User.NickName,
+                ProfilePictureId = p.User.ProfilePictureId,
+                Comments = p.Comments.Where(c => c.IsActive == true).Select(c => new CommentDTO()
                 {
                     UserId = userDataProtector.Protect(c.UserId.ToString()),
                     PostId = postDataProtector.Protect(c.PostId.ToString()),
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
-                    LikeCount=c.LikeCount
+                    LikeCount=c.LikeCount,
+                    CreatedDate = c.CreatedDate,
+                    OwnersName = c.User.NickName,
+                    ProfilePictureId = c.User.ProfilePictureId
                 }).ToList() ?? new List<CommentDTO>()
             }).ToList() ?? new List<GetAllPostsDTO>(),user.Posts.Count());
         }
@@ -223,13 +269,14 @@ namespace SchoolProject.Persistence.Services
         public async Task<(List<GetAllCommentsDTO>, int totalCount)> GetUsersCommentsAsync(string id)
         {
             User? user = await _userQueryRepository.Table.Include(c => c.Comments).FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
-            return new(user.Comments.Select(c=>new GetAllCommentsDTO()
+            return new(user.Comments.Where( c=>c.IsActive == true).Select(c=>new GetAllCommentsDTO()
             {
                 UserId = userDataProtector.Protect(c.UserId.ToString()),
                 PostId = postDataProtector.Protect(c.PostId.ToString()), 
                 Id = commentDataProtector.Protect(c.Id.ToString()),
                 Content = c.Content,
-                LikeCount = c.LikeCount
+                LikeCount = c.LikeCount,
+                CreatedDate = c.CreatedDate
             }).ToList() ?? new List<GetAllCommentsDTO>(), user.Comments.Count());
         }
         public async Task<(UserDTO, UserDTO)> UnFollowAsync(string user1Id, string user2Id)
@@ -249,6 +296,7 @@ namespace SchoolProject.Persistence.Services
                 Name = user1.Name,
                 Surname = user1.Surname,
                 NickName = user1.NickName,
+                ProfilePictureId = user1.ProfilePictureId
             },
             new()
             {
@@ -256,6 +304,7 @@ namespace SchoolProject.Persistence.Services
                 Name = user2.Name,
                 Surname = user2.Surname,
                 NickName = user2.NickName,
+                ProfilePictureId = user2.ProfilePictureId
             }
             );
         }

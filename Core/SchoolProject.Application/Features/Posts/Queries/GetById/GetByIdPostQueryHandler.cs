@@ -19,8 +19,8 @@ namespace SchoolProject.Application.Features.Posts.Queries.GetById
 
         public async Task<IDataResult<GetByIdPostDTO>> Handle(GetByIdPostQueryRequest request, CancellationToken cancellationToken)
         {
-            await _postBusinessRules.IsPostExist(request.Id);
-            await _postBusinessRules.IsPostActive(request.Id);
+            await _postBusinessRules.IsPostExistAsync(request.Id);
+            await _postBusinessRules.IsPostActiveAsync(request.Id);
 
             GetByIdPostDTO getByIdPostDTO = await _postService.GetByIdAsync(request.Id);
             return new SuccessDataResult<GetByIdPostDTO>("Gönderi getirildi.", getByIdPostDTO);

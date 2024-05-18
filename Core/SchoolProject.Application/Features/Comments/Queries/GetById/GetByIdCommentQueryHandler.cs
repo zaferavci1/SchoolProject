@@ -21,8 +21,8 @@ namespace SchoolProject.Application.Features.Baskets.Queries.GetById
         }
         public async Task<IDataResult<GetByIdCommentDTO>> Handle(GetByIdCommentQueryRequest request, CancellationToken cancellationToken)
         {
-            await _commentBusinessRules.IsCommentExist(request.Id);
-            await _commentBusinessRules.IsCommentActive(request.Id);
+            await _commentBusinessRules.IsCommentExistAsync(request.Id);
+            await _commentBusinessRules.IsCommentActiveAsync(request.Id);
 
             GetByIdCommentDTO getByIdCommentDTO = await _commentService.GetByIdAsync(request.Id);
             return new SuccessDataResult<GetByIdCommentDTO>("Yorum Getirildi", getByIdCommentDTO);

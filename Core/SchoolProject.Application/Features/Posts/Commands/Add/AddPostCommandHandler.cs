@@ -22,8 +22,8 @@ namespace SchoolProject.Application.Features.Posts.Commands.Add
 
         public async Task<IDataResult<PostDTO>> Handle(AddPostCommandRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.UserId);
-            await _userBusinessRules.IsUserActive(request.UserId);
+            await _userBusinessRules.IsUserExistAsync(request.UserId);
+            await _userBusinessRules.IsUserActiveAsync(request.UserId);
             PostDTO postDTO = await _postService.AddAsync(request.Adapt<AddPostDTO>());
             var data = new SuccessDataResult<PostDTO>(postDTO.Title + "Post eklendi.", postDTO);
             return data;

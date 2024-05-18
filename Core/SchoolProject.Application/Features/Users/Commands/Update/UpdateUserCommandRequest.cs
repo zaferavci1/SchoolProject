@@ -13,6 +13,9 @@ namespace SchoolProject.Application.Features.Users.Commands.Update
         public string Surname { get; set; }
         public string Mail { get; set; }
         public string PhoneNumber { get; set; }
+        
+        public byte ProfilePictureId { get; set; }
+        
         public bool IsProfilePrivate { get; set; }
     }
 }

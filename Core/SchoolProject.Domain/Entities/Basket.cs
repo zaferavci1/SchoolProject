@@ -4,6 +4,7 @@ namespace SchoolProject.Domain.Entities
 	public class Basket : BaseEntity
     {
 		public string BasketName { get; set; }
+		public User User { get; set; }
 		public Guid UserId { get; set; }
         public List<Crypto> Cryptos { get; set; }
         public List<BasketLike> BasketLikes { get; set; }

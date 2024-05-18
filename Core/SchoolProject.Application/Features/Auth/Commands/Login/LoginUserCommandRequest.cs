@@ -6,8 +6,8 @@ namespace SchoolProject.Application.Features.Auth.Commands.Login
 {
 	public class LoginUserCommandRequest :IRequest<IDataResult<LoginUserCommandResponse>>
 	{
-		public string userNameOrMail { get; set; }
-		public string password { get; set; }
+		public string UserNameOrMail { get; set; }
+		public string Password { get; set; }
 	}
 }
 

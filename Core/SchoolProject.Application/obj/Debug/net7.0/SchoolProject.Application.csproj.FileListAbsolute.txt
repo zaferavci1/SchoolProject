@@ -16,16 +16,16 @@
 /Users/zaferavci/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/ref/SchoolProject.Application.dll
 =======
 >>>>>>> Stashed changes
-/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.csproj.AssemblyReference.cache
-/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.GeneratedMSBuildEditorConfig.editorconfig
-/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.AssemblyInfoInputs.cache
-/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.AssemblyInfo.cs
-/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.csproj.CoreCompileInputs.cache
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/bin/Debug/net7.0/SchoolProject.Application.deps.json
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/bin/Debug/net7.0/SchoolProject.Application.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/bin/Debug/net7.0/SchoolProject.Application.pdb
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/bin/Debug/net7.0/SchoolProject.Domain.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/bin/Debug/net7.0/SchoolProject.Domain.pdb
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.csproj.AssemblyReference.cache
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.AssemblyInfoInputs.cache
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.AssemblyInfo.cs
+/Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.csproj.CoreCompileInputs.cache
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.csproj.CopyComplete
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/SchoolProject.Application.dll
 /Users/serkanyilmaz/Documents/GitHub/SchoolProject/Core/SchoolProject.Application/obj/Debug/net7.0/refint/SchoolProject.Application.dll

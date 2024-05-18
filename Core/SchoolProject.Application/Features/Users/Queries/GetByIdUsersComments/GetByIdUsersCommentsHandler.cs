@@ -23,8 +23,8 @@ namespace SchoolProject.Application.Features.Users.Queries.GetByIdUsersComments
 
         public async Task<IDataResult<GetByIdUsersCommentsQueryResponse>> Handle(GetByIdUsersCommentsQueryRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.userId);
-            await _userBusinessRules.IsUserActive(request.userId);
+            await _userBusinessRules.IsUserExistAsync(request.userId);
+            await _userBusinessRules.IsUserActiveAsync(request.userId);
             (List<GetAllCommentsDTO> comments, int totalCount) data = await _userService.GetUsersCommentsAsync(request.userId);
             return new SuccessDataResult<GetByIdUsersCommentsQueryResponse>("Veriler Listelendi.", new GetByIdUsersCommentsQueryResponse()
             {

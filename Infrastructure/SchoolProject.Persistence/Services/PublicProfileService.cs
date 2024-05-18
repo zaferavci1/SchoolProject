@@ -1,4 +1,5 @@
 ﻿using System;
+using Mapster;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Application.Abstraction.Repository.Posts;
@@ -13,16 +14,14 @@ namespace SchoolProject.Persistence.Services
 {
     public class PublicProfileService : IPublicProfileService
     {
-        private readonly IUserCommandRepository _userCommandRepository;
         private readonly IUserQueryRepository _userQueryRepository;
         private readonly IDataProtector userDataProtector;
         private readonly IDataProtector postDataProtector;
         private readonly IDataProtector commentDataProtector;
 
-        public PublicProfileService(IUserQueryRepository userQueryRepository, IUserCommandRepository userCommandRepository, IDataProtectionProvider dataProtectionProvider)
+        public PublicProfileService(IUserQueryRepository userQueryRepository,IDataProtectionProvider dataProtectionProvider)
         {
             _userQueryRepository = userQueryRepository;
-            _userCommandRepository = userCommandRepository;
             userDataProtector = dataProtectionProvider.CreateProtector("Users");
             postDataProtector = dataProtectionProvider.CreateProtector("Posts");
             commentDataProtector = dataProtectionProvider.CreateProtector("Comments");
@@ -48,6 +47,9 @@ namespace SchoolProject.Persistence.Services
             User? user = await _userQueryRepository.Table
                 .Include(u => u.Posts)
                 .ThenInclude(c => c.Comments)
+                .ThenInclude(u=>u.User)
+                .Include(c=>c.Comments)
+                .ThenInclude(c=>c.ReplyComments)
                 .Include(u => u.Followees)
                 .Include(u => u.Followers)
                 .FirstOrDefaultAsync(u => u.Id == Guid.Parse(userDataProtector.Unprotect(id)));
@@ -57,30 +59,35 @@ namespace SchoolProject.Persistence.Services
                user => user.Id,
                (uf, user) => new PublicProfilesDTO
                {
+                   ProfilePictureId = user.ProfilePictureId,
                    Id = user.Id.ToString(),
                    Name = user.Name,
                    Surname = user.Surname,
                    NickName = user.NickName
-               }).ToList();
+               }).ToList() ?? new List<PublicProfilesDTO>();
+
             List<PublicProfilesDTO> followees = user.Followees.Join(
                 _userQueryRepository.GetAll(),
                 uf => uf.FollowerId,
                 user => user.Id,
                 (uf, user) => new PublicProfilesDTO
                 {
+                    ProfilePictureId = user.ProfilePictureId,
                     Id = user.Id.ToString(),
                     Name = user.Name,
                     Surname = user.Surname,
                     NickName = user.NickName
-                }).ToList();
-            return new()
+                }).ToList() ?? new List<PublicProfilesDTO>();
+
+            var a = new GetByIdPublicProfileDTO()
             {
+                ProfilePictureId = user.ProfilePictureId,
                 Id = userDataProtector.Protect(user.Id.ToString()),
                 Name = user.Name,
                 Surname = user.Surname,
                 NickName = user.NickName,
-                Followers = followers,
-                Follows = followees,
+                Followers = followers ,
+                Follows = followees ,
                 Posts = user.Posts?.Select(p => new GetAllPostsDTO()
                 {
                     UserId = userDataProtector.Protect(p.UserId.ToString()),
@@ -88,16 +95,21 @@ namespace SchoolProject.Persistence.Services
                     Content = p.Content,
                     Title = p.Title,
                     LikeCount = p.LikeCount,
+                    CreatedDate = p.CreatedDate,
+                    OwnersName= p.User.NickName,
+                    ProfilePictureId = p.User.ProfilePictureId,
                     Comments = p.Comments.Select(c => new CommentDTO()
                     {
                         UserId = userDataProtector.Protect(c.UserId.ToString()),
                         PostId = postDataProtector.Protect(c.PostId.ToString()),
                         Id = commentDataProtector.Protect(c.Id.ToString()),
                         Content = c.Content,
-                        LikeCount = c.LikeCount
+                        LikeCount = c.LikeCount,
+                        CreatedDate = c.CreatedDate,
+                        OwnersName = c.User.NickName,
+                        ProfilePictureId = c.User.ProfilePictureId
                     }).ToList() ?? new List<CommentDTO>()
-                }
-                ).ToList() ?? new List<GetAllPostsDTO>(),
+                }).ToList() ?? new List<GetAllPostsDTO>(),
                 Comments = user.Comments.Select(c => new GetAllCommentsDTO()
                 {
                     PostId = postDataProtector.Protect(c.PostId
@@ -105,9 +117,14 @@ namespace SchoolProject.Persistence.Services
                     UserId = userDataProtector.Protect(c.UserId.ToString()),
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
-                    LikeCount = c.LikeCount
+                    LikeCount = c.LikeCount,
+                    CreatedDate = c.CreatedDate,
+                    OwnersName = user.NickName,
+                    ProfilePictureId= user.ProfilePictureId
                 }).ToList() ?? new List<GetAllCommentsDTO>()
             };
+            Console.WriteLine();
+            return a;
         }
 
         public Task<PublicProfilesDTO> UpdateAsync(UpdatePublicProfileDTO updatePublicProfileDTO)

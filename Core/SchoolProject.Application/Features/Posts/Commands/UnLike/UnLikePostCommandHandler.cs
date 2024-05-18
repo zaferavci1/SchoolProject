@@ -24,10 +24,10 @@ namespace SchoolProject.Application.Features.Posts.Commands.UnLike
 
         public async Task<IDataResult<PostDTO>> Handle(UnLikePostCommandRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserActive(request.UserId);
-            await _postBusinessRules.IsPostExist(request.Id);
-            await _postBusinessRules.IsPostActive(request.Id);
-            await _postBusinessRules.IsPostAllreadyLiked(request.Id, request.UserId);
+            await _userBusinessRules.IsUserActiveAsync(request.UserId);
+            await _postBusinessRules.IsPostExistAsync(request.Id);
+            await _postBusinessRules.IsPostActiveAsync(request.Id);
+            await _postBusinessRules.IsPostAllreadyLikedAsync(request.Id, request.UserId);
             PostDTO postDTO = await _postService.UnLikeAsync(request.Id, request.UserId);
             var data = new SuccessDataResult<PostDTO>(postDTO.Title + "Post'u begenildi.", postDTO);
             return data;

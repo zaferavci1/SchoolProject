@@ -23,11 +23,11 @@ namespace SchoolProject.Application.Features.Comments.Commands.Delete
 
         public async Task<IDataResult<CommentDTO>> Handle(DeleteCommentCommandRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.UserId);
-            await _userBusinessRules.IsUserActive(request.UserId);
-            await _commentBusinessRules.IsCommentExist(request.Id);
-            await _commentBusinessRules.IsCommentActive(request.Id);
-            await _commentBusinessRules.IsOwnerCorrect(request.Id, request.UserId);
+            await _userBusinessRules.IsUserExistAsync(request.UserId);
+            await _userBusinessRules.IsUserActiveAsync(request.UserId);
+            await _commentBusinessRules.IsCommentExistAsync(request.Id);
+            await _commentBusinessRules.IsCommentActiveAsync(request.Id);
+            await _commentBusinessRules.IsOwnerCorrectAsync(request.Id, request.UserId);
             CommentDTO commentDTO = await _commentService.DeleteAsync(request.Id);
             return new SuccessDataResult<CommentDTO>(commentDTO.Id + " Yorum Silindi.", commentDTO);
         }

@@ -22,11 +22,11 @@ namespace SchoolProject.Application.Features.Posts.Commands.Like
 
         public async Task<IDataResult<PostDTO>> Handle(LikePostCommandRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.UserId);
-            await _userBusinessRules.IsUserActive(request.UserId);
-            await _postBusinessRules.IsPostExist(request.Id);
-            await _postBusinessRules.IsPostActive(request.Id);
-            await _postBusinessRules.IsPostLiked(request.Id,request.UserId);
+            await _userBusinessRules.IsUserExistAsync(request.UserId);
+            await _userBusinessRules.IsUserActiveAsync(request.UserId);
+            await _postBusinessRules.IsPostExistAsync(request.Id);
+            await _postBusinessRules.IsPostActiveAsync(request.Id);
+            await _postBusinessRules.IsPostLikedAsync(request.Id,request.UserId);
             PostDTO postDTO = await _postService.LikeAsync(request.Id,request.UserId);
             var data = new SuccessDataResult<PostDTO>(postDTO.Title + "Post'u begenildi.", postDTO);
             return data;

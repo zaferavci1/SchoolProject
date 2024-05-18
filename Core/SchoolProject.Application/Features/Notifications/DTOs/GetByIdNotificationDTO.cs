@@ -12,6 +12,7 @@ namespace SchoolProject.Application.Features.Notifications.DTOs
         public string CommentId { get; set; }
         public string Message { get; set; }
         public string Type { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }
 

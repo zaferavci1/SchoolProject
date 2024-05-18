@@ -24,6 +24,8 @@ using Mapster;
 using System.Reflection;
 using SchoolProject.Application.Features.Comments.Rules;
 using SchoolProject.Application.Features.Baskets.Rules;
+using SchoolProject.Application.Abstraction.Repository.Cryptos;
+using SchoolProject.Persistence.Repositories.Cryptos;
 
 namespace SchoolProject.Persistence
 {
@@ -45,6 +47,7 @@ namespace SchoolProject.Persistence
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITokenHandler, TokenHandler>();
+            services.AddScoped<ICryptoService, CryptoService>();
 
 
             services.AddScoped<ICommentCommandRepository, CommentCommandRepository>();
@@ -63,7 +66,10 @@ namespace SchoolProject.Persistence
 
             services.AddScoped<INotificationCommandRepository, NotificationCommandRepository>();
             services.AddScoped<INotificationQueryRepository, NotificationQueryRepository>();
-            
+
+            services.AddScoped<ICryptoCommandRepository, CryptoCommandRepository>();
+            services.AddScoped<ICryptoQueryRepository, CryptoQueryRepository>();
+
             services.AddScoped<UserBusinessRules, UserBusinessRules>();
             services.AddScoped<PostBusinessRules, PostBusinessRules>();
             services.AddScoped<CommentBusinessRules, CommentBusinessRules>();

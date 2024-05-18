@@ -23,10 +23,10 @@ namespace SchoolProject.Application.Features.Baskets.Commands.UnLike
 
         public async Task<IDataResult<BasketDTO>> Handle(UnLikeBasketCommandRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.UserId);
-            await _userBusinessRules.IsUserActive(request.UserId);
-            await _basketBusinessRules.IsBasketExist(request.Id);
-            await _basketBusinessRules.IsBasketAlreadyLiked(request.Id, request.UserId);
+            await _userBusinessRules.IsUserExistAsync(request.UserId);
+            await _userBusinessRules.IsUserActiveAsync(request.UserId);
+            await _basketBusinessRules.IsBasketExistAsync(request.Id);
+            await _basketBusinessRules.IsBasketAlreadyLikedAsync(request.Id, request.UserId);
             BasketDTO basketDTO = await _basketService.UnLikeAsync(request.Id, request.UserId);
             return new SuccessDataResult<BasketDTO>("Sepet Başarıyla Begenildi", basketDTO);
 

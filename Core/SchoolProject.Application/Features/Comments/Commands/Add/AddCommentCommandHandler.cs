@@ -24,10 +24,10 @@ namespace SchoolProject.Application.Features.Comments.Commands.Add
         }
         public async Task<IDataResult<CommentDTO>> Handle(AddCommentCommandRequest request, CancellationToken cancellationToken)
         {
-            await _userBusinessRules.IsUserExist(request.UserId);
-            await _userBusinessRules.IsUserActive(request.UserId);
-            await _postBusinessRules.IsPostExist(request.PostId);
-            await _postBusinessRules.IsPostActive(request.PostId);
+            await _userBusinessRules.IsUserExistAsync(request.UserId);
+            await _userBusinessRules.IsUserActiveAsync(request.UserId);
+            await _postBusinessRules.IsPostExistAsync(request.PostId);
+            await _postBusinessRules.IsPostActiveAsync(request.PostId);
             CommentDTO commentDTO = await _commentService.AddAsync(request.Adapt<AddCommentDTO>());
             var data = new SuccessDataResult<CommentDTO>(request.PostId + " 'a yorum eklendi", commentDTO);
             return data;

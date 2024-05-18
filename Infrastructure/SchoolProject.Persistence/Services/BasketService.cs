@@ -1,5 +1,6 @@
 ﻿ using System;
 using System.Security.Cryptography;
+using Mapster;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Application.Abstraction.Repository.Baskets;
@@ -35,50 +36,70 @@ namespace SchoolProject.Persistence.Services
             await basketCommandRepository.SaveAsync();
             return new()
             {
+                UserId = userDataProtector.Protect(basket.UserId.ToString()),
                 Id = basketDataProtector.Protect(basket.Id.ToString()),
                 BasketName = basket.BasketName,
-                LikeCount = basket.LikeCount
+                LikeCount = basket.LikeCount,
+                CreatedDate = basket.CreatedDate,
             };
         }
 
         public async Task<BasketDTO> DeleteAsync(string id)
         {
-            Basket basket = await basketCommandRepository.RemoveAsync(id);
+            Basket basket = await basketCommandRepository.RemoveAsync(basketDataProtector.Unprotect(id));
             await basketCommandRepository.SaveAsync();
             return new()
             {
+                UserId = userDataProtector.Protect(basket.UserId.ToString()),
+                OwnersName = basket.User.NickName,
                 Id = basketDataProtector.Protect(id),
                 BasketName = basket.BasketName,
-                LikeCount = basket.LikeCount
+                LikeCount = basket.LikeCount,
+                CreatedDate = basket.CreatedDate
             };
 
         }
 
         public async Task<(List<GetAllBasketsDTO>, int totalCount)> GetAllAsync(int page, int size)
-        => (await basketQueryRepository.GetAll().Where(b => b.IsActive == true).Include(b => b.Cryptos).Skip(page * size).Take(size).Select(b => new GetAllBasketsDTO()
+        => (await basketQueryRepository.GetAll().Where(b => b.IsActive == true).Include(b => b.Cryptos).Include(b=>b.User).Skip(page * size).Take(size).Select(b => new GetAllBasketsDTO()
         {
-              Id = basketDataProtector.Protect(b.Id.ToString()),
-              BasketName = b.BasketName,
-              Cryptos = b.Cryptos,
-              LikeCount = b.LikeCount
+            UserId = userDataProtector.Protect(b.UserId.ToString()),
+            OwnersName = b.User.NickName,
+            Id = basketDataProtector.Protect(b.Id.ToString()),
+            BasketName = b.BasketName,
+            Cryptos = b.Cryptos
+            .GroupBy(c => c.Symbol)
+            .Select(g => new CryptoDTO
+            {
+                Symbol = g.Key,
+                Cost = g.Sum(p=>p.Cost * p.Amount),
+                Amount = g.Sum(c => c.Amount),
+                CreatedDate = g.Min(c => c.CreatedDate)  // First created date
+            }).ToList() ?? new List<CryptoDTO>(),
+            LikeCount = b.LikeCount,
+            CreatedDate = b.CreatedDate
         }).ToListAsync() ,await  basketQueryRepository.GetAll().CountAsync());
 
         public async Task<GetByIdBasketDTO> GetByIdAsync(string id)
         {
-            Basket basket = await basketQueryRepository.Table.Include(b => b.Cryptos).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(id)));
+            Basket? basket = await basketQueryRepository.Table.Include(b => b.Cryptos).Include(b=>b.User).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(id)));
 
             return new()
             {
+                UserId = userDataProtector.Protect(basket.UserId.ToString()),
+                OwnersName = basket.User.NickName,
                 Id = basketDataProtector.Protect(id),
                 BasketName = basket.BasketName,
-                Cryptos = basket.Cryptos,
-                LikeCount = basket.LikeCount
+                Cryptos = basket.Cryptos.Select(c=>c.Adapt<CryptoDTO>()).ToList()?? new List<CryptoDTO>(),
+                LikeCount = basket.LikeCount,
+                CreatedDate = basket.CreatedDate
+                
             };
         }
 
         public async Task<BasketDTO> LikeAsync(string id, string userId)
         {
-            Basket? basket = await basketQueryRepository.Table.Include(b => b.Cryptos).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(id)));
+            Basket? basket = await basketQueryRepository.Table.Include(b => b.Cryptos).Include(b=>b.User).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(id)));
             basket.LikeCount += 1;
             BasketLike bl = new()
             {
@@ -90,16 +111,19 @@ namespace SchoolProject.Persistence.Services
             await basketCommandRepository.SaveAsync();
             return new()
             {
+                UserId = userDataProtector.Protect(basket.User.Id.ToString()),
+                OwnersName = basket.User.NickName,
                 Id = basketDataProtector.Protect(basket.Id.ToString()),
                 BasketName = basket.BasketName,
-                LikeCount = basket.LikeCount
+                LikeCount = basket.LikeCount,
+                CreatedDate = basket.CreatedDate
             };
 
         }
 
         public async Task<BasketDTO> UnLikeAsync(string id, string userId)
         {
-            Basket? basket = await basketQueryRepository.Table.Include(b => b.Cryptos).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(id)));
+            Basket? basket = await basketQueryRepository.Table.Include(b => b.Cryptos).Include(b=>b.User).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(id)));
             basket.LikeCount -= 1;
             BasketLike bl = new()
             {
@@ -111,23 +135,30 @@ namespace SchoolProject.Persistence.Services
             await basketCommandRepository.SaveAsync();
             return new()
             {
+                
+                UserId = userDataProtector.Protect(basket.User.Id.ToString()),
+                OwnersName = basket.User.NickName,
                 Id = basketDataProtector.Protect(basket.Id.ToString()),
                 BasketName = basket.BasketName,
-                LikeCount = basket.LikeCount
+                LikeCount = basket.LikeCount,
+                CreatedDate = basket.CreatedDate
             };
         }
 
         public async Task<BasketDTO> UpdateAsync(UpdateBasketDTO updateBasketDTO)
         {
-            Basket basket = await basketQueryRepository.Table.Include(b => b.Cryptos).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(updateBasketDTO.Id)));
+            Basket? basket = await basketQueryRepository.Table.Include(b => b.Cryptos).Include(b=>b.User).FirstOrDefaultAsync(b => b.Id == Guid.Parse(basketDataProtector.Unprotect(updateBasketDTO.Id)));
             basket.BasketName = updateBasketDTO.BasketName;
             basketCommandRepository.Update(basket);
             await basketCommandRepository.SaveAsync();
             return new()
             {
+                UserId = userDataProtector.Protect(basket.User.Id.ToString()),
+                OwnersName = basket.User.NickName,
                 Id = basketDataProtector.Protect(basket.Id.ToString()),
                 BasketName = basket.BasketName,
-                LikeCount = basket.LikeCount
+                LikeCount = basket.LikeCount,
+                CreatedDate = basket.CreatedDate
             };
         }
     }

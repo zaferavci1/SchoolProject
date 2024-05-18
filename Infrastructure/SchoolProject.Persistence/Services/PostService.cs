@@ -45,7 +45,8 @@ namespace SchoolProject.Persistence.Services
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
                 Title = post.Title,
-                LikeCount = post.LikeCount
+                LikeCount = post.LikeCount,
+                CreatedDate = post.CreatedDate
             };
         }
 
@@ -59,32 +60,39 @@ namespace SchoolProject.Persistence.Services
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
                 Title = post.Title,
-                LikeCount = post.LikeCount
+                LikeCount = post.LikeCount,
+                CreatedDate = post.CreatedDate
             };
         }
 
 
         public async Task<(List<GetAllPostsDTO>, int totalCount)> GetAllAsync(int page, int size)
-        => (await _postQueryRepository.GetAll().Where(p => p.IsActive == true).Include(p => p.Comments).Skip(page * size).Take(size).Select(p => new GetAllPostsDTO
+        => (await _postQueryRepository.GetAll().Where(p => p.IsActive == true).Include(p=>p.User).Include(p => p.Comments).ThenInclude(c=>c.User).Skip(page * size).Take(size).Select(p => new GetAllPostsDTO
         {
             UserId = userDataProtector.Protect(p.UserId.ToString()),
             Id = postDataProtector.Protect(p.Id.ToString()),
+            OwnersName = p.User.NickName,
+            ProfilePictureId = p.User.ProfilePictureId,
             Comments = p.Comments.Select(c => new CommentDTO
             {
                 UserId =userDataProtector.Protect(c.UserId.ToString()),
                 PostId = postDataProtector.Protect(c.PostId.ToString()),
                 Id = commentDataProtector.Protect(c.Id.ToString()),
                 Content = c.Content,
-                LikeCount = c.LikeCount
+                LikeCount = c.LikeCount,
+                CreatedDate = c.CreatedDate,
+                OwnersName = c.User.NickName,
+                ProfilePictureId = c.User.ProfilePictureId
             }).ToList(),
             Title = p.Title,
             Content = p.Content,
-            LikeCount = p.LikeCount
+            LikeCount = p.LikeCount,
+            CreatedDate = p.CreatedDate,
         }).ToListAsync(), await _postQueryRepository.GetAll().CountAsync());
 
         public async Task<GetByIdPostDTO> GetByIdAsync(string id)
         {
-            Post post = await _postQueryRepository.Table.Include(p => p.Comments).FirstOrDefaultAsync(p => p.Id == Guid.Parse(postDataProtector.Unprotect(id)));
+            Post post = await _postQueryRepository.Table.Include(p=>p.User).Include(p => p.Comments).ThenInclude(c=>c.User).FirstOrDefaultAsync(p => p.Id == Guid.Parse(postDataProtector.Unprotect(id)));
             return new()
             {
                 UserId = userDataProtector.Protect(post.UserId.ToString()),
@@ -95,11 +103,17 @@ namespace SchoolProject.Persistence.Services
                     PostId = postDataProtector.Protect(c.PostId.ToString()),
                     Id = commentDataProtector.Protect(c.Id.ToString()),
                     Content = c.Content,
-                    LikeCount = c.LikeCount
+                    LikeCount = c.LikeCount,
+                    CreatedDate = c.CreatedDate,
+                    OwnersName = c.User.NickName,
+                    ProfilePictureId = c.User.ProfilePictureId
                 }).ToList() ?? new List<CommentDTO>(),
                 Content = post.Content,
                 Title = post.Title,
-                likeCount = post.LikeCount
+                likeCount = post.LikeCount,
+                CreatedDate = post.CreatedDate,
+                OwnersName = post.User.NickName,
+                ProfilePictureId = post.User.ProfilePictureId,
             };
         }
 
@@ -123,7 +137,8 @@ namespace SchoolProject.Persistence.Services
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
                 Title = post.Content,
-                LikeCount = post.LikeCount
+                LikeCount = post.LikeCount,
+                CreatedDate = post.CreatedDate
             };
         }
 
@@ -147,7 +162,8 @@ namespace SchoolProject.Persistence.Services
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
                 Title = post.Content,
-                LikeCount = post.LikeCount
+                LikeCount = post.LikeCount,
+                CreatedDate = post.CreatedDate
             };
         }
 
@@ -165,7 +181,8 @@ namespace SchoolProject.Persistence.Services
                 Id = postDataProtector.Protect(post.Id.ToString()),
                 Content = post.Content,
                 Title = post.Content,
-                LikeCount = post.LikeCount
+                LikeCount = post.LikeCount,
+                CreatedDate = post.CreatedDate
             };
         }
     }
